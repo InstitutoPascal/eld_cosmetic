@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+<center><h1><b>Consulta de cliente por Apellido</b></h1></center>
+
+<!--muestra 'listado por cliente' -->
+{{=subtitulo}}
+
+<!-- 'localidad' + campo + boton 'buscar' -->
+{{=form}}
+
+<!-- si cantidad de registro es mayor a cero  ('cant' variable de vista)-->
+{{if cant > 0:}}
+Los clientes son:
+{{=tabla}}
+{{pass}}

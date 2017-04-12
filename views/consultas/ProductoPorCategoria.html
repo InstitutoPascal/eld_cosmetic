@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+<h1><b>Consulta de producto por categoria</b></h1>
+
+<!--muestra 'listado por EMPLEADO' -->
+{{=subtitulo}}
+
+<!-- 'localidad' + campo + boton 'buscar' -->
+{{=form}}
+
+<!-- si cantidad de registro es mayor a cero  ('cant' variable de vista)-->
+{{if cant > 0:}}
+Los clientes son:
+{{=tabla}}
+{{pass}}

@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+<h1>This is the localidad.html template</h1>
+{{=BEAUTIFY(response._vars)}}
+
+
+#en la vista asociada "localidad.html":
+{{extend 'lugares/localidad.html'}}
+<h2>Input form</h2>
+<form enctype="multipart/form-data" action="{{=URL()}}" method="post">
+Your name:
+<input name="name" />
+<input type="submit" />
+</form>
+<h2>Submitted variables</h2>
+
+{{=BEAUTIFY(request.vars)}}
