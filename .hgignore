@@ -1,0 +1,16 @@
+
+syntax: glob
+*~
+*.pyc
+*.pyo
+*.bak
+*.log
+*.1
+*.2
+*.orig
+cache/*
+databases/*
+sessions/*
+errors/*
+languages/*
+
