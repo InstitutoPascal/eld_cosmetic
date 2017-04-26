@@ -88,3 +88,8 @@ response.menu+=[(T('Consultas'),False,'#',
                     (T('Por DNI'),False,URL(request.application,'consultas','Empleadospordni'),[]),],),
                  ],
                    )]
+#---------------------------------------------------------------------------------------------------------------------------------------
+
+response.menu+=[
+                (T('compras'), False, URL('compras', 'compra'),[]),
+                   ]
