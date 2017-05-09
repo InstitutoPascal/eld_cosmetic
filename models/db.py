@@ -90,7 +90,7 @@ plugins = PluginManager()
 # -------------------------------------------------------------------------
 # create all tables needed by auth if not custom tables
 # -------------------------------------------------------------------------
-auth.define_tables(username=False, signature=False)
+#auth.define_tables(username=False, signature=False)
 
 # -------------------------------------------------------------------------
 # configure email
@@ -195,13 +195,13 @@ db.define_table ('categorias_prod',
                  primarykey=['categoria'] )
 db.categorias_prod.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
 
-##Productos##
+##Productos#
 db.define_table ('productos',
                  db.Field('codigo_producto','string'),
                  db.Field ('nombre','string'),
                  db.Field ('marca','string'),
                  #db.Field ('numart','integer',unique=True),
-                 db.Field ('categoriaP', db.categorias_prod),
+                 db.Field ('categoriaP',db.categorias_prod),
                  #db.Field('cantidad_prod','integer'),
                  #db.Field ('categoria','string'),
                  db.Field('precio','integer'),
@@ -214,8 +214,8 @@ db.define_table ('productos',
 #db.productos.cantidad_prod.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
 #db.productos.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
 
-#db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.categoria,) #Subconsulta a la tablacategorias_prod campo categoria
-db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod,'%(categoria)s',) #Subconsulta a la tablacategorias_prod campo categoria
+db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.categoria,) #Subconsulta a la tablacategorias_prod campo categoria
+#db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod,'%(categoria)s',) #Subconsulta a la tablacategorias_prod campo categoria
 
 #db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.id,'%(categoria)s') #Subconsulta a la tablacategorias_prod campo categoria
 

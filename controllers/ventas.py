@@ -2,3 +2,6 @@
 # try something like
 def VentasLocal():
     return dict()
+########################################################
+def VentasOnline():
+    return dict()
