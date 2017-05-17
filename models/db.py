@@ -215,7 +215,7 @@ db.define_table ('productos',
 #db.productos.cantidad_prod.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
 #db.productos.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
 
-db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.categoria,) #Subconsulta a la tablacategorias_prod campo categoria
+####db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.categoria,) #Subconsulta a la tablacategorias_prod campo categoria
 #db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod,'%(categoria)s',) #Subconsulta a la tablacategorias_prod campo categoria
 
 #db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.id,'%(categoria)s') #Subconsulta a la tablacategorias_prod campo categoria
@@ -224,7 +224,7 @@ db.productos.precio.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_
 #db.productos.fecha_venta.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
 #db.productos.fecha_compra.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
 
-db.productos.proveedor.requires=IS_IN_DB(db,db.proveedor,'%(nombre_empresa)s',) #subconsulta que obtiene datos de la tabla proveedor y campo codigo_proveedor
+########db.productos.proveedor.requires=IS_IN_DB(db,db.proveedor,'%(nombre_empresa)s',) #subconsulta que obtiene datos de la tabla proveedor y campo codigo_proveedor
 #,'%(field)s'  #permite mostrar el valor de un campo para que sea mas facil identificarlo 
 
 
