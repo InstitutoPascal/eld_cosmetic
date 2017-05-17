@@ -1,31 +1,44 @@
 {{extend 'layout.html'}}
+<h1>
+    Planilla de ingreso de productos
+</h1>
+<div class="col-sm-offset-0 col-sm-8">
+<form class="form-horizontal">
 
-<form>
-  <div class="form-group">
-    <label for="exampleInputcodigo1"> codigo</label>
-    <input type="codigo1" class="form-control" id="exampleInputEmail1" placeholder="ingrese el codigo">
-  </div>
 
-<form>
-  <div class="form-group">
-    <label for="exampleInputdescripcion1"> descripción</label>
-    <input type="descripcion1" class="form-control" id="exampleInputdescripción1" placeholder="ingrese descripción">
-  </div>
-<form>
-  <div class="form-group">
-    <label for="categoria1"> Categoria</label>
-    <input type="categoria1" class="form-control" id="categoria1" placeholder="ingrese categoria">
-  </div>
-<form>
-  <div class="form-group">
-    <label for="cantidad1"> Cantidad</label>
-    <input type="cantidad1" class="form-control" id="cantidad1" placeholder="ingrese cantidad">
-  </div
-      
+   <div class="form-group">
+    <label for="inputEmail3" class="col-sm-1 control-label">Codigo</label>
+    <div class="col-sm-3"> 
+        <input type="email" class="form-control" id="inputEmail3" placeholder="KP00F001">
  </div>
     </div>
 
-       <button type="cargar " class="btn btn-default">cargar producto</button>
-       <button type="cargar " class="btn btn-default">lista de producto</button>
+   <div class="form-group">
+    <label for="inputEmail3" class="col-sm-1 control-label">Nombre</label> 
+       <div class="col-sm-3">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="EDT KOSIUKO ROSE 50 Ml">
+ </div>
+    </div>
+
+ <div class="form-group">
+    <label for="inputEmail3" class="col-sm-1 control-label">categoria</label> 
+       <div class="col-sm-3">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="EDT">
+ </div>
+    </div>   
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-1 control-label">cantidad</label> 
+       <div class="col-sm-3">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="24">
+ </div>
+    </div>      
+
+ <button type="cargar " class="btn btn-default">ingrese nuevo producto</button>
+       <a type="cargar " class="btn btn-default" href="http://127.0.0.1:8000/diego_2017/compras/ComprasProveedoresListados" >lista de producto</a>  
+          
+       <button type="finalizar compra " class="btn btn-default">finalizar compra</button>    
+    
+    
+    
 </form>
-</div>
+     </div>
