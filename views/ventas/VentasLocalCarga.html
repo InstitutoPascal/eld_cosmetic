@@ -1,19 +1,19 @@
 {{extend 'layout.html'}}
-<h1>VENTAS LOCAL</h1>
+ <h1>Ventas Local</h1>
 {{=BEAUTIFY(response._vars)}}
+
+
 
 
 <h4>Seleccion de producto</h4>
 <div class="form-group">
     </div>
-<form class="form-horizontal" action="{{=URL(c="ventas", f="detalle_ventas")}}" enctype="multipart/form-data" method="POST">
+<form class="form-horizontal" enctype="multipart/form-data" >
     <div class="form-group">
-        <label for="produc" class="col-sm-1 control-label">Producto</label>
+        <label for="produc" class="col-sm-1 control-label">Cod Prod</label>
            <div class="col-sm-3">
-                <select class="form-control" id="campo_tipo" name="id_producto">
-                  
-                  
-                </select>
+          <input type="text" class="form-control" id="exampleInputName2" placeholder="Ingrese el codigo de producto">
+
            </div>
         <label for="cant" class="col-sm-1 control-label">Cantidad</label>
            <div class="col-sm-2">
@@ -22,11 +22,11 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <a type="cargar " class="btn btn-default" href="{{=URL(c="altas",f="alta_producto")}}" >Agregar nuevo producto</a> 
+            <button type="submit" class="btn btn-primary">Cargar producto</button>
         </div>
     </div>
 </form>
-<form class="form-horizontal" action="{{=URL(c="ventas", f="confirmar")}}" enctype="multipart/form-data" method="POST">
+<form class="form-horizontal"  enctype="multipart/form-data" >
     <div class="form-group">
         <div class="col-md-10">
           <table class="table table-hover">
@@ -38,9 +38,6 @@
                 <th>Cantidad</th>
                 <th>Precio Unitario</th>
                 <th>SubTotal</th>
-                <!-- <th>IVA</th> -->
-                <!-- <th>SubTotal + IVA</th> -->
-                <!-- <th>Opciones</th> -->
             </tr>
           </thead>
         <tbody>
@@ -73,7 +70,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-1">
-            <a type="cargar " class="btn btn-default" href="{{=URL(c="ventas",f="VentaLocalVistaprevia")}}"> Finalizar Venta</a>
+            <a type="cargar " class="btn btn-primary" href="{{=URL(c="ventas",f="VentaLocalVistaprevia")}}"> Finalizar Venta</a>
         </div>
      </div>
 </form>

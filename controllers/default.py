@@ -18,7 +18,7 @@ def index():
     return auth.wiki()
     """
     response.flash = T("Gracias por iniciar sesion!")
-    return dict(message=T('Sistema SALES3'))
+    return dict(message=T('Sistema ELD_COSMETIC'))
 
 
 def user():
