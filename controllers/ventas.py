@@ -75,3 +75,6 @@ def VentasOnlinePerfume17():
 
 def VentasOnlinePerfume18():
     return dict()
+
+def VentasOnlineHome():
+    return dict()
