@@ -3,7 +3,7 @@
 def VentasLocal():
     return dict()
 
-def VentasOnline():
+def VentasOnlinetarjeta():
     return dict()
 
 def VentasLocalCarga():
