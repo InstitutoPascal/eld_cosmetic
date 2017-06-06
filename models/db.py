@@ -201,7 +201,7 @@ db.define_table ('productos',
                  db.Field ('nombre','string'),
                  db.Field ('marca','string'),
                  #db.Field ('numart','integer',unique=True),
-                 db.Field ('categoriaP',db.categorias_prod),
+                 ###db.Field ('categoriaP','string'),
                  #db.Field ('categoriaP','string'),
                  #db.Field('cantidad_prod','integer'),
                  #db.Field ('categoria','string'),
@@ -215,7 +215,7 @@ db.define_table ('productos',
 #db.productos.cantidad_prod.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
 #db.productos.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
 
-####db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.categoria,) #Subconsulta a la tablacategorias_prod campo categoria
+#db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.categoria,) #Subconsulta a la tablacategorias_prod campo categoria
 #db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod,'%(categoria)s',) #Subconsulta a la tablacategorias_prod campo categoria
 
 #db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.id,'%(categoria)s') #Subconsulta a la tablacategorias_prod campo categoria

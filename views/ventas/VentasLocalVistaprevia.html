@@ -1,0 +1,114 @@
+{{extend 'layout.html'}}
+
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <div class="col-xs-6">
+        <h2><IMG src="{{=URL(c="static/images/", f="eld_cosmetic.png")}}" WIDTH=178 HEIGHT=180 /> ELD Cosmetic</h2>
+       <td class="text-right "> <h2>Vista Previa Factura</h2>  </td>
+        </div>
+        <div class="col-xs-6 text-right">
+            <h1>Factura Tipo: B </h1>
+            <h1><small>N° 0001 </small></h1>
+            <h1><small>Fecha: 24/4/2017 </small></h1>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-5">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>De: <a href="#">ELD_Cosmetic S.A.</a></h4></div>
+            <div class="panel-body">DOMICILIO: Perez Castro 1234</div>
+            <div class="panel-body">LOCALIDAD: Gonzalez Catan</div>
+            <div class="panel-body">CUIT: 24-29-951753-5</div>
+            <div class="panel-body">Inicio Actividades: 03/04/2016</div>
+            </div>
+            </div>
+            <div class="col-xs-2"></div>
+            <div class="col-xs-5">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Para: Ricardo Lopez <a href="#">  </a></h4></div>
+            <div class="panel-body">DOMICILIO: Salado 2016</div>
+            <div class="panel-body">LOCALIDAD: Gregorio de Laferrere</div>
+            <div class="panel-body">COND. I.V.A: 21%</div>
+            <div class="panel-body">CUIT: 30-27137894-1 </div>
+            </div>
+        </div>
+        </div>
+    </div>
+<div class="form-group">
+<div class="row">
+<div class="col-xs-12">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th><h4>Código de Artículo</h4></th>
+            <th><h4>Detalle</h4></th>
+            <th><h4>Cantidad</h4></th>
+            <th><h4>Precio Unitario</h4></th>
+            <th><h4>Sub-Total</h4></th>
+        </tr>
+    </thead>
+    <tr>
+<td>Messi</td>
+<td class="text-right">Colonia Messi 100ml + llavero</td>
+<td class="text-right">1</td>
+<td class="text-right ">70.00</td>
+<td class="text-right ">70.00</td>
+</tr>
+<td>Stone</td>
+<td class="text-right">Colonia Stone 250ml</td>
+<td class="text-right">1</td>
+<td class="text-right ">80.00</td>
+<td class="text-right ">80.00</td>
+</tr>
+    <tbody>
+        
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td class=" text-center "></td>
+            <td class=" text-right "></td>
+            <td class=" text-right "></td>
+            
+        </tr>
+        
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="form-group">
+    <div class="row">
+        <div class="col-xs-5">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th><h5><B> SUB-TOTAL</B></h5></th>
+                        <th><h5>Impuesto IVA </h5></th>
+                        <th><h5><B>TOTAL</B></h5></th>
+
+                    </tr>
+                </thead>
+                <tr>
+                <td class="text-right ">150.00</td>
+                <td class="text-right ">31.50</td>
+                <td class="text-right ">181,5</td>
+                </tr>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+        </div>
+
+    <tr>
+        <td>  <input  type="button" class="btn btn-primary"  name="Imprimir Reporte" value="Imprimir Reporte" onclick="window.print();"  </input> </td>  <!-- Boton Imprimir  -->
+    <td><a type="cargar" href="{{=URL(c="ventas",f="VentasLocal")}}"  class="btn btn-primary" >Finalizar  <i class="glyphicon glyphicon-floppy-disk " ></i></a> </td>
+
+</tr>
+    
+</div>
+</form>

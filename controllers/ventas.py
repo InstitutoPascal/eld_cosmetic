@@ -9,7 +9,7 @@ def VentasOnlinetarjeta():
 def VentasLocalCarga():
     return dict()
 
-def VentaLocalVistaprevia():
+def VentasLocalVistaprevia():
     return dict()
 
 def inicio():
@@ -78,3 +78,7 @@ def VentasOnlinePerfume18():
 
 def VentasOnlineHome():
     return dict()
+
+def VentaLocalReporte():
+    grid = SQLFORM.grid(db.productos)
+    return {"grilla": grid}

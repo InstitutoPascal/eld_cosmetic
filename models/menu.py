@@ -54,9 +54,9 @@ def _():
 response.menu += [
             (T('Altas'), False, URL('default','index'), [
                 (T('Clientes'), False, URL('altas', 'alta_cliente'),[]),
-                (T('proveedores'), False, URL('altas', 'alta_proveedor'),[]),
-                (T('empleados'), False, URL('altas', 'alta_empleado'),[]),
-                (T('ventas'), False,URL('altas', 'alta_venta'),[])])]
+                (T('Proveedores'), False, URL('altas', 'alta_proveedor'),[]),
+                (T('Empleados'), False, URL('altas', 'alta_empleado'),[]),
+                (T('Productos'), False,URL('altas', 'alta_producto'),[])])]
 
 #-------------------------------------
 response.menu += [
