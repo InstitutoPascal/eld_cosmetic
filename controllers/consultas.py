@@ -4,7 +4,7 @@ def ClientesPorCiudad():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="text",_name="ciudad",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="text",_name="ciudad",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)```
     if form.accepts(request.vars,session):
         ### verifica si la carrera está en la base de datos
         #if db(db.clientes.localidad_cliente!=form.vars.ciudad).count()==0:
@@ -47,7 +47,7 @@ def ClientesPorApellido():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="text",_name="apellido",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="text",_name="apellido",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera estÃ¡ en la base de datos
         if db(db.clientes.apellido==form.vars.apellido).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
@@ -86,7 +86,7 @@ def ClientesPorDni():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="integer",_name="dni",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="integer",_name="dni",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera estÃ¡ en la base de datos
         if db(db.clientes.dni==form.vars.dni).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
@@ -123,7 +123,7 @@ def ProveedorPorCuit():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="text",_name="cuit_proveedor",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="text",_name="cuit_proveedor",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera estÃ¡ en la base de datos
         if db(db.proveedor.cuit_proveedor==form.vars.cuit_proveedor).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
@@ -161,7 +161,7 @@ def ProveedorPorNombre():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="text",_name="dni",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="text",_name="dni",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera estÃ¡ en la base de datos
         if db(db.proveedor.nombre_empresa==form.vars.nombre_empresa).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
@@ -197,7 +197,7 @@ def Empleadosporlegajo():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="integer",_name="codigo_empleados",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="integer",_name="codigo_empleados",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera estÃ¡ en la base de datos
         if db(db.empleados.codigo_empleados==form.vars.codigo_empleados).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
@@ -232,7 +232,7 @@ def Empleadospordni():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="integer",_name="dni",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="integer",_name="dni",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera estÃ¡ en la base de datos
         if db(db.empleados.dni==form.vars.dni).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
@@ -268,7 +268,7 @@ def ProductoPorCategoria():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="text",_name="categoria",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="text",_name="categoria",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera está en la base de datos
         #if db(db.clientes.localidad_cliente!=form.vars.ciudad).count()==0:
@@ -307,7 +307,7 @@ def ProductoPorNombre():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="text",_name="nombre",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="text",_name="nombre",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera estÃ¡ en la base de datos
         if db(db.productos.nombre==form.vars.nombre).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
@@ -345,7 +345,7 @@ def ProductoPorCodigo():
     tablaFinal=[]
     i=0
     form2=''
-    form=FORM(TABLE(TR("",INPUT(_type="text",_name="codigo",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar"))))#construlle el formulario para la vista, submit (tipo boton)
+    form=FORM(TABLE(TR("",INPUT(_type="text",_name="codigo",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera está en la base de datos
         #if db(db.clientes.localidad_cliente!=form.vars.ciudad).count()==0:
