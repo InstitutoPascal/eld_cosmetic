@@ -82,3 +82,6 @@ def VentasOnlineHome():
 def VentaLocalReporte():
     grid = SQLFORM.grid(db.productos)
     return {"grilla": grid}
+
+def ventasonlinevistaprevia():
+    return dict()
