@@ -33,12 +33,13 @@
  </div>
     </div>      
 
- <button type="cargar " class="btn btn-default">ingrese nuevo producto</button>
-        <a href="http://127.0.0.1:8000/diego_prueba/altas/alta_venta" class="btn btn-primary btn-lg active" role="button">alta de producto</a>
-         
-       <a href="http://127.0.0.1:8000/diego_prueba/compras/ComprasProveedoresListados" class="btn btn-primary btn-lg active" role="button">lista de producto</a>
-
-       <a href="http://127.0.0.1:8000/diego_prueba/default/index" class="btn btn-primary btn-lg active" role="button">finalizar compra</a>
+ 
+ <td><a type="cargar" href="{{=URL(c="altas",f="alta_producto")}}"  class="btn btn-primary" >Alta producto  <i class="glyphicon glyphicon-floppy-disk " ></i></a> </td>
+    
+ <td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresListados")}}"  class="btn btn-primary" >Lista de productos  <i class="glyphicon glyphicon-floppy-disk " ></i></a> </td>
+       
+<td><a type="cargar" href="{{=URL(c="default",f="index")}}"  class="btn btn-primary" > Finalizar compra  <i class="glyphicon glyphicon-floppy-disk " ></i></a> </td>
+       
     
     
 </form>

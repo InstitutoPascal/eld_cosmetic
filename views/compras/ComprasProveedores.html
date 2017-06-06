@@ -5,8 +5,8 @@
 <div class="col-sm-offset-0 col-sm-8">
 <form class="form-horizontal">
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label"> Lista Proveedor</label>  <a href="http://127.0.0.1:8000/diego_prueba/altas/alta_proveedor" class="btn btn-primary btn-lg active" role="button">Agregar proveedor</a>
-  
+    <label for="inputEmail3" class="col-sm-1 control-label"> Lista Proveedor</label>  
+  <td><a type="cargar" href="{{=URL(c="altas",f="alta_proveedor")}}"  class="btn btn-primary" >Agregar proveedor  <i class="glyphicon glyphicon-floppy-disk"  ></i></a> </td>
     <div class="col-sm-2">
     <select class="form-control">
     <option></option>
@@ -20,18 +20,18 @@
      <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">Numero Remito</label>
     <div class="col-sm-2">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="25678">
- </div>
+      <input type="email" class="form-control" id="inputEmail3" value = 25678 > <!--placeholder="25678"-->
+  </div>
     </div>
 
      <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">Fecha</label>
     <div class="col-sm-2">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="15/05/2017">
+      <input type="email" class="form-control" id="inputEmail3" value= 15/05/2017> <!-- placeholder="15/05/2017"-->
  </div>
     </div>
         
-       <a href="http://127.0.0.1:8000/diego_prueba/compras/ComprasProveedoresProducto" class="btn btn-primary btn-lg active" role="button">Agregar producto</a>
-      
+       
+      <td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresProducto")}}"  class="btn btn-primary" >Agregar producto  <i class="glyphicon glyphicon-floppy_disk " ></i></a> </td>
 </form>
 </div>
