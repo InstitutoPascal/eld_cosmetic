@@ -171,7 +171,7 @@ db.clientes.localidad_cliente.requires=IS_NOT_EMPTY(error_message='Campo obligat
 
 ##Proveedor##
 db.define_table('proveedor',
-                 ##No descomentar revisar tablas ##db.Field('codigo_proveedor','integer'),
+                 db.Field('codigo_proveedor','integer'),
                  db.Field('nombre_empresa','string'),
                  db.Field('cuit_proveedor','string'),
                  db.Field('localidad','string'),
@@ -190,11 +190,11 @@ db.proveedor.numero_calle.requires=IS_NOT_EMPTY(error_message='Campo obligatorio
 
 
 ##Categoria##
-"""db.define_table ('categorias_prod',
+db.define_table ('categorias_prod',
                  db.Field('categoria','string'),
                  primarykey=['categoria'] )
 db.categorias_prod.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
-"""
+
 ##Productos#
 db.define_table ('productos',
                  db.Field('codigo_producto','string'),
@@ -202,13 +202,12 @@ db.define_table ('productos',
                  db.Field ('marca','string'),
                  #db.Field ('numart','integer',unique=True),
                  ###db.Field ('categoriaP','string'),
-                     db.Field ('categoriaP','string'),
+                 #db.Field ('categoriaP','string'),
                  #db.Field('cantidad_prod','integer'),
                  #db.Field ('categoria','string'),
-                     db.Field('precio','integer'),
+                 db.Field('precio','integer'),
                  #db.Field('fecha_venta','string'),
-                 ###db.Field('proveedor',db.proveedor)
-                     ##No descomentar Revisar codigo##db.Field('proveedor',db.proveedor)
+                 db.Field('proveedor','string')
                  #db.Field('fecha_compra','string'
                 )
 

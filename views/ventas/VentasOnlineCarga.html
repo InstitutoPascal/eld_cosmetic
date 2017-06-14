@@ -3,23 +3,6 @@
 {{=BEAUTIFY(response._vars)}}
 
 
-<h4>Seleccion de producto</h4>
-<div class="form-group">
-    </div>
-<form class="form-horizontal" action="{{=URL(c="ventas", f="detalle_ventas")}}" enctype="multipart/form-data" method="POST">
-    <div class="form-group">
-        <label for="produc" class="col-sm-1 control-label">Producto</label>
-           <div class="col-sm-3">
-                <select class="form-control" id="campo_tipo" name="id_producto">
-                  
-                  
-                </select>
-           </div>
-        <label for="cant" class="col-sm-1 control-label">Cantidad</label>
-           <div class="col-sm-2">
-               <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Ingrese cantidad ">
-            </div>
-    </div>
     <div class="form-group">
         <div class="col-md-3">
             <a type="cargar " class="btn btn-default" href="{{=URL(c="ventas",f="VentasOnlinecatalogo")}}" >Agregar nuevo producto</a> 
