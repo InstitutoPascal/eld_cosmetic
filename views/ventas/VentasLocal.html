@@ -1,16 +1,7 @@
 {{extend 'layout.html'}}
-
 <h1><strong>Ventas Local</strong> <small></small></h1>
-<form>
-<!-- Temporalmente comentado
-<div class="form-group">
-      <label for="clientes1">Cliente</label>
-     <input type="cliente" class="form-control" id="clientes1" value = 0033 >
-<span id="helpBlock" class="help-block">Si el cliente no existe, haga clic en el boton nuevo cliente</span>
-<a type="cargar" href="{{=URL(c="altas",f="alta_cliente")}}"  class="btn btn-primary" >Nuevo Cliente  <i class="glyphicon glyphicon-menu-right " ></i></a>
-</div>   -->
 
-<!doctype html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -18,54 +9,37 @@
   <script src="//code.jquery.com/jquery-1.12.4.js"></script>
   <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<body>
 
-    <div>
-<div class="form-group">
-     <div class="col-xs-5">
-<label for="clientes1">Cliente </label>
-<input type="cliente" class="form-control" id="autocomplete" value = Delgado Enrique>
- 
-<script>
-$( "#autocomplete" ).autocomplete({
+   <form class="form-horizontal">
+  <div class="form-group">
+    <label for="cliente3" class="col-sm-2 control-label">Cliente</label>
+    <div class="col-sm-6">
+      <input type="email" class="form-control" id="autocomplete2" placeholder="Ingrese Apellido y Nombre">
+        <script>
+$( "#autocomplete2" ).autocomplete({
   source: [ "Perez Enrique", "Pedrino Ricardo", "Persico jose", "Peron juan", "Pepitero alberto ", "Peribebuy adrian", "Primate mono" ]
 });
 </script>
-</div>
-</div>
+
     </div>
-    
-<div>
-<label for="clientes1">Vendedor </label>
-<input type="cliente" class="form-control" id="autocomplete" value = Pereyra Ricardo>
- 
+  </div>
+  <div class="form-group">
+    <label for="vendedor3" class="col-sm-2 control-label">Vendedor</label>
+    <div class="col-sm-6">
+      <input type="vendedor" class="form-control" id="autocomplete1"  placeholder="Ingrese Apellido y Nombre">
 <script>
-$( "#autocomplete" ).autocomplete({
+$( "#autocomplete1" ).autocomplete({
   source: [ "Perez Enrique", "Pedrino Ricardo", "Persico jose", "Peron juan", "Pepitero alberto ", "Peribebuy adrian", "Primate mono" ]
 });
 </script>
-
-       
-</div>
-
-</body>
-</html>
-
-
-
-
-
-<!-- Temporalmente comentado
-
-<div class="form-group">
-    <label for="vendedor1">Vendedor</label>
-    <input type="vendedor" class="form-control" id="vendedor1" placeholder="Ingrese codigo del vendedor" value = 0022 > 
-      <span id="helpBlock" class="help-block">Si no conoce el numero de Empleado, haga clic en el Menu -> Consultas -> Empleados, para buscarlo</span>
-</div>
--->                                                                                                                                                            
-
-    <div>
-
-<a type="cargar" href="{{=URL(c="ventas",f="VentasLocalCarga")}}"  class="btn btn-primary" >Continuar  <i class="glyphicon glyphicon-menu-right " ></i></a>
-
-</div>
+        
+        
+    </div>
+  </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      
+    <a type="cargar" href="{{=URL(c="ventas",f="VentasLocalCarga")}}"  class="btn btn-primary" >Continuar  <i class="glyphicon glyphicon-menu-right " ></i></a>
+      </div>
+  </div>
+</form>
