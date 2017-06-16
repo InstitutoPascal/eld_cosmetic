@@ -32,9 +32,11 @@
             <tr>
                 <th>#</th>
                 <th class="">Cod Producto</th>
+                <th>Producto</th>
                 <th>Cantidad</th>
                 <th>Precio Unitario</th>
                 <th>SubTotal</th>
+                <th>Opciones</th>
             </tr>
               
           </thead>
@@ -42,9 +44,11 @@
               <tr>
                   <td>#</td>
                 <td class="">001</td>
+                <td>Colonia Messi 100mg</td>
                 <td>1</td>
                 <td>100</td>
                 <td>100</td>
+                <td><a class="btn btn-default" role="button" href="{{=URL(c="ventas",f="Borrar_Item",)}}">Eliminar</a></td>
                 <!-- <th>IVA</th> -->
                 <!-- <th>SubTotal + IVA</th> -->
                 <!-- <td>Opciones</td> -->
@@ -68,10 +72,10 @@
     </div>
     <div class="form-group">
         <div class="col-md-2">
-          <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventas",f="VentasLocalVistaprevia")}}">  Finalizar Venta <i class="glyphicon glyphicon-send" ></i></a>
+          <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventas",f="VentasMediosPago")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
         </div>
     <div>
-       <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventas",f="VentasLocal")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
+       <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventas",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
        </div> 
     </div>
        

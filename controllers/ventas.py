@@ -3,6 +3,12 @@
 def VentasLocal():
     return dict()
 
+def Borrar_Item():
+    return dict()
+
+def CancelarVenta():
+    return dict()
+
 def VentasOnlinetarjeta():
     return dict()
 
@@ -10,6 +16,9 @@ def VentasLocalCarga():
     return dict()
 
 def VentasLocalVistaprevia():
+    return dict()
+
+def VentasMediosPago():
     return dict()
 
 def inicio():
