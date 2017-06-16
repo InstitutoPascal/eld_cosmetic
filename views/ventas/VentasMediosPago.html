@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+{{=BEAUTIFY(response._vars)}}
+
+<center>
+<br /><br /><br />
+<h1> <p class="text-center visible-lg bg-success">Seleccione el medio de pago para finalizar la compra</p></h1>
+<br />
+<a type="cargar" class="btn btn-info " href="{{=URL(c="ventas",f="VentasLocalVistaprevia")}}">Efectivo <i class="glyphicon glyphicon-remove" ></i> </a>
+<a type="cargar" class="btn btn-success " href="{{=URL(c="ventas",f="VentasOnlinetarjeta")}}">Tarjeta <i class="glyphicon glyphicon-remove" ></i> </a>
+</center>
+
+</div>
