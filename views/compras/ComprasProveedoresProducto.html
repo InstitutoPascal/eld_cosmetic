@@ -1,46 +1,49 @@
 {{extend 'layout.html'}}
+<body>
 <h1>
     Planilla de ingreso de productos
 </h1>
-<div class="col-sm-offset-0 col-sm-8">
+<div class="col-sm-offset-0 col-sm-12">
 <form class="form-horizontal">
 
 
    <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">Codigo</label>
-    <div class="col-sm-3"> 
+    <div class="col-sm-6"> 
         <input type="email" class="form-control" id="inputEmail3" value= KP00F001> <!--placeholder="KP00F001"-->
  </div>
     </div>
 
    <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">Nombre</label> 
-       <div class="col-sm-3">
-      <input type="email" class="form-control" id="inputEmail3" value = EDT KOSIUKO > <!--placeholder="EDT KOSIUKO ROSE 50 Ml"-->
+       <div class="col-sm-6">
+      <input type="email" class="form-control" id="inputEmail3" value = KOSIUKO > <!--placeholder="EDT KOSIUKO ROSE 50 Ml"-->
  </div>
     </div>
 
  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">categoria</label> 
-       <div class="col-sm-3">
+    <label for="inputEmail3" class="col-sm-1 control-label">Categoria</label> 
+       <div class="col-sm-6">
       <input type="email" class="form-control" id="inputEmail3" value= EDT> <!-- placeholder="EDT"-->
  </div>
     </div>   
   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">cantidad</label> 
-       <div class="col-sm-3">
+    <label for="inputEmail3" class="col-sm-1 control-label">Cantidad</label> 
+       <div class="col-sm-6">
       <input type="email" class="form-control" id="inputEmail3" value = 24> <!-- placeholder="24"-->
  </div>
     </div>      
 
  
- <td><a type="cargar" href="{{=URL(c="altas",f="alta_producto")}}"  class="btn btn-primary" >Alta producto  <i class=" " ></i></a> </td>
+ <td><a type="cargar" href="{{=URL(c="altas",f="alta_producto")}}"  class="btn btn-primary" >Alta producto  <i <span class="glyphicon glyphicon-plus-sign"></span> </i></a> </td>
     
- <td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresListados")}}"  class="btn btn-primary" >Lista de  productos  <i class=" " ></i></a> </td>
+ <td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresListados")}}"  class="btn btn-primary" >Lista de  productos  <i <span class="glyphicon glyphicon-list-alt"></span> </i></a> </td>
        
-<td><a type="cargar" href="{{=URL(c="default",f="index")}}"  class="btn btn-primary" > Finalizar compra  <i class="" ></i></a> </td>
-       
+<td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedores")}}"  class="btn btn-primary" > Nueva compra  <i <span class="glyphicon glyphicon-ok-sign"</span> </i></a> </td>
+
+  
     
     
 </form>
      </div>
+</body>

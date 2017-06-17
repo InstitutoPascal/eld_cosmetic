@@ -1,37 +1,42 @@
 {{extend 'layout.html'}}
-<h2>
-    Planilla de alta proveedor
-</h2>
-<div class="col-sm-offset-0 col-sm-8">
+
+<body>
+<h1>
+    Planilla de Proveedores
+</h1>
+<div class="col-sm-offset-0 col-sm-12">
 <form class="form-horizontal">
-<div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label"> Lista Proveedor</label>  
-  <td><a type="cargar" href="{{=URL(c="altas",f="alta_proveedor")}}"  class="btn btn-primary" >Agregar proveedor  <i class="glyphicon glyphicon-floppy-disk"  ></i></a> </td>
-    <div class="col-sm-2">
-    <select class="form-control">
-    <option></option>
-    <option>Ravoner</option>
-    <option>Sabores y fragancias</option>
-    <option>De Aloysio</option>
-    </select>
 
-    </div>
-      </div>
-     <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">Numero Remito</label>
-    <div class="col-sm-2">
-      <input type="email" class="form-control" id="inputEmail3" value = 25678 > <!--placeholder="25678"-->
-  </div>
-    </div>
 
-     <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">Fecha</label>
-    <div class="col-sm-2">
-      <input type="email" class="form-control" id="inputEmail3" value= 15/05/2017> <!-- placeholder="15/05/2017"-->
+   <div class="form-group">
+    <label for="inputEmail3" class="col-sm-1 control-label">Nombre empresa</label>
+    <div class="col-sm-6"> 
+        <input type="email" class="form-control" id="inputEmail3" value= Ravoner> <!--placeholder="KP00F001"-->
  </div>
     </div>
-        
+
+   <div class="form-group">
+    <label for="inputEmail3" class="col-sm-1 control-label">N°Remito</label> 
+       <div class="col-sm-6">
+      <input type="email" class="form-control" id="inputEmail3" value = 4567 > <!--placeholder=""-->
+ </div>
+    </div>
+
+ <div class="form-group">
+    <label for="inputEmail3" class="col-sm-1 control-label">Fecha</label> 
+       <div class="col-sm-6">
+      <input type="email" class="form-control" id="inputEmail3" value= 17/6/2017> <!-- placeholder="EDT"-->
+ </div>
+    </div>   
+  
+ 
+ <td><a type="cargar" href="{{=URL(c="altas",f="alta_proveedor")}}"  class="btn btn-primary" >Alta proveedor  <i <span class="glyphicon glyphicon-plus-sign"></span> </i></a> </td>
+    
+ <td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresProducto")}}"  class="btn btn-primary" >Agregar productos  <i <span class="glyphicon glyphicon-list-alt"></span> </i></a> </td>
        
-      <td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresProducto")}}"  class="btn btn-primary" >Agregar producto  <i class="glyphicon glyphicon-floppy_disk " ></i></a> </td>
+
+    
+    
 </form>
-</div>
+     </div>
+</body>

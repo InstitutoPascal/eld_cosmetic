@@ -1,6 +1,9 @@
 {{extend 'layout.html'}}
+<body>
 <table class="table table-hover">
-          <caption>Productos Agregados</caption>
+          <caption> <h2>
+              Productos Agregados</caption>
+              </h2>
           <thead>
             <tr>
                 <th>#</th>
@@ -25,5 +28,6 @@
             {{pass}}
         </tbody>
         </table>
-<td><a type="cargar" href="{{=URL(c="default",f="index")}}"  class="btn btn-primary" > Finalizar compra  <i class="" ></i></a> </td>
-<td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresProducto")}}"  class="btn btn-primary" > cargar productos  <i class="" ></i></a> </td>
+<td><a type="cargar" href="{{=URL(c="default",f="index")}}"  class="btn btn-primary" > Finalizar compra  <i <span class="glyphicon glyphicon-plus-sign"></span> </i></a> </td>
+<td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresProducto")}}"  class="btn btn-primary" > cargar productos  <i <span class="glyphicon glyphicon-plus-sign"></span> </i></a> </td>
+</body>
