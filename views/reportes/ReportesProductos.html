@@ -2,7 +2,7 @@
 <h1>LISTADO DE PRODUCTOS</h1> <!-- Titulo  -->
 <input type="button" onclick="history.back()" name="volver atrás" value="volver atrás"> <!-- Boton volver atras  -->
 <TABLE width="100%" border="2" cellspacing="5" cellpadding="5" bgcolor="cdcdcd" font-size: = 11px margin= 0  >  <!-- Tabla  -->
-    <TR BGCOLOR="#99f"><TH>CODIGO</TH><TH>NOMBRE</TH><TH>MARCA</TH><TH>CATEGORIA</TH><TH>PRECIO</TH><TH>OPCIONES</TH></TR> <!-- Titulo de los campos -->
+    <TR BGCOLOR="#99f"><TH>CODIGO PRODUCTO</TH><TH>NOMBRE</TH><TH>MARCA</TH><TH>CATEGORIA</TH><TH>PRECIO</TH><TH>OPCIONES</TH></TR> <!-- Titulo de los campos -->
     {{for x in dc: }}
     <TR><TD>{{=x.codigo_producto}}</TD><TD>{{=x.nombre}}</TD><TD>{{=x.marca}}</TD><TD>{{=x.categoriaP}}</TD><TD>{{=x.precio}}</TD><TD> <!-- Campos de la tabla que seran consultados -->
             <A href="{{=URL(c='bajas', f='borrar_cliente', args=(x.id, ))}}">BORRAR</A> -  <!-- Permite borrar registros -->
