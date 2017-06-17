@@ -94,3 +94,6 @@ def VentaLocalReporte():
 
 def ventasonlinevistaprevia():
     return dict()
+
+def VentasOnlineTarjetas():
+    return dict()
