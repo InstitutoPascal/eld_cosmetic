@@ -1,4 +1,12 @@
 {{extend 'layout.html'}}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
 <body>
 <h1>
     Planilla de ingreso de productos
@@ -10,30 +18,49 @@
    <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">Codigo</label>
     <div class="col-sm-6"> 
-        <input type="email" class="form-control" id="inputEmail3" value= KP00F001> <!--placeholder="KP00F001"-->
+        <input type="email" class="form-control" id="autocomplete1" value= KP00F001> <!--placeholder="KP00F001"-->
+         <script>
+$( "#autocomplete1" ).autocomplete({
+  source: [ "EP00M001", "EP00M002", "EP00M003", "EP00M005", " EP00M006", "EP00M007", "EP00M008" ]
+});
+   </script>
  </div>
     </div>
 
    <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">Nombre</label> 
        <div class="col-sm-6">
-      <input type="email" class="form-control" id="inputEmail3" value = KOSIUKO > <!--placeholder="EDT KOSIUKO ROSE 50 Ml"-->
+      <input type="email" class="form-control" id="autocomplete2" value = KOSIUKO > <!--placeholder="EDT KOSIUKO ROSE 50 Ml"-->
+       <script>
+$( "#autocomplete2" ).autocomplete({
+  source: [ "ROSE", "ROSETA", "SHE", "SHE LOVE", "INTENSE WOMAN ", "INTENSE NIGHT", "INTENSE " ]
+});
+   </script>
  </div>
     </div>
 
  <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">Categoria</label> 
        <div class="col-sm-6">
-      <input type="email" class="form-control" id="inputEmail3" value= EDT> <!-- placeholder="EDT"-->
+      <input type="email" class="form-control" id="autocomplete3" value= EDT> <!-- placeholder="EDT"-->
+            <script>
+$( "#autocomplete3" ).autocomplete({
+  source: [ "EDT", "BODY", "COLONIA" ]
+});
+   </script>
  </div>
     </div>   
   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">Cantidad</label> 
-       <div class="col-sm-6">
-      <input type="email" class="form-control" id="inputEmail3" value = 24> <!-- placeholder="24"-->
+      <label for="cant" class="col-sm-1 control-label">Cantidad</label>
+           <div class="col-sm-2">
+               <input type="number" name="cantidad" class="form-control" id="cantidad" value = 1> <!--placeholder="placeholder="Ingrese cantidad"" -->
+            </div>
+    
+            
  </div>
     </div>      
 
+    
  
  <td><a type="cargar" href="{{=URL(c="altas",f="alta_producto")}}"  class="btn btn-primary" >Alta producto  <i <span class="glyphicon glyphicon-plus-sign"></span> </i></a> </td>
     

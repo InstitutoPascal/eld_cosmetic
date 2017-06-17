@@ -1,7 +1,14 @@
 {{extend 'layout.html'}}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
 
 <body>
-<h1>
+    <h1>
     Planilla de Proveedores
 </h1>
 <div class="col-sm-offset-0 col-sm-12">
@@ -11,7 +18,13 @@
    <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">Nombre empresa</label>
     <div class="col-sm-6"> 
-        <input type="email" class="form-control" id="inputEmail3" value= Ravoner> <!--placeholder="KP00F001"-->
+        <input type="email" class="form-control" id="autocomplete2" value= Ravoner> <!--placeholder="KP00F001"-->
+   <script>
+$( "#autocomplete2" ).autocomplete({
+  source: [ "Perfumol", "Pfragancias", "Perfumin", "Perfuya", " ", "Perfumadin", "Pimienta " ]
+});
+   </script>
+        
  </div>
     </div>
 
