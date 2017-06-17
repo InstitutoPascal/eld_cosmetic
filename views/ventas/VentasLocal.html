@@ -1,25 +1,32 @@
 {{extend 'layout.html'}}
-<h1><strong>Ventas Local</strong> <small></small></h1>
-
-
-<html lang="en">
+<!-- NECESARIO PARA AUTOCOMPLETAR -->
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.12.4.js"></script>
   <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
+<!-- ------------------------ -->
 
-   <form class="form-horizontal">
+<h1><strong>Ventas Local</strong> <small></small></h1>
+{{=BEAUTIFY(response._vars)}}
+
+<!------ INPUT + LABEL------->
+    <form class="form-horizontal">
   <div class="form-group">
     <label for="cliente3" class="col-sm-2 control-label">Cliente</label>
     <div class="col-sm-6">
       <input type="email" class="form-control" id="autocomplete2" placeholder="Ingrese Apellido y Nombre">
+<!-- ------------------------ -->
+
+<!------ AUTOCOMPLETAR ------->
         <script>
 $( "#autocomplete2" ).autocomplete({
   source: [ "Perez Enrique", "Pedrino Ricardo", "Persico jose", "Peron juan", "Pepitero alberto ", "Peribebuy adrian", "Primate mono" ]
 });
-</script>
+        </script>
+
+<!-- ------------------------ -->
 
     </div>
   </div>

@@ -29,7 +29,7 @@ response.google_analytics_id = None
 # ----------------------------------------------------------------------------------------------------------------------
 
 response.menu += [
-    (T('ELD_Cosmetics'), False, URL('default', 'index'), [])
+    (T('ELD_Cosmetics'), False, URL('default', 'index2'), [])
 ]
 
 DEVELOPMENT_MENU = True
