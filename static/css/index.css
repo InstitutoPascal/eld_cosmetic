@@ -7,7 +7,7 @@ float:left;
 width:100%;
 padding : 50px 0;
 }
-.banner-sec{background:url(http://127.0.0.1:8000/sales3/static/_2.14.6/images/kosiuko.jpg) no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0;}
+.banner-sec{background:url(http://127.0.0.1:8000/eld_cosmetic/static/images/kosiuko.jpg) no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0;}
 .container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
 .login-sec{padding: 50px 30px; position:relative;}
 .login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
