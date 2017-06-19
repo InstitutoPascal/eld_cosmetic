@@ -1,4 +1,10 @@
 {{extend 'layout.html'}}
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
 <div class="container">
   <div class="row">
   <div class="col-sm-6">
@@ -6,6 +12,20 @@
                             <p>Por favor ingrese los datos de su tarjeta aqui.</p>
                         </div>
                         <hr/>
+                        <div class="form-group">
+                            <label class="control-label" for="username" >Tarjeta</label>
+
+                            <div class="controls">
+                                <select classs="form-control" >
+                                        <option>cabal</option>
+                                        <option>visa</option>
+                                        <option>mastercard</option>
+                                        <option>american express</option>
+                                        <option>shopping</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <!-- Name -->
                         <div class="form-group">
                             <label class="control-label" for="username" >Nombre del titular de la tarjeta</label>
