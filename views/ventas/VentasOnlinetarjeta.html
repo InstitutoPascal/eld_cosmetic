@@ -1,15 +1,10 @@
 {{extend 'layout.html'}}
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
+
 <div class="container">
   <div class="row">
   <div class="col-sm-6">
   <div class="alert alert-info" role="alert">
-                            <p>Por favor ingrese los datos de su tarjeta aqui.</p>
+                            <p>Por favor ingrese los datos de su tarjeta.</p>
                         </div>
                         <hr/>
                         <div class="form-group">
@@ -28,7 +23,7 @@
 
                         <!-- Name -->
                         <div class="form-group">
-                            <label class="control-label" for="username" >Nombre del titular de la tarjeta</label>
+                            <label class="control-label" for="username" >Nombres del titular de la tarjeta</label>
 
                             <div class="controls">
                                 <input type="text" id="username" name="username" placeholder="" class="form-control" value="Lucas Montiel">
@@ -37,7 +32,7 @@
 
                         <!-- Card Number -->
                         <div class="form-group">
-                            <label class="control-label" for="card_number">Numero de Tarjeta</label>
+                            <label class="control-label" for="card_number">Número de Tarjeta</label>
 
                             <div class="controls">
                                 <input type="text" id="card_number" name="card_number" placeholder="" class="form-control" value="1234 1234 1234 1234" >
@@ -97,10 +92,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-12">
                                 <!-- Submit -->
                                 <div class="form-group">
-                                    <a class="btn btn-success" href="{{=URL(c="ventas",f="VentasLocalVistaprevia")}}">Finalizar compra</a>
+                                    <div class="col-sm-3">
+                                        <a class="btn btn-success" href="{{=URL(c="ventas",f="ventasonlinevistaprevia")}}">Finalizar compra</a>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a class="btn btn-danger" href="{{=URL(c="ventas",f="VentasOnlinecatalogo")}}">  Cancelar Compra <i class="glyphicon glyphicon-remove" ></i></a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-4"></div>
