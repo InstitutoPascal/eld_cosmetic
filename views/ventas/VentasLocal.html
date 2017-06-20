@@ -8,7 +8,7 @@
 </head>
 <!-- ------------------------ -->
 
-<h1><strong>Ventas Local</strong> <small></small></h1>
+<h1><strong>Venta Local</strong> <small></small></h1>
 {{=BEAUTIFY(response._vars)}}
 
 <!------ INPUT + LABEL------->
@@ -16,7 +16,7 @@
   <div class="form-group">
     <label for="cliente3" class="col-sm-2 control-label">Cliente</label>
     <div class="col-sm-6">
-      <input type="email" class="form-control" id="autocomplete2" placeholder="Ingrese Apellido y Nombre">
+      <input type="email" class="form-control" id="autocomplete2" value="Gallardo Marcelo" placeholder="Ingrese Apellido y Nombre">
 <!-- ------------------------ -->
 
 <!------ AUTOCOMPLETAR ------->
@@ -33,7 +33,7 @@ $( "#autocomplete2" ).autocomplete({
   <div class="form-group">
     <label for="vendedor3" class="col-sm-2 control-label">Vendedor</label>
     <div class="col-sm-6">
-      <input type="vendedor" class="form-control" id="autocomplete1"  placeholder="Ingrese Apellido y Nombre">
+      <input type="vendedor" class="form-control" id="autocomplete1" value ="Arias Emanuel" placeholder="Ingrese Apellido y Nombre">
 <script>
 $( "#autocomplete1" ).autocomplete({
   source: [ "Perez Enrique", "Pedrino Ricardo", "Persico jose", "Peron juan", "Pepitero alberto ", "Peribebuy adrian", "Primate mono" ]
@@ -49,4 +49,8 @@ $( "#autocomplete1" ).autocomplete({
     <a type="cargar" href="{{=URL(c="ventas",f="VentasLocalCarga")}}"  class="btn btn-primary" >Continuar  <i class="glyphicon glyphicon-menu-right " ></i></a>
       </div>
   </div>
+       
+
+          
+        <!-- <meta http-equiv="refresh" content="1;URL=http://google.com" target="_blank" /> -->
 </form>

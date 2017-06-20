@@ -16,10 +16,7 @@
            <div class="col-sm-2">
                <input type="number" name="cantidad" class="form-control" id="cantidad" value = 1> <!--placeholder="placeholder="Ingrese cantidad"" -->
             </div>
-           <div class="alert alert-info">
-                <div class="col-sm-2">
-                  <strong>Info!</strong> Indicates a neutral informative change or action.
-            </div>
+           
 
 
     </div>
@@ -37,11 +34,12 @@
           <thead>
             <tr>
                 <th>#</th>
-                <th class="">Cod Producto</th>
+                <th class="">Codigo</th>
                 <th>Producto</th>
                 <th>Cantidad</th>
                 <th>Precio Unitario</th>
                 <th>SubTotal</th>
+                <th>Stock Actual</th>
                 <th>Opciones</th>
             </tr>
               
@@ -54,6 +52,7 @@
                 <td>1</td>
                 <td>100</td>
                 <td>100</td>
+                <td>35</td>
                 <td><a class="btn btn-default" role="button" href="{{=URL(c="ventas",f="Borrar_Item",)}}">Eliminar</a></td>
                 <!-- <th>IVA</th> -->
                 <!-- <th>SubTotal + IVA</th> -->
@@ -79,8 +78,9 @@
     <div class="form-group">
         <div class="col-md-2">
           <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventas",f="VentasMediosPago")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
-          <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventas",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
+          
         </div>
+    <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventas",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
     </div>
        
 </form>

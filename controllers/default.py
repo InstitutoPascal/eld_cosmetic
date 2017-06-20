@@ -20,19 +20,6 @@ def index():
     response.flash = T("Gracias por iniciar sesion!")
     return dict(message=T('Sistema ELD_COSMETIC'))
 
-def index2():
-    """
-    example action using the internationalization operator T and flash
-    rendered by views/default/index.html or views/generic.html
-
-    if you need a simple wiki simply replace the two lines below with:
-    return auth.wiki()
-    """
-    response.flash = T("Gracias por iniciar sesion!")
-    return dict(message=T('Sistema ELD Cosmetic'))
-
-
-
 def user():
     """
     exposes:
@@ -69,3 +56,14 @@ def call():
     supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
     """
     return service()
+
+def index2():
+    """
+    example action using the internationalization operator T and flash
+    rendered by views/default/index.html or views/generic.html
+
+    if you need a simple wiki simply replace the two lines below with:
+    return auth.wiki()
+    """
+    response.flash = T("Gracias por iniciar sesion!")
+    return dict(message=T('Sistema ELD Cosmetic'))

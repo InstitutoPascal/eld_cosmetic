@@ -3,6 +3,9 @@
 def VentasLocal():
     return dict()
 
+def VentasLocalTarjeta():
+    return dict()
+
 def Borrar_Item():
     return dict()
 
