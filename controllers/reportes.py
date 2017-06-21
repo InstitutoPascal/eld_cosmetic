@@ -29,3 +29,13 @@ def ReportesEmpleados():
     subtitulo=T('Listado de Empleados')
     listado =db(db.empleados).select(db.empleados .ALL)
     return dict(dc=listado)
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#Reportes de Ventas
+def ReportesVentasLocal():
+
+    return dict()
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#Reportes de Ventas
+def ReportesVentasOnline():
+
+    return dict()
