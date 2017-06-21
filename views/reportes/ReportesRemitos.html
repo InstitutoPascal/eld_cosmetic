@@ -1,0 +1,106 @@
+{{extend 'layout.html'}}
+<h1>Está es la plantilla reportes/ReportesRemitos.html</h1>
+{{=BEAUTIFY(response._vars)}}
+
+{{extend 'layout.html'}} <!-- Obtiene la barra superior con los menues  -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10">
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        Reporte Remitos
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <h3>
+                        Remitos ya ingresados
+                    </h3>
+                </div>
+                    <ul class="list-group">
+                    
+                    <li class="list-group-item">
+                    <h4>Total de remitos ingresados:: (3)</h4>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Remito Fecha</th>
+                                <th>Proveedor</th>
+                                <th>Cantidad total de productos</th>
+                                <th>Remito Numero</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Jueves Nov 12 17:43:13 2014</td>
+                                <td>PerfumoSA</td>
+                                <td>200</td>
+                                <td>0001</td>
+                                <td><a class="btn btn-default" role="button" href="{{=URL(c="reportes",f="RemitosDetalles",)}}">Detalles</a></td>
+
+                            </tr>
+                            <tr>
+                                <td>Viernes Nov 13 12:41:13 2014</td>
+                                <td>Mayorista Diego</td>
+                                <td>50</td>
+                                <td>0002</td>
+                                <td><a class="btn btn-default" role="button" href="{{=URL(c="reportes",f="RemitosDetalles",)}}">Detalles</a></td>
+
+                            </tr>
+                            <tr>
+                                <td>Viernes Nov 13 14:43:13 2014</td>
+                                <td>La Maravilla</td>
+                                <td>150</td>
+                                <td>0003</td>
+                                <td><a class="btn btn-default" role="button" href="{{=URL(c="reportes",f="RemitosDetalles",)}}">Detalles</a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    </li>
+               
+                    <li class="list-group-item">
+                    <h4></h4>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </li>
+                    
+                 </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
