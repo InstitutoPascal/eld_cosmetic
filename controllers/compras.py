@@ -8,3 +8,5 @@ def ComprasProveedoresListados():
     return dict()
 def borrar_item():
     return dict()
+def ComprasGuardarProducto():
+    return dict()
