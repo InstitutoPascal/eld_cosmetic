@@ -1,16 +1,5 @@
 # -*- coding: utf-8 -*-
 # try something like
-def VentasLocal():
-    return dict()
-
-def VentasLocalTarjeta():
-    return dict()
-
-def Borrar_Item():
-    return dict()
-
-def CancelarVenta():
-    return dict()
 
 def VentasOnlinetarjeta():
     # creamos un dict con los datos del pago solicitado:
@@ -32,14 +21,6 @@ def VentasOnlinetarjeta():
     url = preferenceResult["response"]["sandbox_init_point"]
     return dict(url_boton=url)
 
-def VentasLocalCarga():
-    return dict()
-
-def VentasLocalVistaprevia():
-    return dict()
-
-def VentasMediosPago():
-    return dict()
 
 def inicio():
     "pagina de inicio del catalogo"
