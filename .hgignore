@@ -14,4 +14,5 @@ sessions/*
 errors/*
 languages/*
 private/*
+mercadopago.py/*
 
