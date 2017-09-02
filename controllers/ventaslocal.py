@@ -3,6 +3,8 @@
 def index(): return dict(message="hello from ventaslocal.py")
 
 def VentasLocal():
+    # obtenemos el usuario logeado en el sistema para enviarlo a la vista
+    usuario = db(db.auth_user.id == auth.user_id ).select()
     # definir los campos a obtener desde la base de datos:
     campos = db.clientes.id, db.clientes.nombre, db.clientes.codigo_cliente
     # definir la condición que deben cumplir los registros:
@@ -15,7 +17,7 @@ def VentasLocal():
     else:
         mensaje = "Seleccione un cliente"
     #redirije los valores al HTML
-    return dict(message=mensaje, lista_clientes=lista_clientes,)
+    return dict(message=mensaje, lista_clientes=lista_clientes, usuario=usuario,)
 
 
 def VentasLocalTarjeta():

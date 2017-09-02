@@ -25,8 +25,7 @@
                 </select>
             </div>
 <!-- ------FINAL IMPUT + LABEL ------------------ -->
-
-<!------ AUTOCOMPLETAR ------->
+ <!------ AUTOCOMPLETAR ------->
 <!--       <script>
 $( "#autocomplete2" ).autocomplete({
   source: [ "Perez Enrique", "Pedrino Ricardo", "Persico jose", "Peron juan", "Pepitero alberto ", "Peribebuy adrian", "Primate mono" ]
@@ -37,19 +36,23 @@ $( "#autocomplete2" ).autocomplete({
 
     </div>
   </div>
+    <!-- ------MOSTRAR VENDEDOR ACTUAL ------------------ -->
   <div class="form-group">
     <label for="vendedor3" class="col-sm-2 control-label">VENDEDOR ACTUAL:</label>
-    <div class="col-sm-6">
-   <!--   <input type="vendedor" class="form-control" id="autocomplete1" value ="Arias Emanuel" placeholder="Ingrese Apellido y Nombre"> -->
-     <h1> <p class="text-center visible-lg bg-success">Funes Diego</p></h1>
+     <!--   <input type="vendedor" class="form-control" id="autocomplete1" value ="Arias Emanuel" placeholder="Ingrese Apellido y Nombre"> -->
+        {{for userlog in usuario:}}
+     <!--   nombre_apellido = row.first_name+', '+row.last_name -->
+        <h1><p value="{{=userlog.id}}">{{=userlog.first_name}} {{=userlog.last_name}}</p></h1>
+        {{pass}}
 
-        
+    <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
+
         
     </div>
   </div>
     <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      
+
     <a type="cargar" href="{{=URL(c="ventaslocal",f="VentasLocalCarga")}}"  class="btn btn-primary" >Continuar  <i class="glyphicon glyphicon-menu-right " ></i></a>
       </div>
   </div>
