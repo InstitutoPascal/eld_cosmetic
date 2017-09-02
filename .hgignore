@@ -13,4 +13,5 @@ databases/*
 sessions/*
 errors/*
 languages/*
+private/*
 
