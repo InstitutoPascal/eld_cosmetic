@@ -4,9 +4,9 @@ def index(): return dict(message="hello from ventaslocal.py")
 
 def VentasLocal():
     # definir los campos a obtener desde la base de datos:
-    campos = db.clientes.id_cliente, db.clientes.nombre, db.clientes.codigo_cliente
+    campos = db.clientes.id, db.clientes.nombre, db.clientes.codigo_cliente
     # definir la condición que deben cumplir los registros:
-    criterio = db.clientes.id_cliente>0
+    criterio = db.clientes.id>0
     # ejecutar la consulta:
     lista_clientes = db(criterio).select(*campos)
     # revisar si la consulta devolvio registros:
