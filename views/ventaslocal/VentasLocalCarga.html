@@ -1,0 +1,86 @@
+{{extend 'layout.html'}}
+ <h1>Ventas Local</h1>
+{{=BEAUTIFY(response._vars)}}
+
+<h4>Seleccion de producto</h4>
+<div class="form-group">
+    </div>
+<form class="form-horizontal" enctype="multipart/form-data" >
+    <div class="form-group">
+        <label for="produc" class="col-sm-1 control-label">Codigo Producto</label>
+           <div class="col-sm-3">
+          <input type="text" class="form-control" id="exampleInputName2" value= "001"> <!--placeholder="Ingrese el codigo de producto" -->
+ 
+           </div>
+        <label for="cant" class="col-sm-1 control-label">Cantidad</label>
+           <div class="col-sm-2">
+               <input type="number" name="cantidad" class="form-control" id="cantidad" value = 1> <!--placeholder="placeholder="Ingrese cantidad"" -->
+            </div>
+           
+
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary" >Cargar producto   <i class="glyphicon glyphicon-floppy-disk" ></i></button>
+        </div>
+    </div>
+</form>
+<form class="form-horizontal"  enctype="multipart/form-data" >
+    <div class="form-group">
+        <div class="col-md-10">
+          <table class="table table-hover">
+          <caption>Productos Agregados</caption>
+          <thead>
+            <tr>
+                <th>#</th>
+                <th class="">Codigo</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>SubTotal</th>
+                <th>Stock Actual</th>
+                <th>Opciones</th>
+            </tr>
+              
+          </thead>
+        <tbody>
+              <tr>
+                  <td>#</td>
+                <td class="">001</td>
+                <td>Colonia Messi 100mg</td>
+                <td>1</td>
+                <td>100</td>
+                <td>100</td>
+                <td>35</td>
+                <td><a class="btn btn-default" role="button" href="{{=URL(c="ventas",f="Borrar_Item",)}}">Eliminar</a></td>
+                <!-- <th>IVA</th> -->
+                <!-- <th>SubTotal + IVA</th> -->
+                <!-- <td>Opciones</td> -->
+
+            </tr>
+            {{pass}}
+        </tbody>
+        </table>
+        </div>
+        </div>
+    <div class="form-group">
+        <div class="col-md-3">
+        <table class="table table-bordered">
+        <tbody>
+            <tr> <th scope="row">Total $:</th> <td>100</td>
+            </tr>
+
+        </tbody>
+        </table>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+          <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventas",f="VentasMediosPago")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
+          
+        </div>
+    <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventas",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
+    </div>
+       
+</form>
