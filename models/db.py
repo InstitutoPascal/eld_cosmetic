@@ -190,47 +190,54 @@ db.proveedor.numero_calle.requires=IS_NOT_EMPTY(error_message='Campo obligatorio
 
 
 ##Categoria##
-db.define_table ('categorias_prod',
-                 db.Field('categoria','string'),
-                 primarykey=['categoria'] )
-db.categorias_prod.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
+
+#db.define_table ('categorias',
+#                db.Field('categoria','string'),
+#                 primarykey=['categoria'] )
+#db.categorias_prod.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
+
 
 ##Productos#
 db.define_table ('productos',
-                 db.Field('codigo_producto','string'),
+                 db.Field('id','integer'),
+                 db.Field('cantidad_prod','integer'),
                  db.Field ('nombre','string'),
                  db.Field ('marca','string'),
-                 #db.Field ('numart','integer',unique=True),
-                 ###db.Field ('categoriaP','string'),
-                 #db.Field ('categoriaP','string'),
-                 #db.Field('cantidad_prod','integer'),
-                 #db.Field ('categoria','string'),
+                 db.Field ('categoria','string'),
                  db.Field('precio','integer'),
-                 #db.Field('fecha_venta','string'),
-                 db.Field('proveedor','string')
-                 #db.Field('fecha_compra','string'
-                )
+                 db.Field('proveedor','string'),
+                 db.Field ('codigo_producto','string'),
+                 db.Field ('fecha_ingreso','date'),
+                 db.Field('fecha_venta','date'),
+                 db.Field('numero_remito','integer'),
+                 db.Field('factura_venta','integer'),
+                 db.Field('factura_compra','integer'),
+                 db.Field('numero_nota_credito','integer'),
+                 db.Field('numero_nota_debito','integer'),
+                 db.Field('numero_lote','integer'),
+                 db.Field('observaciones','text'),
+                 )
 
 
-#db.productos.cantidad_prod.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
-#db.productos.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
-
-#db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.categoria,) #Subconsulta a la tablacategorias_prod campo categoria
-#db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod,'%(categoria)s',) #Subconsulta a la tablacategorias_prod campo categoria
-
-#db.productos.categoriaP.requires=IS_IN_DB(db,db.categorias_prod.id,'%(categoria)s') #Subconsulta a la tablacategorias_prod campo categoria
-
+db.productos.codigo_producto.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(9, error_message='Solo hasta 9 caracteres'), IS_NOT_IN_DB(db,db.productos.codigo_producto)
+db.productos.cantidad_prod.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+db.productos.nombre.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres'),IS_UPPER()
+db.productos.marca.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER()
+db.productos.categoria.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres'),IS_UPPER()
 db.productos.precio.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
-#db.productos.fecha_venta.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
-#db.productos.fecha_compra.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
-
-########db.productos.proveedor.requires=IS_IN_DB(db,db.proveedor,'%(nombre_empresa)s',) #subconsulta que obtiene datos de la tabla proveedor y campo codigo_proveedor
+db.productos.proveedor.requires=IS_IN_DB(db,db.proveedor,'%(nombre_empresa)s',) #subconsulta que obtiene datos de la tabla proveedor y campo codigo_proveedor
 #,'%(field)s'  #permite mostrar el valor de un campo para que sea mas facil identificarlo 
+db.productos.fecha_venta.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.fecha_ingreso.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.factura_venta.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.factura_compra.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.numero_nota_credito.requires=IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.numero_nota_debito.requires=IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.numero_lote.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.observaciones.requires=IS_LENGTH(200, error_message='Solo hasta 200 caracteres')
 
 
 
-db.productos.codigo_producto.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(9, error_message='Solo hasta 9 caracteres',)
-db.productos.nombre.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
 
 
 
