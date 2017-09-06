@@ -1,31 +1,22 @@
 {{extend 'layout.html'}}
-<!-- NECESARIO PARA AUTOCOMPLETAR -->
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
-<!-- ------------------------ -->
-
 <h1><strong>Venta Local</strong> <small></small></h1>
 
-
-<!------ INPUT + LABEL------->
-    <form class="form-horizontal">
+<!------ INPUT + LABEL--<form class="form-horizontal">----->
+<form class="form-horizontal" action="" enctype="multipart/form-data" method="">
   <div class="form-group">
-   <label for="campo_cliente" class="col-sm-2 control-label">CLIENTE - COD</label>
-                    <div class="col-sm-2">
-               <select class="form-control" id="campo_cliente" name="id_cliente">
+            <label for="campo_cliente" class="col-sm-1 control-label">CLIENTE</label>
+            <div class="col-sm-2">
+            <select class="form-control" id="campo_cliente" name="id_cliente">
                        <!------ recorro todos los campos con un for------->
                    {{for reg_cliente in lista_clientes:}}
-                  <option value="{{=reg_cliente.id}}">{{=reg_cliente.nombre}} - {{=reg_cliente.codigo_cliente}}</option>
+            <option value="{{=reg_cliente.id}}">{{=reg_cliente.nombre}} - {{=reg_cliente.codigo_cliente}}</option>
                   <!------ finalizamos el for------->
                    {{pass}}
-                </select>
+            </select>
             </div>
+   </div>
 <!-- ------FINAL IMPUT + LABEL ------------------ -->
- <!------ AUTOCOMPLETAR ------->
+<!------ AUTOCOMPLETAR ------->
 <!--       <script>
 $( "#autocomplete2" ).autocomplete({
   source: [ "Perez Enrique", "Pedrino Ricardo", "Persico jose", "Peron juan", "Pepitero alberto ", "Peribebuy adrian", "Primate mono" ]
@@ -34,25 +25,28 @@ $( "#autocomplete2" ).autocomplete({
 -->
 <!-- ------------------------ -->
 
-    </div>
-  </div>
+   
+  
     <!-- ------MOSTRAR VENDEDOR ACTUAL ------------------ -->
   <div class="form-group">
-    <label for="vendedor3" class="col-sm-2 control-label">VENDEDOR ACTUAL:</label>
-     <!--   <input type="vendedor" class="form-control" id="autocomplete1" value ="Arias Emanuel" placeholder="Ingrese Apellido y Nombre"> -->
+    <label for="vendedorActual" class="col-sm-1 control-label">VENDEDOR ACTUAL:</label>
+    <div class="col-sm-2">
+      <!--   ubtenemos los nombres de usuarios y los procesamos -->
         {{for userlog in usuario:}}
-     <!--   nombre_apellido = row.first_name+', '+row.last_name -->
-        <h1><p value="{{=userlog.id}}">{{=userlog.first_name}} {{=userlog.last_name}}</p></h1>
+      <!-- mostramos el nombre y apellido del usuario logeado -->
+    <h1><p value="{{=userlog.id}}">{{=userlog.first_name}} {{=userlog.last_name}}</p></h1>
         {{pass}}
-
-    <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
-
-        
     </div>
-  </div>
+ </div>
+ <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
+        <div class="form-group">
+            <label class="col-sm-1 control-label">FECHA ACTUAL</label>
+            <div class="col-sm-2">
+            <p class="form-control" name="fecha" value="">{{=fecha_dia}}</p>
+            </div>
+        </div>
     <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-
+    <div class="col-sm-1 col-sm-10">
     <a type="cargar" href="{{=URL(c="ventaslocal",f="VentasLocalCarga")}}"  class="btn btn-primary" >Continuar  <i class="glyphicon glyphicon-menu-right " ></i></a>
       </div>
   </div>

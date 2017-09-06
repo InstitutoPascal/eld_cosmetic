@@ -3,6 +3,10 @@
 def index(): return dict(message="hello from ventaslocal.py")
 
 def VentasLocal():
+    #importamos la fecha del sistema
+    import time
+    #obtengo la fecha 
+    fecha_dia= time.strftime("%x")
     # obtenemos el usuario logeado en el sistema para enviarlo a la vista
     usuario = db(db.auth_user.id == auth.user_id ).select()
     # definir los campos a obtener desde la base de datos:
@@ -17,7 +21,7 @@ def VentasLocal():
     else:
         mensaje = "Seleccione un cliente"
     #redirije los valores al HTML
-    return dict(message=mensaje, lista_clientes=lista_clientes, usuario=usuario,)
+    return dict(message=mensaje, lista_clientes=lista_clientes, usuario=usuario, fecha_dia=fecha_dia,)
 
 
 def VentasLocalTarjeta():
