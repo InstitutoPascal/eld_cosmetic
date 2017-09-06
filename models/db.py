@@ -225,23 +225,26 @@ db.proveedor.termino_pago.requires=IS_NOT_EMPTY(error_message='Campo obligatorio
 
 ##Productos#
 db.define_table ('productos',
-                 db.Field('id','integer'),
-                 db.Field('cantidad_prod','integer'),
+                 db.Field ('id','integer'),
+                 db.Field ('cantidad_prod','integer'),
                  db.Field ('nombre','string'),
                  db.Field ('marca','string'),
+                 db.Field ('envase','string'),
+                 db.Field ('descripcion','string'),
                  db.Field ('categoria','string'),
-                 db.Field('precio','integer'),
-                 db.Field('proveedor','string'),
+                 db.Field ('precio','integer'),
+                 db.Field ('proveedor','string'),
                  db.Field ('codigo_producto','string'),
                  db.Field ('fecha_ingreso','date'),
-                 db.Field('fecha_venta','date'),
-                 db.Field('numero_remito','integer'),
-                 db.Field('factura_venta','integer'),
-                 db.Field('factura_compra','integer'),
-                 db.Field('numero_nota_credito','integer'),
-                 db.Field('numero_nota_debito','integer'),
-                 db.Field('numero_lote','integer'),
-                 db.Field('observaciones','text')
+                 db.Field ('fecha_venta','date'),
+                 db.Field ('numero_remito','integer'),
+                 db.Field ('factura_venta','integer'),
+                 db.Field ('factura_compra','integer'),
+                 db.Field ('numero_nota_credito','integer'),
+                 db.Field ('numero_nota_debito','integer'),
+                 db.Field ('numero_lote','integer'),
+                 db.Field ('image','upload'),
+                 db.Field ('observaciones','text')
                  )
 
 
