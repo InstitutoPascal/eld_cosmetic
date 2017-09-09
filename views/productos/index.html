@@ -1,0 +1,52 @@
+{{extend 'layout-carrito.html'}}
+<div class="jumbotron">
+      <!--<div class="container">-->
+        <h1>ELD COSMETIC</h1>
+        <p><h2>Bienvenido a nuestro sitio de compras online. En este catálogo encontrará una gran variedad de perfúmes.</h2></p>
+        <!--<p><a class="btn btn-primary btn-lg" href="{{=URL(c="ventas",f="VentasOnlineHome")}}" role="button">salir &raquo;</a></p>-->
+</div>
+
+    {{for productos in productos:}}
+    <!--  <a href="mostrar">producto.nombre</a>         -->
+        <!--{{=A(productos.nombre, _href=URL(f="ver",args=[productos.id]))}}-->
+    <div class="row">
+
+  <div class="col-sm-4 col-md-2 hero-feature">
+    <div class="thumbnail">
+       <div class="product-image">
+          {{=IMG(_src=URL(c="productos", f="mostrar", args=[productos.id]))}}
+       </div>
+        <div class="caption">
+        <h3>{{=productos.marca}}, {{=productos.nombre}}.</h3>
+            <p>
+                {{=productos.precio}}
+            </p>
+        <p>
+          <a href="{{=URL(c="productos",f="ver/1")}}" class="btn btn-primary" role="button">Ver Descripción</a>
+          <a href="{{=URL(c="productos",f="index")}}" class="btn btn-danger" role="button">COMPRAR</a>
+        </p>
+      </div>
+    </div>
+  </div>
+        {{pass}}
+
+    
+
+
+ <!-- <div class="col-sm-4 col-md-2 hero-feature">
+    <div class="thumbnail">
+       <div class="product-image">
+          {{=IMG(_src=URL("static/images","IMG-20170517-WA0074.jpg"), _width="100%", _height="100%")}}
+       </div>
+        <div class="caption">
+        <h3>Ilove47, Rebel.</h3>
+            <p>
+                $ 450
+            </p>
+        <p>
+          <a href="{{=URL(c="ventas",f="VentasOnlinePerfume2")}}" class="btn btn-primary" role="button">Ver Descripción</a>
+          <a href="{{=URL(c="ventas",f="VentasOnlineCarga")}}" class="btn btn-danger" role="button">COMPRAR</a>
+        </p>
+      </div>
+    </div>
+  </div>
