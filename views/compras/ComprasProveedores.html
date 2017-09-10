@@ -15,19 +15,22 @@
 <form class="form-horizontal">
 
 
-   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">Nombre empresa</label>
+<div class="form-group">
+    <label for="" class="col-sm-1 control-label">Nombre empresa</label>
     <div class="col-sm-6"> 
-        <input type="email" class="form-control" id="autocomplete2" value= Ravoner> <!--placeholder="KP00F001"-->
-   <script>
-$( "#autocomplete2" ).autocomplete({
-  source: [ "Perfumol", "Pfragancias", "Perfumin", "Perfuya", " ", "Perfumadin", "Pimienta " ]
-});
-   </script>
-        
- </div>
-    </div>
+       <select class="form-control" id="nombre_empresa" name="nombre_empresa">
+                       <!------ recorro todos los campos con un for------->
+                   {{for reg_x in lista:}}
+                  <option value="">{{=reg_x.nombre_empresa}}</option>
+                                    {{pass}}
+        </select>   
+     </div>
+</div>
 
+
+    
+    
+    
    <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">N°Remito</label> 
        <div class="col-sm-6">
@@ -38,7 +41,7 @@ $( "#autocomplete2" ).autocomplete({
  <div class="form-group">
     <label for="inputEmail3" class="col-sm-1 control-label">Fecha</label> 
        <div class="col-sm-6">
-      <input type="email" class="form-control" id="inputEmail3" value= 17/6/2017> <!-- placeholder="EDT"-->
+       <p class="form-control" name="fecha" value="">{{=fecha_dia}}</p>
  </div>
     </div>   
   

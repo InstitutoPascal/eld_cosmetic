@@ -13,43 +13,41 @@
 </h1>
 <div class="col-sm-offset-0 col-sm-12">
 <form class="form-horizontal">
-
-
    <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">Codigo</label>
+    <label for="inputEmail3" class="col-sm-1 control-label">codigo</label>
     <div class="col-sm-6"> 
-        <input type="email" class="form-control" id="autocomplete1" value= KP00F001> <!--placeholder="KP00F001"-->
-         <script>
-$( "#autocomplete1" ).autocomplete({
-  source: [ "EP00M001", "EP00M002", "EP00M003", "EP00M005", " EP00M006", "EP00M007", "EP00M008" ]
-});
-   </script>
- </div>
-    </div>
+       <select class="form-control" id="campo_cliente" name="id_cliente">
+                       <!------ recorro todos los campos con un for------->
+                   {{for reg_x in perfume:}}
+                  <option value="">{{=reg_x.codigo_producto}}</option>
+                                    {{pass}}
+        </select>   
+     </div>
+</div>
 
-   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">Nombre</label> 
-       <div class="col-sm-6">
-      <input type="email" class="form-control" id="autocomplete2" value = KOSIUKO > <!--placeholder="EDT KOSIUKO ROSE 50 Ml"-->
-       <script>
-$( "#autocomplete2" ).autocomplete({
-  source: [ "ROSE", "ROSETA", "SHE", "SHE LOVE", "INTENSE WOMAN ", "INTENSE NIGHT", "INTENSE " ]
-});
-   </script>
- </div>
-    </div>
+<div class="form-group">
+    <label for="inputEmail3" class="col-sm-1 control-label">descripcion</label>
+    <div class="col-sm-6"> 
+       <select class="form-control" id="campo_cliente" name="id_cliente">
+                       <!------ recorro todos los campos con un for------->
+                   {{for reg_x in eld:}}
+                  <option value="">{{=reg_x.nombre}}</option>
+                                    {{pass}}
+        </select>   
+     </div>
+</div>   
 
  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">Categoria</label> 
-       <div class="col-sm-6">
-      <input type="email" class="form-control" id="autocomplete3" value= EDT> <!-- placeholder="EDT"-->
-            <script>
-$( "#autocomplete3" ).autocomplete({
-  source: [ "EDT", "BODY", "COLONIA" ]
-});
-   </script>
- </div>
-    </div>   
+    <label for="inputEmail3" class="col-sm-1 control-label">categoria</label>
+    <div class="col-sm-6"> 
+       <select class="form-control" id="campo_cliente" name="id_cliente">
+                       <!------ recorro todos los campos con un for------->
+                   {{for reg_x in categoria:}}
+                  <option value="">{{=reg_x.categoria}}</option>
+                                    {{pass}}
+        </select>   
+     </div>
+</div>
   <div class="form-group">
       <label for="cant" class="col-sm-1 control-label">Cantidad</label>
            <div class="col-sm-2">

@@ -158,7 +158,7 @@ db.clientes.nombre.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_U
 db.clientes.apellido.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(30)
 db.clientes.dni.requires=IS_NOT_IN_DB (db,db.clientes.dni),IS_INT_IN_RANGE(2500000,100000000)
 db.clientes.telefono.requires=IS_LENGTH(12, error_message='Solo hasta 12 caracteres')
-db.clientes.localidad_cliente.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(50)
+db.clientes.localidad_cliente.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(50),IS_IN_DB(db,'localidad.nombre_localidad','%(nombre_localidad)s')
 db.clientes.direccion.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(20)
 db.clientes.numero_calle.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
 db.clientes.provincia.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER()
@@ -169,6 +169,9 @@ db.clientes.codigo_postal.requires=IS_NOT_EMPTY(error_message='Campo obligatorio
 #db.clientes.localidad_Cliente.requires=IS_IN_DB(db,db.localidad),'%(nombre_localidad)s'
 #db.clientes.sexo.requires=IS_IN_SET (['Masculino','Femenino'])
 
+db.define_table('localidad',
+                db.Field('nombre_localidad','string'),
+                db.Field('codigo_postal','integer'))
 
 
 
@@ -181,7 +184,7 @@ db.define_table('proveedor',
                  db.Field('direccion','string'),
                  db.Field('numero_calle','integer'),
                  db.Field('piso','integer'),
-                 db.Field('dpto','integer'),
+                 db.Field('dpto','string'),
                  db.Field('codigo_postal','integer'),
                  db.Field('localidad','string'),
                  db.Field('provincia','string'),
