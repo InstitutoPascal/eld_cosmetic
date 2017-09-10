@@ -1,7 +1,18 @@
 def index():
     regs = db(db.productos.id>0).select()
-    return dict(productos=regs)
+    
 
+    form=FORM(TABLE(TR("",INPUT(_type="text",_name="ciudad",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)```
+    if form.accepts(request.vars,session):
+        ### verifica si la carrera está en la base de datos
+        #if db(db.clientes.localidad_cliente!=form.vars.ciudad).count()==0:
+        if db(db.clientes.localidad_cliente!=form.vars.localidad_cliente).count()==0:
+            form.errors.codigo="El nombre ingresado no está en la base de datos"
+            response.flash = 'El nombre ingresado no está en la base de datos'
+        else:
+          
+            listado =db(db.clientes.localidad_cliente==form.vars.ciudad).select(db.clientes.ALL)
+    return dict(form=form,productos=regs)
 def ver():
    # obtengo el id de prodcuto desde la URL
     prod_id = request.args[0]

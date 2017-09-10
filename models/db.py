@@ -250,16 +250,16 @@ db.define_table ('productos',
 
 db.productos.codigo_producto.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(9, error_message='Solo hasta 9 caracteres'), IS_NOT_IN_DB(db,db.productos.codigo_producto)
 db.productos.cantidad_prod.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
-db.productos.nombre.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(20, error_message='Solo hasta 20 caracteres'),IS_UPPER()
+db.productos.nombre.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(80, error_message='Solo hasta 80 caracteres'),IS_UPPER()
 db.productos.marca.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER()
-db.productos.categoria.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres'),IS_UPPER()
+db.productos.categoria.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 8 caracteres'),IS_UPPER()
 db.productos.precio.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
 db.productos.proveedor.requires=IS_IN_DB(db,db.proveedor,'%(nombre_empresa)s',) #subconsulta que obtiene datos de la tabla proveedor y campo codigo_proveedor
 #,'%(field)s'  #permite mostrar el valor de un campo para que sea mas facil identificarlo 
-db.productos.fecha_venta.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.fecha_venta.requires=IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
 db.productos.fecha_ingreso.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
-db.productos.factura_venta.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
-db.productos.factura_compra.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.factura_venta.requires=IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.productos.factura_compra.requires=IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
 db.productos.numero_nota_credito.requires=IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
 db.productos.numero_nota_debito.requires=IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
 db.productos.numero_lote.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
