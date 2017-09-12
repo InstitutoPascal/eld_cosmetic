@@ -33,6 +33,26 @@ def ComprasProveedoresProducto():
     
     
     return dict(perfume=perfume, eld=eld, categoria=categoria)
+def ComprasProveedoresCodigoBarras():
+    if request.vars.codigo:
+        print "ingrese el codigo", request.vars.codigo
+        # revisar que request.vars.codigo cumpla con las validaciones
+        session.codigo_barras = request.vars.codigo
+        # buscamos el producto en la base datos
+        reg= db(db.productos.codigo_barras==session.codigo_barras).select().first()
+        if reg:
+            # a fines ilustrativos guardamos en la session los datos del producto
+            # esto deberia hacerse en el controlador respectivo, y siempre traerlos de la db reg= db(db.productos.codigo_barras==session.codigo_barras).select().first()
+            session.codigo_producto = reg.codigo_producto
+            session.nombre= reg.nombre
+            session.marca = reg.marca
+            session.categoria= reg.categoria
+            session.flash="codigo ok"
+            redirect(URL(c="compras", f="ComprasProveedoresProducto"))
+        else:
+            response.flash= "ingrese un codigo de barra "
+    return {}
+
 def ComprasProveedoresListados():
     return dict()
 def borrar_item():
