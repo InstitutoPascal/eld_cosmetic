@@ -1,4 +1,5 @@
 {{extend 'layout.html'}}
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -16,9 +17,9 @@
 
 
 <div class="form-group">
-    <label for="" class="col-sm-1 control-label">Nombre empresa</label>
-    <div class="col-sm-6"> 
-       <select class="form-control" id="nombre_empresa" name="nombre_empresa">
+    <label for="nombre" class="col-sm-1 control-label">Nombre empresa</label>
+    <div class="col-sm-6"><form class="form-horizontal"method="POST"> 
+       <select class="form-control" name="nombre_empresa">
                        <!------ recorro todos los campos con un for------->
                    {{for reg_x in lista:}}
                   <option value="">{{=reg_x.nombre_empresa}}</option>
@@ -32,27 +33,30 @@
     
     
    <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">N°Remito</label> 
+    <label for="remito" class="col-sm-1 control-label">N°Remito</label> 
        <div class="col-sm-6">
-      <input type="email" class="form-control" id="inputEmail3" value = 4567 > <!--placeholder=""-->
+      <input type="number" class="form-control" name="remitos" id="remito" value = "" > <!--placeholder=""-->
  </div>
     </div>
 
  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-1 control-label">Fecha</label> 
+    <label for="fecha" class="col-sm-1 control-label">Fecha</label> 
        <div class="col-sm-6">
        <p class="form-control" name="fecha" value="">{{=fecha_dia}}</p>
  </div>
     </div>   
-  
+
+   
+   
  
  <td><a type="cargar" href="{{=URL(c="altas",f="alta_proveedor")}}"  class="btn btn-primary" >Alta proveedor  <i <span class="glyphicon glyphicon-plus-sign"></span> </i></a> </td>
     
- <td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresCodigoBarras")}}"  class="btn btn-primary" >Agregar productos  <i <span class="glyphicon glyphicon-list-alt"></span> </i></a> </td>
+ <td><a type="submit" value="enviar"href="{{=URL(c="compras",f="ComprasProveedoresCodigoBarras")}}"  class="btn btn-primary" >Agregar productos  <i <span class="glyphicon glyphicon-list-alt"></span> </i></a> </td>
        
 
-    
+ 
     
 </form>
      </div>
 </body>
+</form>

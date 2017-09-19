@@ -351,3 +351,20 @@ db.ventas.precio.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LEN
 db.ventas.fecha_ingreso.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
 db.ventas.fecha_salida.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
 db.ventas.cantidad.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+
+
+#___________________________________________________________________________________________________________________________________________________________
+db.define_table ('compras',
+                 db.Field('codigo_producto','string'),
+                 db.Field ('nombre','string'),
+                 db.Field ('marca','string'),
+                 db.Field ('categoria','string'),
+                 db.Field ('precio','integer'),
+                 db.Field('fecha_ingreso','date'),
+                 #db.Field('fecha_salida','date'),
+                 db.Field('proveedor','string'),
+                 db.Field('remito','string'),
+                 db.Field('factura','string'),
+                 db.Field('orden_compra','string'),
+                 db.Field('cantidad','integer')
+                )
