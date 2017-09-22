@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 # try something like
-
+# -*- coding: utf-8 -*-
+import mercadopago
+import json
+# credenciales del sandbox (sitio de prueba)
+CLIENT_ID = "4054022218072284"
+CLIENT_SECRET = "SUWu1Tr1pYTRCZQiliTykMJMYxeYYZAm"
+# instancio el objeto para comunicarme con MP
+mp = mercadopago.MP(CLIENT_ID, CLIENT_SECRET)
+# esto es un ejemplo, revisar !!!!!! no subir al repo!!!!
 def VentasOnlinetarjeta():
     # creamos un dict con los datos del pago solicitado:
     preference = {
@@ -48,61 +56,6 @@ def VentasOnlineCarga():
     preferenceResult = mp.create_preference(preference)
     url = preferenceResult["response"]["sandbox_init_point"]
     return dict(url_boton=url)
-
-
-def VentasOnlinePerfume1():
-    return dict()
-
-def VentasOnlinePerfume2():
-    return dict()
-
-def VentasOnlinePerfume3():
-    return dict()
-
-def VentasOnlinePerfume4():
-    return dict()
-
-def VentasOnlinePerfume5():
-    return dict()
-
-def VentasOnlinePerfume6():
-    return dict()
-
-def VentasOnlinePerfume7():
-    return dict()
-
-def VentasOnlinePerfume8():
-    return dict()
-
-def VentasOnlinePerfume9():
-    return dict()
-
-def VentasOnlinePerfume10():
-    return dict()
-
-def VentasOnlinePerfume11():
-    return dict()
-
-def VentasOnlinePerfume12():
-    return dict()
-
-def VentasOnlinePerfume13():
-    return dict()
-
-def VentasOnlinePerfume14():
-    return dict()
-
-def VentasOnlinePerfume15():
-    return dict()
-
-def VentasOnlinePerfume16():
-    return dict()
-
-def VentasOnlinePerfume17():
-    return dict()
-
-def VentasOnlinePerfume18():
-    return dict()
 
 def VentasOnlineHome():
     return dict()
