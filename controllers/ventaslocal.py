@@ -28,6 +28,8 @@ def VentasLocalTarjeta():
     return dict()
 
 def Borrar_Item():
+    # eliminar el elemento de la lista en posicion pos
+    del session["items_venta"][int(request.vars.pos)]
     return dict()
 
 def CancelarVenta():
@@ -53,7 +55,8 @@ def VentasLocalCarga():
         session["id_cliente"] = id_cliente
         session["fecha_dia"] = fecha_dia
         session["first_name"] = usuario_actual
-        #session["items_venta"] = []
+         #Defino en la sesion que inicie una lista en blanco
+        session["items_venta"] = []
     if request.vars["agregar_item"]:
         # obtengo los valores del formulario
         id_producto = request.vars["id_producto"]
