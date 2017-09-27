@@ -1,32 +1,61 @@
 {{extend 'layout.html'}}
- <h1>Ventas Local</h1>
-{{=BEAUTIFY(response._vars)}}
+<h1>Ventas Local carga</h1>
+<form class="form-horizontal" enctype="multipart/form-data" >
+
+<!--{{=BEAUTIFY(response._vars)}}   trae todo lo que esta en el return del controlador -->
+   <!-- ------MOSTRAR VENDEDOR ACTUAL ------------------ -->
+  <div class="form-group">
+    <label for="userlogeado"  class="col-sm-1 control-label">VENDEDOR ACTUAL:</label>
+      <div class="col-sm-2">
+           <h1><p method="POST" class="form-control" id="userlogeado" name="first_name" >
+          <!--   ubtenemos los nombres de usuarios y los procesamos -->
+        {{for userlog in usuario_log:}}
+      <!-- mostramos el nombre y apellido del usuario logeado -->
+   {{=userlog.first_name}} {{=userlog.last_name}}</p></h1>
+        {{pass}}
+    </div>
+ </div>
+    <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
+
+        </form>
+<tr>
+     <th></th>
+    <th></th>
+</tr>
 
 <h4>Seleccion de producto</h4>
 <div class="form-group">
     </div>
 <form class="form-horizontal" enctype="multipart/form-data" >
     <div class="form-group">
-        <label for="produc" class="col-sm-1 control-label">Codigo Producto</label>
+        <label for="campo_tipo" class="col-sm-1 control-label">Codigo Producto</label>
+          <!-- <div class="col-sm-3">
+          <input type="text" class="form-control" id="exampleInputName2" placeholder="Ingrese el codigo de producto" > 
+            </div> -->
            <div class="col-sm-3">
-          <input type="text" class="form-control" id="exampleInputName2" value= "001"> <!--placeholder="Ingrese el codigo de producto" -->
- 
+                <select class="form-control" id="campo_tipo" name="id_producto">
+                    {{for reg_producto in lista_productos:}}
+                  <option value="{{=reg_producto.id_producto}}">{{=reg_producto.descripcion}}</option>
+                  {{pass}}
+                </select>
            </div>
+
+
+
         <label for="cant" class="col-sm-1 control-label">Cantidad</label>
            <div class="col-sm-2">
-               <input type="number" name="cantidad" class="form-control" id="cantidad" value = 1> <!--placeholder="placeholder="Ingrese cantidad"" -->
+               <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Ingrese cantidad" > 
             </div>
-           
-
-
     </div>
-    <div class="form-group">
+<div class="form-group">
         <div class="col-md-3">
-            <button type="submit" class="btn btn-primary" >Cargar producto   <i class="glyphicon glyphicon-floppy-disk" ></i></button>
+
+             <input type="submit" name="agregar_item" class="btn btn-default" value="AGREGAR ITEM">
         </div>
-    </div>
+
 </form>
-<form class="form-horizontal"  enctype="multipart/form-data" >
+
+<form class="form-horizontal" action="{{=URL(c="ventaslocal", f="confirmar")}}"  enctype="multipart/form-data" method="POST" >
     <div class="form-group">
         <div class="col-md-10">
           <table class="table table-hover">
@@ -35,28 +64,28 @@
             <tr>
                 <th>#</th>
                 <th class="">Codigo</th>
-                <th>Producto</th>
+                <th>DescripcionProducto</th>
                 <th>Cantidad</th>
                 <th>Precio Unitario</th>
                 <th>SubTotal</th>
-                <th>Stock Actual</th>
+                <!-- <th>Stock Actual</th> -->
                 <th>Opciones</th>
             </tr>
-              
+
           </thead>
         <tbody>
+            {{subtotal = 0}}
+            {{for i, item in enumerate(items_venta):}}
               <tr>
-                  <td>#</td>
-                <td class="">001</td>
-                <td>Colonia Messi 100mg</td>
-                <td>1</td>
-                <td>100</td>
-                <td>100</td>
-                <td>35</td>
-                <td><a class="btn btn-default" role="button" href="{{=URL(c="ventas",f="Borrar_Item",)}}">Eliminar</a></td>
-                <!-- <th>IVA</th> -->
-                <!-- <th>SubTotal + IVA</th> -->
-                <!-- <td>Opciones</td> -->
+                <th scope="row">{{=item["id_producto"]}}</th>
+                <td >{{=item["descripcion"]}}</td>
+                <td align="center">{{=item["cantidad"]}}</td>
+                <td align="center">{{=item["precio"]}}</td>
+                <td align="center">{{=item["precio"] * item["cantidad"]}}</td>
+                <td align="center">{{=item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00}}</td>
+                <td align="center">{{=item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00}}</td>
+                {{subtotal = subtotal + (item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00) }}
+                <td><a class="btn btn-default" role="button" >Eliminar</a></td>
 
             </tr>
             {{pass}}
@@ -68,7 +97,7 @@
         <div class="col-md-3">
         <table class="table table-bordered">
         <tbody>
-            <tr> <th scope="row">Total $:</th> <td>100</td>
+            <tr> <th scope="row">Total $:</th> <td>{{=subtotal}}</td>
             </tr>
 
         </tbody>
@@ -77,10 +106,11 @@
     </div>
     <div class="form-group">
         <div class="col-md-2">
-          <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventas",f="VentasMediosPago")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
+          <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventaslocal",f="VentasMediosPago")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
           
         </div>
-    <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventas",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
+    <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventaslocal",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
     </div>
        
 </form>
+<pre> {{=str(session["fecha_dia"])}}</pre>

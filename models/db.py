@@ -158,7 +158,7 @@ db.clientes.nombre.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_U
 db.clientes.apellido.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(30)
 db.clientes.dni.requires=IS_NOT_IN_DB (db,db.clientes.dni),IS_INT_IN_RANGE(2500000,100000000)
 db.clientes.telefono.requires=IS_LENGTH(12, error_message='Solo hasta 12 caracteres')
-db.clientes.localidad_cliente.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(50),IS_IN_DB(db,'localidad.nombre_localidad','%(nombre_localidad)s')
+#db.clientes.localidad_cliente.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(50),IS_IN_DB(db,'localidad.nombre_localidad','%(nombre_localidad)s')
 db.clientes.direccion.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(20)
 db.clientes.numero_calle.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
 db.clientes.provincia.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER()
@@ -228,7 +228,8 @@ db.proveedor.termino_pago.requires=IS_NOT_EMPTY(error_message='Campo obligatorio
 
 ##Productos#
 db.define_table ('productos',
-                 db.Field('id','integer'),
+                 db.Field("id_producto","id"),  #agregada by enrique
+                 #db.Field('id','integer'),
                  db.Field('codigo_barras', 'string'),
                  db.Field('cantidad_prod','integer'),
                  db.Field ('nombre','string'),
@@ -236,7 +237,7 @@ db.define_table ('productos',
                  db.Field('descripcion','string'),
                  db.Field('envase','string'),
                  db.Field ('categoria','string'),
-                 db.Field('precio','integer'),
+                 db.Field('precio','float'),
                  db.Field('proveedor','string'),
                  db.Field ('codigo_producto','string'),
                  db.Field ('fecha_ingreso','date'),
@@ -248,7 +249,8 @@ db.define_table ('productos',
                  db.Field('numero_nota_debito','integer'),
                  db.Field('numero_lote','integer'),
                  db.Field('imagen','upload'),
-                 db.Field('observaciones','text')
+                 db.Field('observaciones','text'),
+                 db.Field('alicuota_iva','float') #agregada by enrique
                  )
 
 

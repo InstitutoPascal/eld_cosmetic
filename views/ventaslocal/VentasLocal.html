@@ -1,57 +1,53 @@
 {{extend 'layout.html'}}
-<h1><strong>Venta Local</strong> <small></small></h1>
-
-<!------ INPUT + LABEL--<form class="form-horizontal">----->
-<form class="form-horizontal" action="" enctype="multipart/form-data" method="">
-  <div class="form-group">
+<h1>REGISTRAR VENTA</h1>
+<!------ metodo post para eviar el formulario ingresado a otra vista ------->
+<form class="form-horizontal" action="{{=URL(c="ventaslocal",f="VentasLocalCarga")}}" enctype="multipart/form-data" method="POST">
+    <div class="form-group">
             <label for="campo_cliente" class="col-sm-1 control-label">CLIENTE</label>
             <div class="col-sm-2">
-            <select class="form-control" id="campo_cliente" name="id_cliente">
-                       <!------ recorro todos los campos con un for------->
+               <select class="form-control" id="campo_cliente" name="id_cliente">
+                   <!------ recorro todos los campos con un for------->
                    {{for reg_cliente in lista_clientes:}}
-            <option value="{{=reg_cliente.id}}">{{=reg_cliente.nombre}} - {{=reg_cliente.codigo_cliente}}</option>
-                  <!------ finalizamos el for------->
-                   {{pass}}
-            </select>
+                 <!------ el value permite enviar el campo que queremos usar en sessions------->
+                   <option value="{{=reg_cliente.nombre}}">{{=reg_cliente.nombre}} - {{=reg_cliente.codigo_cliente}}</option>
+                  {{pass}}
+                   <!------ finalizamos el for------->
+                </select>
             </div>
-   </div>
-<!-- ------FINAL IMPUT + LABEL ------------------ -->
-<!------ AUTOCOMPLETAR ------->
-<!--       <script>
-$( "#autocomplete2" ).autocomplete({
-  source: [ "Perez Enrique", "Pedrino Ricardo", "Persico jose", "Peron juan", "Pepitero alberto ", "Peribebuy adrian", "Primate mono" ]
-});
-        </script>
--->
-<!-- ------------------------ -->
-
-   
-  
-    <!-- ------MOSTRAR VENDEDOR ACTUAL ------------------ -->
+        </div>
+      <!-- ------MOSTRAR VENDEDOR ACTUAL ------------------ -->
   <div class="form-group">
-    <label for="vendedorActual" class="col-sm-1 control-label">VENDEDOR ACTUAL:</label>
-    <div class="col-sm-2">
-      <!--   ubtenemos los nombres de usuarios y los procesamos -->
-        {{for userlog in usuario:}}
+    <label for="userlogeado"  class="col-sm-1 control-label">VENDEDOR ACTUAL:</label>
+      <div class="col-sm-2">
+           <h1><p method="POST" class="form-control" id="userlogeado" name="first_name" >
+          <!--   ubtenemos los nombres de usuarios y los procesamos -->
+        {{for userlog in usuario_log:}}
       <!-- mostramos el nombre y apellido del usuario logeado -->
-    <h1><p value="{{=userlog.id}}">{{=userlog.first_name}} {{=userlog.last_name}}</p></h1>
+   {{=userlog.first_name}} {{=userlog.last_name}}</p></h1>
         {{pass}}
     </div>
  </div>
- <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
-        <div class="form-group">
-            <label class="col-sm-1 control-label">FECHA ACTUAL</label>
+    <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
+    <!------ muestra fecha------->
+    <div class="form-group">
+            <label class="col-sm-1 control-label">FECHA</label>
             <div class="col-sm-2">
-            <p class="form-control" name="fecha" value="">{{=fecha_dia}}</p>
+                <input class="form-control" name="fecha" value="{{=fecha_dia}}">
             </div>
         </div>
+    <!------ enviamos los datos------->
     <div class="form-group">
-    <div class="col-sm-1 col-sm-10">
-    <a type="cargar" href="{{=URL(c="ventaslocal",f="VentasLocalCarga")}}"  class="btn btn-primary" >Continuar  <i class="glyphicon glyphicon-menu-right " ></i></a>
-      </div>
-  </div>
-       
+        <div class="col-md-3">
+         <input type="submit" name="boton_enviar" class="btn btn-default" value="AGREGAR PRODUCTOS">
+        </div>
+    </div>
 
-          
-        <!-- <meta http-equiv="refresh" content="1;URL=http://google.com" target="_blank" /> -->
+    <!------ Boton que envia a alta de cliente ------->
+    <form class="form-horizontal" action="{{=URL(c="altas",f="alta_cliente")}}" enctype="multipart/form-data" method="POST">
+    <div class="form-group">
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-default">AGREGAR CLIENTE NUEVO</button>
+        </div>
+        </div>
+    </form>
 </form>
