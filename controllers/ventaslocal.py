@@ -44,9 +44,11 @@ def VentasMediosPago():
 def VentasLocalCarga():
     #importamos la fecha del sistema
     import time
-     # obtenemos el usuario logeado en el sistema para enviarlo a la vista
+    # obtenemos el usuario logeado en el sistema para enviarlo a la vista
     usuario_log = db(db.auth_user.id == auth.user_id ).select()
+    # Si se presiono el boton =_enviar en el formulario
     if request.vars["boton_enviar"]:
+        print "cliente ",request.vars["id_cliente"]
         # obtengo los valores completados en el formulario
         id_cliente = request.vars["id_cliente"]
         fecha_dia = request.vars.fecha
@@ -59,20 +61,23 @@ def VentasLocalCarga():
         session["items_venta"] = []
     if request.vars["agregar_item"]:
         # obtengo los valores del formulario
-        id_producto = request.vars["id_producto"]
+        codigo_barras = request.vars["id_producto"]
+        # revisar que request.vars.codigo cumpla con las validaciones
+        #session.codigo_barras = request.vars.id_producto
+        # buscamos el producto en la base datos
+        reg_producto = db(db.productos.codigo_barras==codigo_barras).select().first()
+        id_producto = reg_producto.id_producto
         cantidad = request.vars["cantidad"]
         item = {"id_producto": id_producto, "cantidad": int(cantidad)}
         # busco en la base de datos el registro del producto seleccionado
-        reg_producto = db(db.productos.id_producto==id_producto).select().first()
+        #reg_producto = db(db.productos.id_producto==id_producto).select().first()
         item["descripcion"] = reg_producto.descripcion
         item["precio"] = reg_producto.precio
         item["alicuota_iva"] = reg_producto.alicuota_iva
         # guardo el item en la sesión
         session["items_venta"].append(item)
-    #obtengo la lista de productos
-    lista_productos = db(db.productos.id>0).select()
-    print"usuario ",session["vendedor_logueado"]
-    return dict(id_cliente=session["id_cliente"], fecha_dia=session["fecha_dia"], vendedor_logueado=session["vendedor_logueado"],lista_productos=lista_productos, usuario_log=usuario_log, items_venta=session["items_venta"],)
+    #print"usuario ",session["vendedor_logueado"]
+    return dict(id_cliente=session["id_cliente"], fecha_dia=session["fecha_dia"], vendedor_logueado=session["vendedor_logueado"], usuario_log=usuario_log, items_venta=session["items_venta"],)
 
 def confirmar():
     reg_cliente = db(db.clientes.id==session["id_cliente"]).select().first()

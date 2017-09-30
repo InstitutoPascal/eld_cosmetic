@@ -5,7 +5,7 @@
 <!--{{=BEAUTIFY(response._vars)}}   trae todo lo que esta en el return del controlador -->
    <!-- ------MOSTRAR VENDEDOR ACTUAL ------------------ -->
   <div class="form-group">
-    <label for="userlogeado"  class="col-sm-1 control-label">VENDEDOR ACTUAL:</label>
+    <label for="userlogeado"  class="col-sm-1 control-label">Vendedor: </label>
       <div class="col-sm-2">
            <h1><p method="POST" class="form-control" id="userlogeado" name="first_name" >
           <!--   ubtenemos los nombres de usuarios y los procesamos -->
@@ -15,9 +15,18 @@
         {{pass}}
     </div>
  </div>
-    <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
 
-        </form>
+   <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
+
+<div class="form-group">
+    <label for="userlogeado"  class="col-sm-1 control-label">Cliente: </label>
+      <div class="col-sm-2">
+    <input type="text" class="form-control" placeholder="Campo de texto" value="{{=id_cliente}}"></input>
+      </div>
+
+</div>
+
+    </form>
 <tr>
      <th></th>
     <th></th>
@@ -28,23 +37,20 @@
     </div>
 <form class="form-horizontal" enctype="multipart/form-data" >
     <div class="form-group">
-        <label for="campo_tipo" class="col-sm-1 control-label">Codigo Producto</label>
+        <label for="campo_tipo" class="col-sm-1 control-label">Codigo barras</label>
           <!-- <div class="col-sm-3">
           <input type="text" class="form-control" id="exampleInputName2" placeholder="Ingrese el codigo de producto" > 
             </div> -->
            <div class="col-sm-3">
-                <select class="form-control" id="campo_tipo" name="id_producto">
-                    {{for reg_producto in lista_productos:}}
-                  <option value="{{=reg_producto.id_producto}}">{{=reg_producto.descripcion}}</option>
-                  {{pass}}
-                </select>
+           <input type= "number" name="id_producto" class="form-control" id="campo_tipo" value ="">
+
            </div>
 
 
 
         <label for="cant" class="col-sm-1 control-label">Cantidad</label>
            <div class="col-sm-2">
-               <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Ingrese cantidad" > 
+               <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Ingrese cantidad" value ="1" > 
             </div>
     </div>
 <div class="form-group">
@@ -63,12 +69,13 @@
           <thead>
             <tr>
                 <th>#</th>
-                <th class="">Codigo</th>
-                <th>DescripcionProducto</th>
+                <th class="">Descripcion Producto</th>
                 <th>Cantidad</th>
                 <th>Precio Unitario</th>
                 <th>SubTotal</th>
+                <th>IVA</th>
                 <!-- <th>Stock Actual</th> -->
+                <th>Total</th>
                 <th>Opciones</th>
             </tr>
 
@@ -85,7 +92,7 @@
                 <td align="center">{{=item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00}}</td>
                 <td align="center">{{=item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00}}</td>
                 {{subtotal = subtotal + (item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00) }}
-                <td><a class="btn btn-default" role="button" >Eliminar</a></td>
+                <td><a class="btn btn-default" role="button" href="{{=URL(c="ventaslocal",f="Borrar_Item",vars={"pos":i})}}">Eliminar</a></td>
 
             </tr>
             {{pass}}
@@ -113,4 +120,3 @@
     </div>
        
 </form>
-<pre> {{=str(session["fecha_dia"])}}</pre>
