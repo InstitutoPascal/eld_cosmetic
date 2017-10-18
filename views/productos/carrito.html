@@ -1,0 +1,61 @@
+{{extend 'layout-carrito.html'}}
+<h1>CARRITO DE SU COMPRA</h1>
+<form class="form-horizontal" action="{{=URL(c="productos", f="confirmar")}}"  enctype="multipart/form-data" method="POST" >
+    <div class="form-group">
+        <div class="col-md-10">
+          <table class="table table-hover">
+          <caption>Productos Agregados</caption>
+          <thead>
+            <tr>
+                <th>#</th>
+                <th class="">Descripcion Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>SubTotal</th>
+                <th>IVA</th>
+                <!-- <th>Stock Actual</th> -->
+                <th>Total</th>
+                <th>Opciones</th>
+            </tr>
+
+          </thead>
+        <tbody>
+            {{subtotal = 0}}
+            {{for i, item in enumerate(items_venta):}}
+              <tr>
+                <th scope="row">{{=item["id_producto"]}}</th>
+                <td >{{=item["descripcion"]}}</td>
+                <td align="center">{{=item["cantidad"]}}</td>
+                <td align="center">{{=item["precio"]}}</td>
+                <td align="center">{{=item["precio"] * item["cantidad"]}}</td>
+                <td align="center">{{=item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00}}</td>
+                <td align="center">{{=item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00}}</td>
+                {{subtotal = subtotal + (item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00) }}
+                <td><a class="btn btn-default" role="button" href="{{=URL(c="productos",f="confirmacioncompra",vars={"pos":i})}}">Eliminar</a></td>
+
+            </tr>
+            {{pass}}
+        </tbody>
+        </table>
+        </div>
+        </div>
+    <div class="form-group">
+        <div class="col-md-3">
+        <table class="table table-bordered">
+        <tbody>
+            <tr> <th scope="row">Total $:</th> <td>{{=subtotal}}</td>
+            </tr>
+
+        </tbody>
+        </table>
+        </div>
+    </div>
+<div class="form-group">
+        <div class="col-md-2">
+          <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventaslocal",f="VentasMediosPago")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
+          
+        </div>
+    <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventaslocal",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
+    </div>
+       
+</form>

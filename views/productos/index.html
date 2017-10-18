@@ -21,12 +21,12 @@
 <p>
 
 </p>
+<form class="form-horizontal" action="{{=URL(c="productos",f="carrito")}}" enctype="multipart/form-data" method="POST">
 <div class="row">
     {{for productos in productos:}}
     <!--  <a href="mostrar">producto.nombre</a>         -->
         <!--{{=A(productos.nombre, _href=URL(f="ver",args=[productos.id]))}}-->
   <!--<div class="row">-->
-
    <div class="col-sm-4 col-md-2 hero-feature">
      <div class="thumbnail">
        <div class="product-image">
@@ -39,13 +39,16 @@
             </p>
         <p>
           <a href="{{=URL(c="productos",f="ver", args=[productos.id])}}" class="btn btn-primary" role="button">Ver Descripción</a>
-          <a href="{{=URL(c="ventas",f="VentasOnlinetarjeta")}}" class="btn btn-danger" role="button">COMPRAR</a>
+          <input type="hidden" name="producto" value="{{=productos.id}}" />
+          <input type="number" name="cantidad" value="1" />
+          <input type="submit" role="button" class="btn btn-danger" name="comprar" value="Comprar" />
         </p>
       </div>
     </div>
   </div>
   {{pass}}
- <!-- <div class="col-sm-4 col-md-2 hero-feature">
+ </form>
+    <!-- <div class="col-sm-4 col-md-2 hero-feature">
     <div class="thumbnail">
        <div class="product-image">
           {{=IMG(_src=URL("static/images","IMG-20170517-WA0074.jpg"), _width="100%", _height="100%")}}
