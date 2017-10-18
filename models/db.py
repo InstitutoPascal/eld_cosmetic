@@ -341,13 +341,18 @@ db.define_table ('ventas',
                  db.Field ('nombre','string'),
                  db.Field ('marca','string'),
                  db.Field ('categoria','string'),
-                 db.Field ('precio','integer'),
+                 db.Field ('precio','float'),
                  db.Field('fecha_ingreso','date'),
                  db.Field('fecha_salida','date'),
+                 db.Field("tipo_de_factura","string"),
+                 db.Field('num_factura','integer'),
+                 db.Field('cliente','string'),
                  db.Field('empleado','string'),
-                 db.Field('cantidad','integer')
+                 db.Field('cantidad','integer'),
+                 db.Field('alicuota_iva','float'),
+                 db.Field('descripcion','string')
                 )
-
+"""
 db.ventas.codigo_producto.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
 db.ventas.nombre.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(30, error_message='Solo hasta 30 caracteres')
 db.ventas.marca.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(30, error_message='Solo hasta 30 caracteres')
@@ -355,8 +360,9 @@ db.ventas.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obliga
 db.ventas.precio.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
 db.ventas.fecha_ingreso.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
 db.ventas.fecha_salida.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+#db.ventas.cliente.requires = IS_IN_DB(db, "clientes.id"," %(nombre)s-%(apellido)s .")
 db.ventas.cantidad.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
-
+"""
 
 #___________________________________________________________________________________________________________________________________________________________
 db.define_table ('compras',
