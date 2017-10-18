@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+
+
+<center>
+<br /><br /><br />
+<h2 align="center"> ¿Confirma venta para:<b>" {{=id_cliente}}"</b>, Por el importe de:<b> "${{=total}}"</b>, Con fecha:<b> "{{=fecha_dia}}"</b>?</h2>
+<h1> <p class="text-center visible-lg bg-success">Confirmar compra</p></h1>
+<br />
+<a type="cargar" class="btn btn-info"  href="{{=URL(c="ventaslocal",f="GenerarFactura")}}" > Confirmar <i class="glyphicon glyphicon-remove" ></i> </a>
+<a type="cargar" class="btn btn-warning"  href="{{=URL(c="ventas",f="VentasLocalCarga")}}" > Volver <i class="glyphicon glyphicon-remove" ></i> </a>
+</center>
+
+
+
+</div>
