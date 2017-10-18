@@ -9,7 +9,7 @@
                    <!------ recorro todos los campos con un for------->
                    {{for reg_cliente in lista_clientes:}}
                  <!------ el value permite enviar el campo que queremos usar en sessions------->
-                   <option value="{{=reg_cliente.nombre}}">{{=reg_cliente.nombre}} - {{=reg_cliente.codigo_cliente}}</option>
+                   <option value="{{=reg_cliente.id}}">{{=reg_cliente.nombre}} - {{=reg_cliente.codigo_cliente}}</option>
                   {{pass}}
                    <!------ finalizamos el for------->
                 </select>

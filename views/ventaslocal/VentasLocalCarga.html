@@ -19,7 +19,7 @@
    <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
 
 <div class="form-group">
-    <label for="userlogeado"  class="col-sm-1 control-label">Cliente: </label>
+    <label for="cliente"  class="col-sm-1 control-label">Cliente: </label>
       <div class="col-sm-2">
     <input type="text" class="form-control" placeholder="Campo de texto" value="{{=id_cliente}}"></input>
       </div>
@@ -42,7 +42,7 @@
           <input type="text" class="form-control" id="exampleInputName2" placeholder="Ingrese el codigo de producto" > 
             </div> -->
            <div class="col-sm-3">
-           <input type= "number" name="id_producto" class="form-control" id="campo_tipo" value ="">
+           <input type= "number" name="id_producto" class="form-control" id="campo_tipo" value ="1234">
 
            </div>
 
@@ -113,7 +113,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-2">
-          <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventaslocal",f="VentasMediosPago")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
+          <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventaslocal",f="confirmar")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
           
         </div>
     <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventaslocal",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
