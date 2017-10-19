@@ -36,6 +36,8 @@ def Borrar_Item():
     return dict()
 
 def CancelarVenta():
+    # elimina todos los elementos de la lista
+    del session["items_venta"]
     return dict()
 
 def VentasLocalVistaprevia():
@@ -55,7 +57,7 @@ def VentasLocalCarga():
     usuario_log = db(db.auth_user.id == auth.user_id ).select()
     # Si se presiono el boton =_enviar en el formulario
     if request.vars["boton_enviar"]:
-        print "cliente ",request.vars["id_cliente"]
+
         # obtengo los valores completados en el formulario
         id_cliente = request.vars["id_cliente"]
         fecha_dia = request.vars.fecha
@@ -64,46 +66,37 @@ def VentasLocalCarga():
         session["id_cliente"] = id_cliente
         session["fecha_dia"] = fecha_dia
         session["first_name"] = usuario_actual
-         #Defino en la sesion que inicie una lista en blanco
+        #Defino en la sesion que inicie una lista en blanco
         session["items_venta"] = []
     if request.vars["agregar_item"]:
         # obtengo los valores del formulario
         codigo_barras = request.vars["id_producto"]
-        # revisar que request.vars.codigo cumpla con las validaciones
-        # buscamos el producto en la base datos
+        # busco en la base de datos el codigo de barras ingresado, lo comparo y obtengo los campos de la tabla productos
         reg_producto = db(db.productos.codigo_barras==codigo_barras).select().first()
+        # obtengo el id de la consulta anterior
         id_producto = reg_producto.id_producto
-        #pre_producto = reg_producto.precio
+        # obtengo la candidad de productos ingresado en el formulario
         cantidad = request.vars["cantidad"]
+        # creo un diccionario y lo inicializo con el id y la cantidad de producto
         item = {"id_producto": id_producto, "cantidad": int(cantidad)}
-        # busco en la base de datos el registro del producto seleccionado
-        #reg_producto = db(db.productos.id_producto==id_producto).select().first()
+        # agrego nuevos registros en el diccionario
         item["descripcion"] = reg_producto.descripcion
         item["precio"] = reg_producto.precio
         item["alicuota_iva"] = reg_producto.alicuota_iva
         # guardo el item en la sesión
         session["items_venta"].append(item)
-    #print"usuario ",session["vendedor_logueado"]
-    print "items", session["items_venta"]
-    #print "precio", pre_producto
     return dict(id_cliente=session["id_cliente"], fecha_dia=session["fecha_dia"], vendedor_logueado=session["vendedor_logueado"], usuario_log=usuario_log, items_venta=session["items_venta"],)
 
 def confirmar():
     total = 0
-    #Recorro lo almacenado en items_venta en la session y hago los calculos de los impuesto para enviarlos a la confirmacion
+    #Recorro lo almacenado en items_venta en la session y hago los calculos de los impuesto para enviarlos a la vista de confirmacion
     for item in session["items_venta"]:
         total += (item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00)
     return dict (id_cliente=session["id_cliente"], fecha_dia=session["fecha_dia"], total=total)
 
-
-
 def VentaLocalReporte():
     grid = SQLFORM.grid(db.productos)
     return {"grilla": grid}
-
-def preuba ():
-    return dict()
-
 
 def obtener_cae():
     from pyafipws.wsaa import WSAA
@@ -398,8 +391,8 @@ def GenerarFactura():
             telefono_cliente=reg_cliente.telefono,
             localidad_cliente=reg_cliente.localidad_cliente,
             provincia_cliente=reg_cliente.provincia,
-            email="prueba@ejemplo.com",
-            id_impositivo="Resp. Inscr.",
+            email=reg_cliente.email,
+            id_impositivo=reg_cliente.tipo_categoria,
             moneda_id=moneda.id,
             )
 
@@ -436,7 +429,7 @@ def GenerarFactura():
              ##imp_trib = "0.00"
              imp_op_ex = 0,
         )
-        
+
     ## db.alicutoa_iva.insert()
 
     redirect(URL(c="ventaslocal", f="obtener_cae", args=[factura_id]))

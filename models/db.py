@@ -134,19 +134,18 @@ auth.settings.reset_password_requires_verification = True
 
 ##Clientes##
 db.define_table ('clientes',
+                 db.Field("id_clientes","id"),  #agregada by enrique
                  db.Field ('codigo_cliente','integer'),
                  db.Field ('nombre','string'),
                  db.Field ('apellido','string'),
+                 db.Field ('email','string'),  #agregada by enrique
                  db.Field ('dni','integer',unique=True),
                  db.Field('cuil','string'),
                  db.Field('sexo', requires=IS_IN_SET(['Masculino', 'Femenino', 'Otro'])),
                  db.Field('telefono','integer'),
-                 db.Field('direccion','integer'),db.Field('numero_calle','integer'),
-                 db.Field('numero_calle','integer'),
-                 db.Field('piso','integer'),
-                 db.Field('depto','string'),
+                 db.Field('direccion','integer'),
                  db.Field('localidad_cliente','string'),
-                 #db.Field ('password','password'),
+                 db.Field('tipo_categoria', requires=IS_IN_SET(['Resp. Inscr.','Monotributo'])),  #agregada by enrique
                  db.Field ('provincia','string'),
                  db.Field ('pais','string'),
                  db.Field ('codigo_postal','integer'),
