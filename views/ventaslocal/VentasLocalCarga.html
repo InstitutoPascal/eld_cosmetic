@@ -19,7 +19,7 @@
    <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
 
 <div class="form-group">
-    <label for="cliente"  class="col-sm-1 control-label">Cliente: </label>
+    <label for="cliente"  class="col-sm-1 control-label">Cliente Nº: </label>
       <div class="col-sm-2">
     <input type="text" class="form-control" placeholder="Campo de texto" value="{{=id_cliente}}"></input>
       </div>
@@ -69,6 +69,8 @@
           <thead>
             <tr>
                 <th>#</th>
+                <th class="">Nombre Producto</th>
+                <th class="">Marca</th>
                 <th class="">Descripcion Producto</th>
                 <th>Cantidad</th>
                 <th>Precio Unitario</th>
@@ -85,6 +87,8 @@
             {{for i, item in enumerate(items_venta):}}
               <tr>
                 <th scope="row">{{=item["id_producto"]}}</th>
+                <td >{{=item["nombre"]}}</td>
+                <td >{{=item["marca"]}}</td>
                 <td >{{=item["descripcion"]}}</td>
                 <td align="center">{{=item["cantidad"]}}</td>
                 <td align="center">{{=item["precio"]}}</td>
