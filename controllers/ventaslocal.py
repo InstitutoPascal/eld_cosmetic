@@ -53,6 +53,9 @@ def VentasMediosPago():
 def VentasLocalCarga():
     #importamos la fecha del sistema
     import time
+    client_id = db(db.clientes.id == session["id_cliente"] ).select().first()
+    cliente_venta = client_id.nombre
+    print "el cliente es: ",cliente_venta
     # obtenemos el usuario logeado en el sistema para enviarlo a la vista
     usuario_log = db(db.auth_user.id == auth.user_id ).select()
     # Si se presiono el boton =_enviar en el formulario
@@ -87,7 +90,8 @@ def VentasLocalCarga():
         item["alicuota_iva"] = reg_producto.alicuota_iva
         # guardo el item en la sesión
         session["items_venta"].append(item)
-    return dict(id_cliente=session["id_cliente"], fecha_dia=session["fecha_dia"], vendedor_logueado=session["vendedor_logueado"], usuario_log=usuario_log, items_venta=session["items_venta"],)
+        print "listas de prodcutos",session["items_venta"]
+    return dict(id_cliente=cliente_venta, fecha_dia=session["fecha_dia"], vendedor_logueado=session["vendedor_logueado"], usuario_log=usuario_log, items_venta=session["items_venta"],)
 
 def confirmar():
     total = 0
