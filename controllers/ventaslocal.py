@@ -5,6 +5,7 @@ import datetime
 from ConfigParser import SafeConfigParser
 #response.view = "generic.html"
 
+@auth.requires_login()
 def VentasLocal():
     #importamos la fecha del sistema
     import time
@@ -29,10 +30,6 @@ def VentasLocal():
         mensaje = "Seleccione un cliente"
     #redirije los valores al HTML
     return dict(message=mensaje, lista_clientes=lista_clientes, vendedor_log=vendedor_log, fecha_dia=fecha_dia, )
-
-
-def VentasLocalTarjeta():
-    return dict()
 
 def Borrar_Item():
     # eliminar el elemento de la lista en posicion pos
@@ -94,7 +91,6 @@ def VentasLocalCarga():
         item["alicuota_iva"] = reg_producto.alicuota_iva
         # guardo el item en la sesión
         session["items_venta"].append(item)
-        print "listas de prodcutos",session["items_venta"]
     return dict( fecha_dia=session["fecha_dia"], items_venta=session["items_venta"], cliente_venta=cliente_venta, vend=session["vendedor_log"],)
 
 def confirmar():
