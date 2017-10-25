@@ -11,7 +11,11 @@ def VentasLocal():
     #obtengo la fecha 
     fecha_dia= time.strftime("%x")
     # obtenemos el usuario logeado en el sistema para enviarlo a la vista
-    usuario_log = db(db.auth_user.id == auth.user_id ).select()
+    #usuario_log = db(db.auth_user.id == auth.user_id ).select()
+    usuario_log = db(db.empleados.usuario_id == auth.user_id ).select().first()
+    vendedor_log = usuario_log.nombre
+    print "usuario logueado ", vendedor_log
+    session["vendedor_log"] = vendedor_log
     # definir los campos a obtener desde la base de datos:
     campos = db.clientes.id, db.clientes.nombre, db.clientes.codigo_cliente
     # definir la condición que deben cumplir los registros:
@@ -24,7 +28,7 @@ def VentasLocal():
     else:
         mensaje = "Seleccione un cliente"
     #redirije los valores al HTML
-    return dict(message=mensaje, lista_clientes=lista_clientes, usuario_log=usuario_log, fecha_dia=fecha_dia, )
+    return dict(message=mensaje, lista_clientes=lista_clientes, vendedor_log=vendedor_log, fecha_dia=fecha_dia, )
 
 
 def VentasLocalTarjeta():
@@ -57,7 +61,7 @@ def VentasLocalCarga():
     cliente_venta = client_id.nombre
     print "el cliente es: ",cliente_venta
     # obtenemos el usuario logeado en el sistema para enviarlo a la vista
-    usuario_log = db(db.auth_user.id == auth.user_id ).select()
+    #####usuario_log = db(db.auth_user.id == auth.user_id ).select()
     # Si se presiono el boton =_enviar en el formulario
     if request.vars["boton_enviar"]:
 
@@ -68,7 +72,7 @@ def VentasLocalCarga():
         # guardo los datos elegidos en la sesión
         session["id_cliente"] = id_cliente
         session["fecha_dia"] = fecha_dia
-        session["first_name"] = usuario_actual
+        #session["first_name"] = usuario_actual
         #Defino en la sesion que inicie una lista en blanco
         session["items_venta"] = []
     if request.vars["agregar_item"]:
@@ -91,7 +95,7 @@ def VentasLocalCarga():
         # guardo el item en la sesión
         session["items_venta"].append(item)
         print "listas de prodcutos",session["items_venta"]
-    return dict(id_cliente=cliente_venta, fecha_dia=session["fecha_dia"], vendedor_logueado=session["vendedor_logueado"], usuario_log=usuario_log, items_venta=session["items_venta"],)
+    return dict( fecha_dia=session["fecha_dia"], items_venta=session["items_venta"], cliente_venta=cliente_venta, vend=session["vendedor_log"],)
 
 def confirmar():
     total = 0

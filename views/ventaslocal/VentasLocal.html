@@ -19,12 +19,7 @@
   <div class="form-group">
     <label for="userlogeado"  class="col-sm-1 control-label">VENDEDOR ACTUAL:</label>
       <div class="col-sm-2">
-           <h1><p method="POST" class="form-control" id="userlogeado" name="first_name" >
-          <!--   ubtenemos los nombres de usuarios y los procesamos -->
-        {{for userlog in usuario_log:}}
-      <!-- mostramos el nombre y apellido del usuario logeado -->
-   {{=userlog.first_name}} {{=userlog.last_name}}</p></h1>
-        {{pass}}
+            <input class="form-control" name="fecha" value="{{=vendedor_log}}">
     </div>
  </div>
     <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->

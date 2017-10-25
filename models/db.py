@@ -279,6 +279,8 @@ db.productos.observaciones.requires=IS_LENGTH(200, error_message='Solo hasta 200
 
 ##Empleados##
 db.define_table('empleados',
+                #db.Field('usuario_id', db.auth_user, default=auth.user_id, readable=False, writable=False),
+                db.Field('usuario_id', db.auth_user, default=auth.user_id ),
                 db.Field('codigo_empleados','integer'),
                 db.Field('dni','integer'),
                 db.Field('apellido','string'),
