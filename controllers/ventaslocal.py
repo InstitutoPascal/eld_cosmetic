@@ -41,9 +41,6 @@ def CancelarVenta():
     del session["items_venta"]
     return dict()
 
-def VentasLocalVistaprevia():
-    return dict()
-
 def VentasMediosPago():
     total = 0
     #Recorro lo almacenado en items_venta en la session y hago los calculos de los impuesto para enviarlos a la confirmacion
