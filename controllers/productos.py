@@ -1,6 +1,6 @@
 from ConfigParser import SafeConfigParser
 def index():
-    regs = db(db.productos.id>0).select()
+    regs = db(db.productos.id_producto>0).select()
     return dict(productos=regs)
 def confirmacioncompra():
     return dict()
@@ -8,14 +8,14 @@ def ver():
    # obtengo el id de prodcuto desde la URL
     prod_id = request.args[0]
    # consultamos a la bd para que traiga el registro del primer producto:
-    reg = db(db.productos.id==prod_id).select().first()
+    reg = db(db.productos.id_producto==prod_id).select().first()
     return dict(productos=reg)
 
 def mostrar():
     # obtengo el id de prodcuto desde la URL
     prod_id = request.args[0]
     # consultamos a la bd para que traiga el registro del primer producto:
-    reg = db(db.productos.id==prod_id).select(db.productos.imagen).first()
+    reg = db(db.productos.id_producto==prod_id).select(db.productos.imagen).first()
     # obtenemos la imagen (nombre de archivo completo, stream=flujo de datos=archivo abierto -open-):
     (filename, stream) = db.productos.imagen.retrieve(reg.imagen)
     # obtenemos extension original para determinar tipo de contenido:
@@ -32,16 +32,16 @@ def mostrar():
 def carrito():
     if request.vars["producto"]:
         # obtengo los valores del formulario
-        id_producto = request.vars["producto"]
+        id_prod = request.vars["producto"]
         cantidad = request.vars["cantidad"]
-        print id_producto
+        print "este es el id", id_prod
         # revisar que request.vars.codigo cumpla con las validaciones
         #session.codigo_barras = request.vars.id_producto
         # buscamos el producto en la base datos
         #cantidad = request.vars["cantidad"]
-        item = {"id_producto": id_producto, "cantidad": int(cantidad)}
+        item = {"id_producto": id_prod, "cantidad": int(cantidad)}
         # busco en la base de datos el registro del producto seleccionado
-        reg_producto = db(db.productos.id_producto==id_producto).select().first()
+        reg_producto = db(db.productos.id_producto==id_prod).select().first()
         item["descripcion"] = reg_producto.descripcion
         item["precio"] = reg_producto.precio
         item["alicuota_iva"] = reg_producto.alicuota_iva
@@ -64,10 +64,11 @@ def confirmar():
                  nro_cbte=session["numero_factura"],
                  reg_cliente=reg_cliente, total=total)
 
-def Borrar_Item():
+def borrar_item():
     # eliminar el elemento de la lista en posicion pos
     del session["items_venta"][int(request.vars.pos)]
     return dict()
 
-def CancelarVenta():
+def cancelar_venta():
+    del session["items_venta"]
     return dict()

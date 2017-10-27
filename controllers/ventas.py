@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-# try something like
-# -*- coding: utf-8 -*-
+import datetime
+from ConfigParser import SafeConfigParser
 
 def VentasOnlinetarjeta():
     # creamos un dict con los datos del pago solicitado:
@@ -76,3 +75,68 @@ def ventasonlinevistaprevia():
 
 def carrito():
     return dict()
+
+def GenerarFactura():
+    # creamos un registro de factura (encabezado) 
+    # UDS DEBEN TRAER LOS DATOS DE SU SISTEMA (tablas cliente, productos, etc.)
+    moneda = db(db.moneda.codigo=="DOL").select().first()
+    # busco el registro del cliente en la base (usando el id de la sesion)
+    id_cliente = session["id_cliente"]
+    reg_cliente = db(db.clientes.id==id_cliente).select().first()
+    factura_id = db.comprobante_afip.insert(
+            webservice="wsfev1",
+            #fecha_cbte=datetime.datetime.now(),
+            tipo_cbte=1,  # factura A, ver tabla tipos_cbte
+            punto_vta=PUNTO_VTA,
+            cbte_nro=1,
+            # Datos del cliente (traer de la tabla respectiva!!!!!!)
+            nombre_cliente=reg_cliente.nombre + " " + reg_cliente.apellido,
+            tipo_doc=80,#96 dni # 80 cuit
+            nro_doc=reg_cliente.cuil,
+            domicilio_cliente=reg_cliente.direccion,
+            telefono_cliente=reg_cliente.telefono,
+            localidad_cliente=reg_cliente.localidad_cliente,
+            provincia_cliente=reg_cliente.provincia,
+            email=reg_cliente.email,
+            id_impositivo=reg_cliente.tipo_categoria,
+            moneda_id=moneda.id,
+            )
+
+    total_neto = 0
+    total_iva = 0
+    # recorro los productos en el carrito (session)
+    for item in session["items_venta"]:
+        descripcion = item["descripcion"]
+        cantidad = item["cantidad"]
+        precio_un = item["precio"]
+        neto =  (precio_un * cantidad)
+        importe_iva = neto * 0.21
+        subtotal = neto + importe_iva
+        total_neto = total_neto + neto
+        total_iva = total_iva + importe_iva
+        db.detalle_afip.insert(
+                comprobante_id=factura_id,
+                codigo="P001",
+                ds=descripcion,
+                precio=precio_un,
+                qty=cantidad,
+                umed=7,
+                iva_id=5,  # 21%
+                imp_iva=importe_iva,
+                imp_total=subtotal
+            )
+
+    # actualizar totales factura:
+    db(db.comprobante_afip.id == factura_id).update(
+             imp_total = total_neto + total_iva,
+             imp_tot_conc = 0,
+             imp_neto = total_neto,
+             impto_liq = total_iva,
+             ##imp_trib = "0.00"
+             imp_op_ex = 0,
+        )
+
+    ## db.alicutoa_iva.insert()
+
+    redirect(URL(c="facturacion", f="obtener_cae", args=[factura_id]))
+    return dict(message="se creo la factura %s" % factura_id)

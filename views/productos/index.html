@@ -30,7 +30,7 @@
    <div class="col-sm-4 col-md-2 hero-feature">
      <div class="thumbnail">
        <div class="product-image">
-          {{=IMG(_src=URL(c="productos", f="mostrar", args=[productos.id]))}}
+          {{=IMG(_src=URL(c="productos", f="mostrar", args=[productos.id_producto]))}}
        </div>
        <div class="caption">
         <h3>{{=productos.marca}}, {{=productos.nombre}}.</h3>
@@ -38,8 +38,8 @@
                 $ {{=productos.precio}}
             </p>
         <p>
-          <a href="{{=URL(c="productos",f="ver", args=[productos.id])}}" class="btn btn-primary" role="button">Ver Descripción</a>
-          <input type="hidden" name="producto" value="{{=productos.id}}" />
+          <a href="{{=URL(c="productos",f="ver", args=[productos.id_producto])}}" class="btn btn-primary" role="button">Ver Descripción</a>
+          <input type="hidden" name="producto" value="{{=productos.id_producto}}" />
           <input type="number" name="cantidad" value="1" />
           <input type="submit" role="button" class="btn btn-danger" name="comprar" value="Comprar" />
         </p>

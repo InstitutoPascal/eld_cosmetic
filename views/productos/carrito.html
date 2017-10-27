@@ -31,7 +31,7 @@
                 <td align="center">{{=item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00}}</td>
                 <td align="center">{{=item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00}}</td>
                 {{subtotal = subtotal + (item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00) }}
-                <td><a class="btn btn-default" role="button" href="{{=URL(c="productos",f="confirmacioncompra",vars={"pos":i})}}">Eliminar</a></td>
+                <td><a class="btn btn-default" role="button" href="{{=URL(c="productos",f="borrar_item",vars={"pos":i})}}">Eliminar</a></td>
 
             </tr>
             {{pass}}
@@ -51,11 +51,9 @@
         </div>
     </div>
 <div class="form-group">
-        <div class="col-md-2">
-          <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventaslocal",f="VentasMediosPago")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
-          
-        </div>
-    <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventaslocal",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
-    </div>
-       
+          <a type="cargar" class="btn btn-primary" href="{{=URL(c="productos",f="index")}}">  Continuar agregando productos<i class="glyphicon glyphicon-send" ></i></a>
+          <a type="cargar" class="btn btn-danger" href="{{=URL(c="productos",f="cancelar_venta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
+          <!--<a type="cargar" class="btn btn-success" href="{{=URL(c="productos",f="cancelar_venta")}}">  Pagar con Mercado Pago <i class="glyphicon glyphicon-send" ></i></a>-->
+          <a mp-mode="dftl" href="{{=URL(c="mp",f="index")}}" name="MP-payButton" class="lightblue-M-Ov-ArOn" >Pagar con mercado pago</a>
+</div>
 </form>
