@@ -28,7 +28,7 @@ def mostrar():
     response.headers['Content-Type'] = formato
     # devolver al navegador el contenido de la imagen
     return stream
-
+@auth.requires_login()
 def carrito():
     if request.vars["producto"]:
         # obtengo los valores del formulario

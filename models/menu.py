@@ -103,7 +103,7 @@ response.menu += [
 response.menu += [
             (T('Ventas'), False, URL('default','index'), [
                 (T('Ventas Local'), False, URL('ventaslocal', 'VentasLocal'),[]),
-                (T('Ventas Online'), False, URL('ventas', 'VentasOnlineHome'),[]),
+                (T('Ventas Online'), False, URL('productos', 'index'),[]),
         ])]
 #------------------------------------------------------------------------------------------------------------------------------------02-05-17
 #>>>>>>> other

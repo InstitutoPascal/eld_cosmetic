@@ -1,34 +1,6 @@
 import datetime
 from ConfigParser import SafeConfigParser
 
-def VentasOnlinetarjeta():
-    # creamos un dict con los datos del pago solicitado:
-    preference = {
-		"items": [
-			{
-				"title": "Perfume El Polakkko",
-				"description": "Botellita 50ml de escencia saraza saraza ...",
-				"quantity": 1,
-				"unit_price": 50,
-				"currency_id": "ARS",
-				"picture_url": "https://www.mercadopago.com/org-img/MP3/home/logomp3.gif"
-			}
-		],
-		"marketplace_fee": 2.29 # fee to collect
-	}
-    # llamamos a MP para que cree un link...
-    preferenceResult = mp.create_preference(preference)
-    url = preferenceResult["response"]["sandbox_init_point"]
-    return dict(url_boton=url)
-
-
-def inicio():
-    "pagina de inicio del catalogo"
-    return dict(message="funcion  inicio")
-
-def VentasOnlinecatalogo():
-    return dict()
-
 def VentasOnlineCarga():
     #importamos la fecha del sistema
     import time
@@ -61,20 +33,6 @@ def VentasOnlineCarga():
     lista_productos = db(db.productos.id>0).select()
     print"usuario ",session["vendedor_logueado"]
     return dict(id_cliente=session["id_cliente"], fecha_dia=session["fecha_dia"], vendedor_logueado=session["vendedor_logueado"],lista_productos=lista_productos, usuario_log=usuario_log, items_venta=session["items_venta"],)
-
-
-def VentasOnlineHome():
-    return dict()
-
-def VentaLocalReporte():
-    grid = SQLFORM.grid(db.productos)
-    return {"grilla": grid}
-
-def ventasonlinevistaprevia():
-    return dict()
-
-def carrito():
-    return dict()
 
 def GenerarFactura():
     # creamos un registro de factura (encabezado) 
