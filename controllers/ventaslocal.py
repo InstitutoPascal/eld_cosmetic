@@ -51,8 +51,10 @@ def VentasMediosPago():
 def VentasLocalCarga():
     #importamos la fecha del sistema
     import time
-    client_id = db(db.clientes.id == session["id_cliente"] ).select().first()
-    cliente_venta = client_id.nombre
+    if "id_cliente" in request.vars:
+        session["id_cliente"] = request.vars["id_cliente"]  # traer del form y guardo en la sesion
+    cliente = db(db.clientes.id == session["id_cliente"] ).select().first()
+    cliente_venta = cliente.nombre
     print "el cliente es: ",cliente_venta
     # obtenemos el usuario logeado en el sistema para enviarlo a la vista
     #####usuario_log = db(db.auth_user.id == auth.user_id ).select()

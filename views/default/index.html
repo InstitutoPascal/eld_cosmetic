@@ -1,37 +1,22 @@
 {{extend 'layout-index.html'}}
 
 <section class="login-block">
-    <div class="container">
+<div class="container">
 	<div class="row">
 		<div class="col-md-4 login-sec">
-		    <h2 class="text-center"> ELD Cosmetic</h2>
-
-		    <form class="login-form">
-  <div class="form-group">
-    <label for="exampleInputEmail1" class="text-uppercase" >Nombre de usuario</label>
-    <input type="text" class="form-control" placeholder="" value="diego">
-    
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1" class="text-uppercase">Contraseña</label>
-    <input type="password" class="form-control" placeholder="" value="******">
-  </div>
-    <div class="form-check">
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input">
-      <small>Recordarme</small>
-    </label>
-    <a type="submit" class="btn btn-primary float-right" href="{{=URL(c="default",f="index2")}}" >Iniciar sesión</a>
-  </div>
-
-</form>
-
-		</div>
+		    <h2 class="text-center"> Bienvenido a ELD Cosmetic </h2>
+           <h3 class="text-center"> Sistema de Gestión Comercial</h3>
+            <div class="col-md-4 login-sec">
+             <IMG class="text-center" src="{{=URL(c="static/images/", f="eld_cosmetic.png")}}" />
+            </div>
+<!-- <IMG src="http://127.0.0.1:8000/eld_cosmetic/static/_2.14.6/images/logo_ELD_Cosmetic.png"> --> 
+       </div>
+        <head>
+            <meta http-equiv="Refresh" content="2;{{=URL(c="default",f="index2")}}">
+              </head>
 		<div class="col-md-8 banner-sec">
-             <div class="banner-text">
-    <h2></h2>
-             </div>
-		</div>
-	</div>
+             <h3><p>En segundos sera direccionado a la pagina principal......  </p></h3>
+	  </div>
+   </div>
 </div>
 </section>
