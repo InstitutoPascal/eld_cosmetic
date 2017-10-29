@@ -8,7 +8,7 @@
           <thead>
             <tr>
                 <th>#</th>
-                <th class="">Descripcion Producto</th>
+                <th class="">Nombre Producto</th>
                 <th>Cantidad</th>
                 <th>Precio Unitario</th>
                 <th>SubTotal</th>
@@ -53,7 +53,8 @@
 <div class="form-group">
           <a type="cargar" class="btn btn-primary" href="{{=URL(c="productos",f="index")}}">  Continuar agregando productos<i class="glyphicon glyphicon-send" ></i></a>
           <a type="cargar" class="btn btn-danger" href="{{=URL(c="productos",f="cancelar_venta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
-          <!--<a type="cargar" class="btn btn-success" href="{{=URL(c="productos",f="cancelar_venta")}}">  Pagar con Mercado Pago <i class="glyphicon glyphicon-send" ></i></a>-->
-          <a mp-mode="dftl" href="{{=URL(c="mp",f="index")}}" name="MP-payButton" class="lightblue-M-Ov-ArOn" >Pagar con mercado pago</a>
+          <!--<input type="hidden" name="subtotal" value="{{=subtotal}}" />-->
+          <a type="cargar" class="btn btn-success" href="{{=URL(c="productos",f="confirmar")}}">  Confirmar compra <i class="glyphicon glyphicon-send" ></i></a>
+          <!--<a mp-mode="dftl" href="{{=URL(c="mp",f="index")}}" name="MP-payButton" class="btn btn-success" >Pagar con mercado pago<i class="glyphicon glyphicon-send" ></i></a>-->
 </div>
 </form>

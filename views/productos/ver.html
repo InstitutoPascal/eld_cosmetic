@@ -1,6 +1,6 @@
 {{extend 'layout-carrito.html'}}
 <hr class="featurette-divider">
-
+<form class="form-horizontal" action="{{=URL(c="productos",f="carrito")}}" enctype="multipart/form-data" method="POST">
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">{{=productos.marca}}</h2>
@@ -10,14 +10,16 @@
             <br>
             </h1>
                 <p>
-                  <a type="cargar" class="btn btn-danger btn-lg" href="{{=URL(c="productos",f="carrito")}}">Comprar</a>
+                 <!-- <a type="cargar" class="btn btn-danger btn-lg" href="{{=URL(c="productos",f="carrito")}}">Comprar</a>-->
+                  <input type="hidden" name="producto" value="{{=productos.id_producto}}" />
+                  <input type="submit" role="button" class="btn btn-danger btn-lg" name="comprar" value="Comprar" />
+                  <input type="number" name="cantidad" value="1" />
                   <a type="button" class="btn btn-primary btn-lg" href="{{=URL(c="productos",f="index")}}">Volver</a>
                 </p>
         </div>
         <div class="col-md-5">
-          {{=IMG(_src=URL(c="productos", f="mostrar", args=[productos.id]))}}
-           <!--<img class="featurette-image img-responsive center-block" data-src="/home/lucas/web2py/applications/eld_cosmetic/static/images/013.jpg"  _width="100%", _height="100%" -->
+          {{=IMG(_src=URL(c="productos", f="mostrar", args=[productos.id_producto]))}}
         </div>
       </div>
-
-      </hr>
+</form>
+</hr>

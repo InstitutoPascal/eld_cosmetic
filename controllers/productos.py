@@ -1,4 +1,6 @@
 from ConfigParser import SafeConfigParser
+import time
+
 def index():
     regs = db(db.productos.id_producto>0).select()
     return dict(productos=regs)
@@ -26,7 +28,7 @@ def mostrar():
     elif ext in (".png"):
         formato = "image/png"
     response.headers['Content-Type'] = formato
-    # devolver al navegador el contenido de la imagen
+    # devolver al navegador el contenido de la image
     return stream
 @auth.requires_login()
 def carrito():
@@ -42,7 +44,7 @@ def carrito():
         item = {"id_producto": id_prod, "cantidad": int(cantidad)}
         # busco en la base de datos el registro del producto seleccionado
         reg_producto = db(db.productos.id_producto==id_prod).select().first()
-        item["descripcion"] = reg_producto.descripcion
+        item["descripcion"] = reg_producto.nombre
         item["precio"] = reg_producto.precio
         item["alicuota_iva"] = reg_producto.alicuota_iva
         # si no está definida la lista de items, lo creamos vacia en la sesión:
@@ -54,15 +56,11 @@ def carrito():
     return dict(items_venta=session["items_venta"])
 
 def confirmar():
-    reg_cliente = db(db.clientes.id==session["id_cliente"]).select().first()
+    #reg_cliente = db(db.clientes.id==session["id_cliente"]).select().first()
     total = 0
     for item in session["items_venta"]:
         total += (item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00)
-    return dict (mensaje= "Finalizar venta",
-                 id_cliente=session["id_cliente"],
-                 fecha=session["fecha"],
-                 nro_cbte=session["numero_factura"],
-                 reg_cliente=reg_cliente, total=total)
+    return dict (mensaje= "Finalizar venta", total=total)
 
 def borrar_item():
     # eliminar el elemento de la lista en posicion pos
