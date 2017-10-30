@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # intente algo como
-
+import time
 import datetime
 from ConfigParser import SafeConfigParser
 #response.view = "generic.html"
@@ -11,6 +11,7 @@ def VentasLocal():
     import time
     #obtengo la fecha 
     fecha_dia= time.strftime("%x")
+    session["fecha_actual"]=fecha_dia
     # obtenemos el usuario logeado en el sistema para enviarlo a la vista
     #usuario_log = db(db.auth_user.id == auth.user_id ).select()
     usuario_log = db(db.empleados.usuario_id == auth.user_id ).select().first()
@@ -63,11 +64,10 @@ def VentasLocalCarga():
 
         # obtengo los valores completados en el formulario
         id_cliente = request.vars["id_cliente"]
-        fecha_dia = request.vars.fecha
         usuario_actual  = request.vars.userlog
         # guardo los datos elegidos en la sesión
         session["id_cliente"] = id_cliente
-        session["fecha_dia"] = fecha_dia
+        print "la fecha es: ", session["fecha_actual"]
         #session["first_name"] = usuario_actual
         #Defino en la sesion que inicie una lista en blanco
         session["items_venta"] = []
@@ -90,14 +90,16 @@ def VentasLocalCarga():
         item["alicuota_iva"] = reg_producto.alicuota_iva
         # guardo el item en la sesión
         session["items_venta"].append(item)
-    return dict( fecha_dia=session["fecha_dia"], items_venta=session["items_venta"], cliente_venta=cliente_venta, vend=session["vendedor_log"],)
+    return dict( fecha_dia=session["fecha_actual"], items_venta=session["items_venta"], cliente_venta=cliente_venta, vend=session["vendedor_log"],)
 
 def confirmar():
     total = 0
+    cliente = db(db.clientes.id == session["id_cliente"] ).select().first()
+    cliente_venta = cliente.nombre
     #Recorro lo almacenado en items_venta en la session y hago los calculos de los impuesto para enviarlos a la vista de confirmacion
     for item in session["items_venta"]:
         total += (item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00)
-    return dict (id_cliente=session["id_cliente"], fecha_dia=session["fecha_dia"], total=total)
+    return dict (cliente_venta=cliente_venta, fecha_dia=session["fecha_actual"], total=total, vend=session["vendedor_log"])
 
 def VentaLocalReporte():
     grid = SQLFORM.grid(db.productos)
