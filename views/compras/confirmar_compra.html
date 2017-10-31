@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+{{=BEAUTIFY(response._vars)}}
+
+<center>
+<br /><br /><br />
+<h1> <p class="text-center visible-lg bg-success">Confirmar compra </p></h1>
+<br />
+<td><a type="submit" value="enviar"href="{{=URL(c="compras",f="ComprasProveedoresListados")}}"  class="btn btn-primary" >Agregar productos  <i <span class="glyphicon glyphicon-list-alt"></span> </i></a> </td>
+<td><a type="submit" value="enviar"href="{{=URL(c="compras",f="ComprasGuardarProducto")}}"  class="btn btn-primary" >Finalizar compra  <i <span class="glyphicon glyphicon-list-alt"></span> </i></a> </td>
+<td><a type="submit" value="enviar"href="{{=URL(c="compras",f="ComprasProveedores")}}"  class="btn btn-primary" >Anular compra  <i <span class="glyphicon glyphicon-list-alt"></span> </i></a> </td>
+                     
+</center>
+
+</div>
