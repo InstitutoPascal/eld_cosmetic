@@ -191,7 +191,7 @@ db.define_table('proveedor',
                  db.Field('telefono','integer'),
                  db.Field('email','string'),
                  db.Field('razon_social','string'),
-                 db.Field('fecha_registro','date'),
+                 db.Field('fecha_registro','string'),
                  db.Field('pagina_web','string'),
                  db.Field('saldo_adeudado','string'),
                  db.Field('estado',requires=IS_IN_SET(['activo','inactivo'])),
@@ -239,8 +239,8 @@ db.define_table ('productos',
                  db.Field('precio','float'),
                  db.Field('proveedor','string'),
                  db.Field ('codigo_producto','string'),
-                 db.Field ('fecha_ingreso','date'),
-                 db.Field('fecha_venta','date'),
+                 db.Field ('fecha_ingreso','string'),
+                 db.Field('fecha_venta','string'),
                  db.Field('numero_remito','integer'),
                  db.Field('factura_venta','integer'),
                  db.Field('factura_compra','integer'),
@@ -372,11 +372,85 @@ db.define_table ('compras',
                  db.Field ('marca','string'),
                  db.Field ('categoria','string'),
                  db.Field ('precio','integer'),
-                 db.Field('fecha_ingreso','date'),
+                 db.Field('fecha_ingreso','string'),
                  #db.Field('fecha_salida','date'),
                  db.Field('proveedor','string'),
                  db.Field('remito','string'),
-                 db.Field('factura','string'),
-                 db.Field('orden_compra','string'),
                  db.Field('cantidad','integer')
                 )
+db.compras.codigo_producto.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.compras.nombre.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(30, error_message='Solo hasta 30 caracteres')
+db.compras.marca.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(30, error_message='Solo hasta 30 caracteres')
+db.compras.categoria.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
+db.compras.precio.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
+db.compras.fecha_ingreso.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+#db.compras.fecha_salida.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+db.compras.cantidad.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.compras.proveedor.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(130, error_message='Solo hasta 10 caracteres')
+db.compras.remito.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+#db.compras.factura.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+#db.compras.orden_compra.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+
+
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------
+# tabla factura compras (esta tabla esta destinada a guardar los datos de las compras que realicemos 
+
+db.define_table ('factura_compras',
+                 db.Field('numero_factura','integer'),
+                 db.Field ('fecha_compra','date'),
+                 db.Field ('proveedor','string'),
+                 db.Field ('producto','string'),
+                 db.Field ('cantidad','integer'),
+                 db.Field('numero_cae','string'),
+                 db.Field('subtotal','integer'),
+                 db.Field('total','integer'),
+                 db.Field('forma_pago','string')
+                )
+db.factura_compras.numero_factura.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.factura_compras.fecha_compra.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio')
+db.factura_compras.proveedor.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(30, error_message='Solo hasta 30 caracteres')
+db.factura_compras.producto.requires=IS_UPPER(),IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(30, error_message='Solo hasta 4 caracteres')
+db.factura_compras.cantidad.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
+db.factura_compras.numero_cae.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+#db.compras.fecha_salida.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+db.factura_compras.subtotal.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.factura_compras.total.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(130, error_message='Solo hasta 10 caracteres')
+db.factura_compras.forma_pago.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+db.define_table ('factura_ventas',
+                 db.Field('tipo_cbte','integer'),
+                 db.Field ('punto_vta','integer'),
+                 db.Field ('cbte_nro','string'),
+                 db.Field ('fecha','date'),
+                 db.Field ('concepto','integer'),
+                 db.Field('tipo_doc','string'),
+                 db.Field('nro_doc','integer'),
+                 db.Field('cbt_desde','integer'),
+                 db.Field('imp_total','integer'),
+                 db.Field('imp_tot_conc','integer'),
+                 db.Field('imp_neto','integer'),
+                 db.Field('imp_iva','integer'),
+                 db.Field('imp_trib','integer'),
+                 db.Field('imp_op_ex','integer'),
+                 db.Field('fecha_cbte','date')
+                )
+db.factura_ventas.tipo_cbte.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
+db.factura_ventas.punto_vta.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
+db.factura_ventas.cbte_nro.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+db.factura_ventas.fecha.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+db.factura_ventas.concepto.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(6, error_message='Solo hasta 6 caracteres')
+db.factura_ventas.tipo_doc.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+#db.compras.fecha_salida.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+db.factura_ventas.nro_doc.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.factura_ventas.cbt_desde.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(30, error_message='Solo hasta 10 caracteres')
+db.factura_ventas.imp_total.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(10, error_message='Solo hasta 10 caracteres')
+db.factura_ventas.imp_tot_conc.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
+db.factura_ventas.imp_neto.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
+db.factura_ventas.imp_iva.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
+db.factura_ventas.imp_trib.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
+db.factura_ventas.imp_op_ex.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres')
+db.factura_ventas.fecha_cbte.requires=IS_NOT_EMPTY(error_message='Campo obligatorio')
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------

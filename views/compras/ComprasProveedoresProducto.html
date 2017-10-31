@@ -1,11 +1,4 @@
 {{extend 'layout.html'}}
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
 
 <body>
 <h1>
@@ -14,36 +7,36 @@
 <div class="col-sm-offset-0 col-sm-12">
     <form class="form-horizontal">
        <div class="form-group">
-        <label for="codigo" class="col-sm-1 control-label">codigo</label>
+        <label for="inputEmail3" class="col-sm-1 control-label">codigo</label>
         <div class="col-sm-6"> 
-        <input type="nombre" class="form-control" name="codigo" cod="autocomplete"value= "{{=session.codigo_producto}}">
+        <input type="nombre" class="form-control" id="autocomplete"value= "{{=session.codigo_producto}}">
         </div>
         </div>
 
 
 <div class="form-group">
-    <label for="descripcion" class="col-sm-1 control-label">descripcion</label>
+    <label for="inputEmail3" class="col-sm-1 control-label">descripcion</label>
     <div class="col-sm-6"> 
-       <input type="nombre" class="form-control" name="descripcion"value= "{{=session.nombre}}">
+       <input type="nombre" class="form-control" id="autocomplete"value= "{{=session.nombre}}">
          
      </div>
 </div>   
 <div class="form-group">
-    <label for="marca" class="col-sm-1 control-label">marca</label>
+    <label for="inputEmail3" class="col-sm-1 control-label">marca</label>
     <div class="col-sm-6"> 
-       <input type="nombre" class="form-control" name="marcas"value= "{{=session.marca}}">
+       <input type="nombre" class="form-control" id="autocomplete"value= "{{=session.marca}}">
          
      </div>
 </div>   
         
  <div class="form-group">
-    <label for="categoria" class="col-sm-1 control-label">categoria</label>
+    <label for="inputEmail3" class="col-sm-1 control-label">categoria</label>
     <div class="col-sm-6"> 
-       <input type="categoria" class="form-control" name="categoria"value= "{{=session.categoria}}">
+       <input type="categoria" class="form-control" id="autocomplete1"value= "{{=session.categoria}}">
      </div>
 </div>
 <div class="form-group">
-      <label for="cantidad" class="col-sm-1 control-label">Cantidad</label>
+      <label for="cant" class="col-sm-1 control-label">Cantidad</label>
            <div class="col-sm-2">
                <input type="number" name="cantidad" class="form-control" id="cantidad" value = 1> <!--placeholder="placeholder="Ingrese cantidad"" -->
             </div>

@@ -1,42 +1,100 @@
 {{extend 'layout.html'}}
-<body>
-<table class="table table-hover">
-          <caption> <h2>
-              Productos Agregados</caption>
-              </h2>
+<h1>compra de producto</h1>
+<form class="form-horizontal" enctype="multipart/form-data" >
+
+   <!-- ------MOSTRAR EMPLEADO ACTUAL ------------------ -->
+  <div class="form-group">
+    <label for="empleado_logeado"  class="col-sm-1 control-label">usuario: </label>
+      <div class="col-sm-2">
+           <h1><p method="POST" class="form-control" id="empleado_logeado" name="first_name" >
+          <!--   obtenemos los nombres de usuarios y los procesamos -->
+        {{for userlog in usuario_log:}}
+      <!-- mostramos el nombre y apellido del usuario logeado -->
+   {{=userlog.first_name}} {{=userlog.last_name}}</p></h1>
+        {{pass}}
+    </div>
+ </div>
+
+   <!-- ------FINAL MOSTRAR EMPLEADO ACTUAL ------------------ -->
+
+<tr>
+     <th></th>
+    <th></th>
+</tr>
+
+<h4>Seleccion de producto</h4>
+<div class="form-group">
+    </div>
+<form class="form-horizontal" enctype="multipart/form-data" >
+    <div class="form-group">
+        <label for="campo_tipo" class="col-sm-1 control-label">Codigo barras</label>
+          <!-- <div class="col-sm-3">
+          <input type="text" class="form-control" id="exampleInputName2" placeholder="Ingrese el codigo de producto" > 
+            </div> -->
+           <div class="col-sm-3">
+           <input type= "number" name="id_producto" class="form-control" id="campo_tipo" value ="1234">
+
+           </div>
+
+
+
+        <label for="cant" class="col-sm-1 control-label">Cantidad</label>
+           <div class="col-sm-2">
+               <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Ingrese cantidad" value ="1" > 
+            </div>
+    </div>
+<div class="form-group">
+        <div class="col-md-3">
+
+             <input type="submit" name="agregar_item" class="btn btn-default" value="AGREGAR ITEM">
+        </div>
+
+</form>
+
+<form class="form-horizontal" action="{{=URL(c="compras", f="confirmar")}}"  enctype="multipart/form-data" method="POST" >
+    <div class="form-group">
+        <div class="col-md-10">
+          <table class="table table-hover">
+          <caption>Productos Agregados</caption>
           <thead>
             <tr>
                 <th>#</th>
-                <th class="">Cod Producto</th>
-                <th>Remito Num</th>
-                <th>Detalle</th>
+                <th class="">Codigo</th>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Descripción</th>
+                <th>precio</th>
                 <th>Cantidad</th>
-                <th>Precio Unitario</th>
-                <th>SubTotal</th>
-                <th>Stock</th>
+                <th>Opciones</th>
             </tr>
+
           </thead>
         <tbody>
+            {{subtotal = 0}}
+            {{for i, item in enumerate(items_venta):}}
               <tr>
-                  <td>#</td>
-                <td class="">001</td>
-                <td>{{=session.remito}}</td>
-                <td>kosiuko</td>
-                <td>100</td>
-                <td>100</td>
-                <td>100</td>
-                <td>45</td>
-                <td><a class="btn btn-default" role="button" href="{{=URL(c="compras",f="borrar_item",)}}">Eliminar</a></td>
-                <!-- <th>IVA</th> -->
-                <!-- <th>SubTotal + IVA</th> -->
-                <!-- <td>Opciones</td> -->
+                <th scope="row">{{=item["id_producto"]}}</th>
+                <td scope="row">{{=item["codigo"]}}</td>
+                <td scope="row">{{=item["nombre"]}}</td>
+                <td scope="row">{{=item["marca"]}}</td>
+                <td scope="center">{{=item["descripcion"]}}</td>
+                <td scope="center">{{=item["precio"]}}</td>
+                <td scope="center">{{=item["cantidad"]}}</td>
                 
+                <td><a class="btn btn-default" role="button" href="{{=URL(c="compras",f="borrar_item",vars={"pos":i})}}">Eliminar</a></td>
+
             </tr>
-             
-           
             {{pass}}
         </tbody>
         </table>
-<td><a type="cargar" href="{{=URL(c="default",f="index2")}}"  class="btn btn-primary" > Finalizar compra  <i <span class="glyphicon glyphicon-plus-sign"></span> </i></a> </td>
-<td><a type="cargar" href="{{=URL(c="compras",f="ComprasProveedoresProducto")}}"  class="btn btn-primary" > cargar productos  <i <span class="glyphicon glyphicon-plus-sign"></span> </i></a> </td>
-</body>
+        </div>
+        </div>
+        <div class="form-group">
+        <div class="col-md-2">
+          <a type="cargar" class="btn btn-primary" href="{{=URL(c="compras",f="confirmar_compra")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
+          
+        </div>
+    <a type="cargar" class="btn btn-danger" href="{{=URL(c="compras",f="cancelar_venta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
+    </div>
+       
+</form>

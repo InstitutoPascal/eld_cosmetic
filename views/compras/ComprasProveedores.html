@@ -1,62 +1,60 @@
 {{extend 'layout.html'}}
-
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
-
-<body>
-    <h1>
-    Planilla de Proveedores
-</h1>
-<div class="col-sm-offset-0 col-sm-12">
-<form class="form-horizontal">
-
-
-<div class="form-group">
-    <label for="nombre" class="col-sm-1 control-label">Nombre empresa</label>
-    <div class="col-sm-6"><form class="form-horizontal"method="POST"> 
-       <select class="form-control" name="nombre_empresa">
-                       <!------ recorro todos los campos con un for------->
-                   {{for reg_x in lista:}}
-                  <option value="">{{=reg_x.nombre_empresa}}</option>
-                                    {{pass}}
-        </select>   
-     </div>
-</div>
-
-   
-    
-    
-    
-   <div class="form-group">
-    <label for="remito" class="col-sm-1 control-label">N°Remito</label> 
-       <div class="col-sm-6">
-      <input type="number" class="form-control" name="remitos" id="remito" value = "" > <!--placeholder=""-->
- </div>
+<h1>REGISTRAR VENTA</h1>
+<!------ metodo post para eviar el formulario ingresado a otra vista ------->
+<form class="form-horizontal" action="{{=URL(c="compras",f="ComprasProveedoresListados")}}" enctype="multipart/form-data" method="POST">
+    <div class="form-group">
+            <label for="campo_proveedor" class="col-sm-1 control-label">PROVEEDOR</label>
+            <div class="col-sm-2">
+               <select class="form-control" id="campo_proveedor" name="proveedor_id">
+                   <!------ recorro todos los campos con un for------->
+                   {{for reg_proveedor in lista_proveedor:}}
+                 <!------ el value permite enviar el campo que queremos usar en sessions------->
+                   <option value="{{=reg_proveedor.id}}">{{=reg_proveedor.nombre_empresa}}</option>
+                  {{pass}}
+                   <!------ finalizamos el for------->
+                </select>
+            </div>
+        </div>
+      <!-- ------MOSTRAR  ACTUAL ------------------ -->
+  <div class="form-group">
+    <label for="userlogeado"  class="col-sm-1 control-label">EMPLEADO ACTUAL:</label>
+      <div class="col-sm-2">
+           <h1><p method="POST" class="form-control" id="userlogeado" name="first_name" >
+          <!--   ubtenemos los nombres de usuarios y los procesamos -->
+        {{for userlog in usuario_log:}}
+      <!-- mostramos el nombre y apellido del usuario logeado -->
+   {{=userlog.first_name}} {{=userlog.last_name}}</p></h1>
+        {{pass}}
     </div>
-
- <div class="form-group">
-    <label for="fecha" class="col-sm-1 control-label">Fecha</label> 
-       <div class="col-sm-6">
-       <p class="form-control" name="fecha" value="">{{=fecha_dia}}</p>
  </div>
-    </div>   
-
-   
-   
- 
- <td><a type="cargar" href="{{=URL(c="altas",f="alta_proveedor")}}"  class="btn btn-primary" >Alta proveedor  <i <span class="glyphicon glyphicon-plus-sign"></span> </i></a> </td>
+    <!-- ------FINAL MOSTRAR EMPLEADO ACTUAL ------------------ -->
+    <!------ muestra fecha------->
+    <div class="form-group">
+            <label class="col-sm-1 control-label">FECHA</label>
+            <div class="col-sm-2">
+                <input class="form-control" name="fecha" value="{{=fecha_dia}}">
+            </div>
+        </div>
+    <!------ enviamos los datos------->
     
- <td><a type="submit" value="enviar"href="{{=URL(c="compras",f="ComprasProveedoresCodigoBarras")}}"  class="btn btn-primary" >Agregar productos  <i <span class="glyphicon glyphicon-list-alt"></span> </i></a> </td>
-       
-
- 
-    
+     <div class="form-group">
+           <label class="col-sm-1 control-label">REMITO</label>
+            <div class="col-sm-2">
+                <input class="form-control" name="remito" value="2342">
+            </div>
+        </div>
+<!-- ----------------ingreso de remitos-------------------  -->  
+    <div class="form-group">
+        <div class="col-md-3">
+         <input type="submit" name="boton_enviar" class="btn btn-default" value="AGREGAR PRODUCTOS">
+        </div>
+    </div>
 </form>
-     </div>
-</body>
-</form>
+    <!------ Boton que envia a alta de proveedor ------->
+    <form class="form-horizontal" action="{{=URL(c="altas",f="alta_proveedor")}}" enctype="multipart/form-data" method="POST">
+    <div class="form-group">
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-default">AGREGAR PROVEEDOR NUEVO</button>
+        </div>
+        </div>
+    </form>

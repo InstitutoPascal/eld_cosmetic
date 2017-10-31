@@ -1,78 +1,119 @@
 # -*- coding: utf-8 -*-
+
 #compras
 def ComprasProveedores():
     #importamos la fecha del sistema
     import time
     #obtengo la fecha 
     fecha_dia= time.strftime("%x")
-   
-    #provee = db(db.proveedor.Nombre_Empresa == Nombre_Empresa ).select()
+    # los datos de la variable fecha_dia lo guardamos en la session.fecha temporalmente
+    session.fecha = fecha_dia
+    # obtenemos el usuario logeado en el sistema para enviarlo a la vista
+    usuario_log = db(db.auth_user.id == auth.user_id ).select()
     # definir los campos a obtener desde la base de datos:
-    proveedor=db(db.proveedor.nombre_empresa).select()
-    lista=db(db.proveedor.id>0).select(db.proveedor.nombre_empresa)
-    request.vars.nombre_empresa
-    session.nombre_empresas=request.vars.nombre_empresa
-    request.vars.remitos
-    session.remito =request.vars.remitos
-    request.vars.fecha
-    session.fecha=request.vars.fecha
-    print "",session.nombre_empresa
-   
+    campos = db.proveedor.id, db.proveedor.nombre_empresa
     # definir la condición que deben cumplir los registros:
-    #criterio = db.proveedor.nombre_empresa>0
+    criterio = db.proveedor.id>0
     # ejecutar la consulta:
-    #ista_clientes = db(criterio).select(*campos)
+    lista_proveedor = db(criterio).select(*campos)
     # revisar si la consulta devolvio registros:
-    #if not lista_clientes:
-        #ensaje = "No ha cargado un proveedor"
-    #else:
-     #   mensaje = "Seleccione un proveedor"
-    #redirije los valores al HTML
-    return dict(lista=lista, fecha_dia=fecha_dia,)
-
-def ComprasProveedoresProducto():
-    producto=db(db.productos.codigo_producto).select()
-    perfume=db(db.productos.id>0).select(db.productos.codigo_producto)
-    nombre=db(db.productos.nombre).select()
-    eld=db(db.productos.id>0).select(db.productos.nombre)
-    cat=db(db.productos.categoria).select()
-    categoria=db(db.productos.id>0).select(db.productos.categoria)
-    request.vars.codigo
-    session.codigo=request.vars.codigo
-    request.vars.descripcion
-    session.nombre=request.vars.descripcion
-    request.vars.marcas
-    session.marcas=request.vars.marcas
-    request.vars.categoria
-    session.categorias=request.vars.categoria
-    request.vars.cantidad
-    session.cantidad=request.vars.cantidad
     
-    print "",session.nombre_empresas, session.remito,session.fecha
-    return dict(perfume=perfume, eld=eld, categoria=categoria)
-def ComprasProveedoresCodigoBarras():
-    if request.vars.codigo:
-        print "ingrese el codigo", request.vars.codigo
-        # revisar que request.vars.codigo cumpla con las validaciones
-        session.codigo_barras = request.vars.codigo
-        # buscamos el producto en la base datos
-        reg= db(db.productos.codigo_barras==session.codigo_barras).select().first()
-        if reg:
-            # a fines ilustrativos guardamos en la session los datos del producto
-            # esto deberia hacerse en el controlador respectivo, y siempre traerlos de la db reg= db(db.productos.codigo_barras==session.codigo_barras).select().first()
-            session.codigo_producto = reg.codigo_producto
-            session.nombre= reg.descripcion
-            session.marca = reg.marca
-            session.categoria= reg.categoria
-            session.flash="codigo ok"
-            redirect(URL(c="compras", f="ComprasProveedoresProducto"))
-        else:
-            response.flash= "ingrese un codigo de barra "
-    return {}
+    if not lista_proveedor:
+        mensaje = "No ha cargado proveedor"
+    else:
+        mensaje = "Seleccione un proveedor"
+    
+    #redirije los valores al HTML
+    return dict(message=mensaje, lista_proveedor=lista_proveedor, usuario_log=usuario_log, fecha_dia=fecha_dia, )
+
+
+
 
 def ComprasProveedoresListados():
+    #importamos la fecha del sistema
+    import time
+    #obtenemos el usuario logeado en el sistema para enviarlo a la vista por medio del return
+    usuario_log = db(db.auth_user.id == auth.user_id ).select()
+   
+    # obtengo los valores completados en el formulario
+    id_proveedor = request.vars["proveedor_id"]
+    reg_proveedor = db(db.proveedor.id==id_proveedor).select().first()
+    # print "",reg_proveedor.nombre_empresa
+    
+    #Si se presiono el boton =_enviar en el formulario
+    if request.vars["boton_enviar"]:
+        fecha_dia = request.vars.fecha
+        session.fecha= fecha_dia
+        remito=request.vars.remito
+        session["remito"] = remito
+        
+        usuario_actual  = request.vars.userlog
+        # guardo los datos elegidos en la sesión
+        
+        session["id_proveedor"] = id_proveedor
+        session["fecha_dia"] = fecha_dia
+        session["first_name"] = usuario_actual
+         #Defino en la sesion que inicie una lista en blanco
+        session["items_venta"] = []
+       
+        reg_proveedor = db(db.proveedor.id==id_proveedor).select().first()
+    if request.vars["agregar_item"]:
+        # obtengo los valores del formulario
+        codigo_barras = request.vars["id_producto"]
+        # buscamos el producto en la base datos
+        reg_producto = db(db.productos.codigo_barras==codigo_barras).select().first()
+        id_producto = reg_producto.id_producto
+        cantidad = request.vars["cantidad"]
+        item = {"id_producto": id_producto, "cantidad": int(cantidad),}
+        item["descripcion"] = reg_producto.descripcion
+        item["codigo"]= reg_producto.codigo_producto
+        item["nombre"]=reg_producto.nombre
+        item["marca"]=reg_producto.marca
+        item["precio"] = reg_producto.precio
+        # guardo el item en la sesión
+        session["items_venta"].append(item)
+        #print"usuario ",session["vendedor_logueado"]
+       
+    return dict(fecha_dia=session["fecha_dia"], vendedor_logueado=session["vendedor_logueado"],usuario_log=usuario_log, items_venta=session["items_venta"], id_proveedor=id_proveedor,)
+
+    
+
+
+def borrar_item(): # eliminar el elemento de la lista en posicion pos
+    del session["items_venta"][int(request.vars.pos)]
     return dict()
-def borrar_item():
+
+def confirmar_compra():
     return dict()
+
 def ComprasGuardarProducto():
+    #remito=request.vars.remito
+    fecha= session.fecha
+    rem = session.remito
+    session["items_venta"]
+    
+    for item in session["items_venta"]:
+        descripcion = item["descripcion"]
+        cantidad = item["cantidad"]
+        precio_un = item["precio"]
+        nombre = item ["nombre"]
+        marca = item ["marca"]
+        codigo= item ["codigo"]
+        db.compras.insert(
+                categoria=descripcion,
+                cantidad=cantidad,
+                precio=precio_un,
+                nombre=nombre,
+                codigo_producto=codigo,
+                marca= marca,
+                remito=rem,
+                fecha_ingreso= fecha
+            )
+
+
+    print "lista productos", session["items_venta"]
+    return dict()
+
+def cancelar_venta():
+    del session["items_venta"]
     return dict()
