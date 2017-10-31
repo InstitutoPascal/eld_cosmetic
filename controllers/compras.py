@@ -22,7 +22,6 @@ def ComprasProveedores():
         mensaje = "No ha cargado proveedor"
     else:
         mensaje = "Seleccione un proveedor"
-    
     #redirije los valores al HTML
     return dict(message=mensaje, lista_proveedor=lista_proveedor, usuario_log=usuario_log, fecha_dia=fecha_dia, )
 
@@ -30,6 +29,7 @@ def ComprasProveedores():
 
 
 def ComprasProveedoresListados():
+   
     #importamos la fecha del sistema
     import time
     #obtenemos el usuario logeado en el sistema para enviarlo a la vista por medio del return
@@ -38,7 +38,6 @@ def ComprasProveedoresListados():
     # obtengo los valores completados en el formulario
     id_proveedor = request.vars["proveedor_id"]
     reg_proveedor = db(db.proveedor.id==id_proveedor).select().first()
-    # print "",reg_proveedor.nombre_empresa
     
     #Si se presiono el boton =_enviar en el formulario
     if request.vars["boton_enviar"]:
@@ -49,14 +48,15 @@ def ComprasProveedoresListados():
         
         usuario_actual  = request.vars.userlog
         # guardo los datos elegidos en la sesión
-        
         session["id_proveedor"] = id_proveedor
         session["fecha_dia"] = fecha_dia
         session["first_name"] = usuario_actual
          #Defino en la sesion que inicie una lista en blanco
         session["items_venta"] = []
-       
         reg_proveedor = db(db.proveedor.id==id_proveedor).select().first()
+
+        
+       
     if request.vars["agregar_item"]:
         # obtengo los valores del formulario
         codigo_barras = request.vars["id_producto"]
@@ -72,8 +72,8 @@ def ComprasProveedoresListados():
         item["precio"] = reg_producto.precio
         # guardo el item en la sesión
         session["items_venta"].append(item)
-        #print"usuario ",session["vendedor_logueado"]
-       
+
+
     return dict(fecha_dia=session["fecha_dia"], vendedor_logueado=session["vendedor_logueado"],usuario_log=usuario_log, items_venta=session["items_venta"], id_proveedor=id_proveedor,)
 
     
@@ -87,11 +87,12 @@ def confirmar_compra():
     return dict()
 
 def ComprasGuardarProducto():
-    #remito=request.vars.remito
+    # se guardan los datos obtenidos de la session.fecha  a una variable fecha
     fecha= session.fecha
     rem = session.remito
-    session["items_venta"]
     
+    session["items_venta"]
+    # realizamos un for en session item_venta
     for item in session["items_venta"]:
         descripcion = item["descripcion"]
         cantidad = item["cantidad"]
@@ -99,6 +100,8 @@ def ComprasGuardarProducto():
         nombre = item ["nombre"]
         marca = item ["marca"]
         codigo= item ["codigo"]
+        
+        
         db.compras.insert(
                 categoria=descripcion,
                 cantidad=cantidad,
@@ -108,6 +111,7 @@ def ComprasGuardarProducto():
                 marca= marca,
                 remito=rem,
                 fecha_ingreso= fecha
+                
             )
 
 
