@@ -15,7 +15,7 @@ def index():
                 "currency_id": "ARS",
 				"picture_url": "https://www.mercadopago.com/org-img/MP3/home/logomp3.gif"
 			}
-		for item in session["items_venta"]],
+	for item in session["items_venta"]],
         "marketplace_fee": 2.29 # fee to collect
 	}
     # llamamos a MP para que cree un link...
