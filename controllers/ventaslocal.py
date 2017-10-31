@@ -42,13 +42,6 @@ def CancelarVenta():
     del session["items_venta"]
     return dict()
 
-def VentasMediosPago():
-    total = 0
-    #Recorro lo almacenado en items_venta en la session y hago los calculos de los impuesto para enviarlos a la confirmacion
-    for item in session["items_venta"]:
-        total += (item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00)
-    return dict (id_cliente=session["id_cliente"], fecha_dia=session["fecha_dia"], total=total)
-
 def VentasLocalCarga():
     #importamos la fecha del sistema
     import time
