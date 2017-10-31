@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
-# intente algo como
 import time
 import datetime
 from ConfigParser import SafeConfigParser
 #response.view = "generic.html"
 
+#forzamos que el usuario se loguee en el sistema
 @auth.requires_login()
 def VentasLocal():
     #importamos la fecha del sistema
     import time
     #obtengo la fecha 
     fecha_dia= time.strftime("%x")
+    #guardo la fecha en la sesion
     session["fecha_actual"]=fecha_dia
-    # obtenemos el usuario logeado en el sistema para enviarlo a la vista
-    #usuario_log = db(db.auth_user.id == auth.user_id ).select()
+    #obtenemos el id del usuario logeado en el sistema y en base a ese obtengo los campos del usuario
     usuario_log = db(db.empleados.usuario_id == auth.user_id ).select().first()
+    #extraigo del usuario logueado el nombre 
     vendedor_log = usuario_log.nombre
-    print "usuario logueado ", vendedor_log
+    #agrego el usuario logueado en la sesion
     session["vendedor_log"] = vendedor_log
-    # definir los campos a obtener desde la base de datos:
+    #obtenemos de la tabla clientes los siguientes campos, el id, el nombre y el codigo del cliente
     campos = db.clientes.id, db.clientes.nombre, db.clientes.codigo_cliente
-    # definir la condición que deben cumplir los registros:
+    #defino la condición que deben cumplir los datos que se obtendran de la base de datos
     criterio = db.clientes.id>0
-    # ejecutar la consulta:
+    #ejecutamos la consulta utilizando el criterio y utilizando los campos previamente obtenidos 
     lista_clientes = db(criterio).select(*campos)
-    # revisar si la consulta devolvio registros:
+    #revisar si la consulta devolvio registros
     if not lista_clientes:
         mensaje = "No ha cargado clientes"
     else:
@@ -33,37 +34,33 @@ def VentasLocal():
     return dict(message=mensaje, lista_clientes=lista_clientes, vendedor_log=vendedor_log, fecha_dia=fecha_dia, )
 
 def Borrar_Item():
-    # eliminar el elemento de la lista en posicion pos
+    #eliminar el elemento de la lista en posicion pos x
     del session["items_venta"][int(request.vars.pos)]
     return dict()
 
 def CancelarVenta():
-    # elimina todos los elementos de la lista
+    #elimina todos los elementos de la lista (diccionario) items_venta
     del session["items_venta"]
     return dict()
 
 def VentasLocalCarga():
     #importamos la fecha del sistema
     import time
+    #verificamos si la vista nos devuelve un nombre
     if "id_cliente" in request.vars:
         session["id_cliente"] = request.vars["id_cliente"]  # traer del form y guardo en la sesion
-    cliente = db(db.clientes.id == session["id_cliente"] ).select().first()
+    cliente = db(db.clientes.id == session["id_cliente"] ).select().first() #enbase al id del cliente obtenido de la sesion, obtengo los datos del mismo
     cliente_venta = cliente.nombre
-    print "el cliente es: ",cliente_venta
-    # obtenemos el usuario logeado en el sistema para enviarlo a la vista
-    #####usuario_log = db(db.auth_user.id == auth.user_id ).select()
-    # Si se presiono el boton =_enviar en el formulario
+    #verifico si presiono el boton =boton_enviar (agregar producto) en el formulario, continuo
     if request.vars["boton_enviar"]:
-
-        # obtengo los valores completados en el formulario
+        #obtengo el id del cliente del formulario web en la vista VentasLocal
         id_cliente = request.vars["id_cliente"]
         usuario_actual  = request.vars.userlog
-        # guardo los datos elegidos en la sesión
+        #guardo el id de cliente en la sesión
         session["id_cliente"] = id_cliente
-        print "la fecha es: ", session["fecha_actual"]
-        #session["first_name"] = usuario_actual
-        #Defino en la sesion que inicie una lista en blanco
+        #Defino en la sesion que inicie una lista (diccionario) en blanco
         session["items_venta"] = []
+    #verifico si presionaron el boton =agregar_item en el formulario web, continuo.
     if request.vars["agregar_item"]:
         # obtengo los valores del formulario
         codigo_barras = request.vars["id_producto"]
@@ -81,21 +78,23 @@ def VentasLocalCarga():
         item["descripcion"] = reg_producto.descripcion
         item["precio"] = reg_producto.precio
         item["alicuota_iva"] = reg_producto.alicuota_iva
-        # guardo el item en la sesión
+        #guardo el item en la sesión
         session["items_venta"].append(item)
     return dict( fecha_dia=session["fecha_actual"], items_venta=session["items_venta"], cliente_venta=cliente_venta, vend=session["vendedor_log"],)
 
 def confirmar():
     total = 0
+    #Obtengo el los datos del cliente en base al id obtenido de la sesion
     cliente = db(db.clientes.id == session["id_cliente"] ).select().first()
     cliente_venta = cliente.nombre
-    #Recorro lo almacenado en items_venta en la session y hago los calculos de los impuesto para enviarlos a la vista de confirmacion
+    #Recorro lo almacenado en items_venta en la session y hago los calculos de los impuesto para enviarlos a la vista de confirmacion de la venta
     for item in session["items_venta"]:
         total += (item["precio"] * item["cantidad"] + item["precio"] * item["cantidad"] *item["alicuota_iva"]/100.00)
     return dict (cliente_venta=cliente_venta, fecha_dia=session["fecha_actual"], total=total, vend=session["vendedor_log"])
 
+#Reporte temporal para uso en el desarrollo del sistema
 def VentaLocalReporte():
-    grid = SQLFORM.grid(db.productos)
+    grid = SQLFORM.grid(db.comprobante_afip)
     return {"grilla": grid}
 
 
@@ -106,13 +105,14 @@ def GenerarFactura():
     # busco el registro del cliente en la base (usando el id de la sesion)
     id_cliente = session["id_cliente"]
     reg_cliente = db(db.clientes.id==id_cliente).select().first()
+    #Tomo los datos obtenidos (dinamicos y estaticos) los guardo en factura_id y realizo un insert en comprobante_afip
     factura_id = db.comprobante_afip.insert(
             webservice="wsfev1",
             #fecha_cbte=datetime.datetime.now(),
             tipo_cbte=1,  # factura A, ver tabla tipos_cbte
             punto_vta=PUNTO_VTA,
             cbte_nro=1,
-            # Datos del cliente (traer de la tabla respectiva!!!!!!)
+            # Datos del cliente se obtienen de la tabla cliente
             nombre_cliente=reg_cliente.nombre + " " + reg_cliente.apellido,
             tipo_doc=80,#96 dni # 80 cuit
             nro_doc=reg_cliente.cuil,
@@ -127,7 +127,7 @@ def GenerarFactura():
 
     total_neto = 0
     total_iva = 0
-    # recorro los productos en el carrito (session)
+    # recorro los productos en el carrito (session) y calculo totales, netos, etc..
     for item in session["items_venta"]:
         descripcion = item["descripcion"]
         cantidad = item["cantidad"]
@@ -137,6 +137,7 @@ def GenerarFactura():
         subtotal = neto + importe_iva
         total_neto = total_neto + neto
         total_iva = total_iva + importe_iva
+        #realizo un insert en detalle_afip con los detalles de las ventas
         db.detalle_afip.insert(
                 comprobante_id=factura_id,
                 codigo="P001",
@@ -159,7 +160,6 @@ def GenerarFactura():
              imp_op_ex = 0,
         )
 
-    ## db.alicutoa_iva.insert()
-
+    #llamamos a la funcion obtener cae en el controlado facturacion donde enviamos los datos al afip y luego generamos la factura
     redirect(URL(c="facturacion", f="obtener_cae", args=[factura_id]))
     return dict(message="se creo la factura %s" % factura_id)

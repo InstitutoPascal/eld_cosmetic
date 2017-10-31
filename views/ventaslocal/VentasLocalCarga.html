@@ -2,7 +2,6 @@
 <h1>Ventas Local carga</h1>
 <form class="form-horizontal" enctype="multipart/form-data" >
 
-<!--{{=BEAUTIFY(response._vars)}}   trae todo lo que esta en el return del controlador -->
    <!-- ------MOSTRAR VENDEDOR ACTUAL ------------------ -->
   <div class="form-group">
     <label for="userlogeado"  class="col-sm-1 control-label">Vendedor: </label>
@@ -11,7 +10,7 @@
     </div>
  </div>
 
-   <!-- ------FINAL MOSTRAR CLIENTE ACTUAL ------------------ -->
+   <!-- ------MOSTRAR CLIENTE ACTUAL ------------------ -->
 
 <div class="form-group">
     <label for="cliente"  class="col-sm-1 control-label">Cliente Nº: </label>
@@ -26,23 +25,21 @@
      <th></th>
     <th></th>
 </tr>
+<!-- ------Seleccion de los productos------------------ -->
 
 <h4>Seleccion de producto</h4>
 <div class="form-group">
     </div>
 <form class="form-horizontal" enctype="multipart/form-data" >
     <div class="form-group">
-        <label for="campo_tipo" class="col-sm-1 control-label">Codigo barras</label>
-          <!-- <div class="col-sm-3">
-          <input type="text" class="form-control" id="exampleInputName2" placeholder="Ingrese el codigo de producto" > 
-            </div> -->
-           <div class="col-sm-3">
+                    <!-----ingreso del cod de barras--------- -->
+        <label for="campo_tipo" class="col-sm-1 control-label">Codigo barras</label>   
+          <div class="col-sm-3">
            <input type= "number" name="id_producto" class="form-control" id="campo_tipo" value ="1234">
-
            </div>
 
 
-
+                  <!-----ingreso la cantidad de producto------- -->
         <label for="cant" class="col-sm-1 control-label">Cantidad</label>
            <div class="col-sm-2">
                <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Ingrese cantidad" value ="1" > 
@@ -55,11 +52,12 @@
         </div>
 
 </form>
-
+                                                    <!----- SELECCION Y LISTADO DE PRODUCTOS --------- -->
 <form class="form-horizontal" action="{{=URL(c="ventaslocal", f="confirmar")}}"  enctype="multipart/form-data" method="POST" >
     <div class="form-group">
         <div class="col-md-10">
           <table class="table table-hover">
+                                          <!-----Creamos la tabla para mostrar los productos cargados-------->
           <caption>Productos Agregados</caption>
           <thead>
             <tr>
@@ -77,6 +75,7 @@
             </tr>
 
           </thead>
+              <!-----Obtengo los productos que fueron seleccionados y los guardamos en items_venta, calculo iva y subtotal------- -->
         <tbody>
             {{subtotal = 0}}
             {{for i, item in enumerate(items_venta):}}
@@ -110,12 +109,14 @@
         </table>
         </div>
     </div>
+                                <!-----Nos lleva a la siguiente vista para confirmar la venta------- -->
     <div class="form-group">
         <div class="col-md-2">
           <a type="cargar" class="btn btn-primary" href="{{=URL(c="ventaslocal",f="confirmar")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
-          
         </div>
+                                <!-----Nos lleva a la vista para cancelar la venta------- -->
     <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventaslocal",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
     </div>
-       
+
 </form>
+<!--NOTA: {{=BEAUTIFY(response._vars)}}   trae todo lo que esta en el return del controlador -->
