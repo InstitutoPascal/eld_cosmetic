@@ -145,7 +145,7 @@ db.define_table('comprobante_afip',
     Field('formato_id', type='integer', writable=False),
     migrate=migrate)
 
-# detalle de los artículos por cada comprobante
+# detalle de los artículos por cada comprobante # Equivalente a la tabla Ventas
 db.define_table('detalle_afip',
     Field('id', type='id'),
     Field('comprobante_id', type='reference comprobante_afip', 
