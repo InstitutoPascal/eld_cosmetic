@@ -1,0 +1,105 @@
+{{extend 'layout.html'}}
+<h1>Está es la plantilla webphone/setup.html</h1>
+{{=BEAUTIFY(response._vars)}}
+
+      <head>
+
+        <title>Configuracion</title>
+        <meta content="width=device-width, initial-scale=0.5" name="viewport" />
+
+        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" media="screen" />
+
+       <head>
+<script src="{{=URL('static','js/jstorage.js')}}"></script>
+<script src="{{=URL('static','js/sip.js')}}"></script>
+<script src="{{=URL('static','js/phone.js')}}"></script>
+<script src="{{=URL('static','js/project.js')}}"></script>
+    </head>
+
+    </head>
+
+    <body>
+    <div class="container">
+        <div class="row" style="min-height:150px;">
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+
+                <audio id="localAudio" style="display:none;"></audio>
+                
+
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h> <p class="text-center visible-lg bg-success">Presiones el boton y luego ingrese los datos requeridos para configurar el interno telefonico</p></h>
+                            <div class="form-inline" role="form">
+<a id="settings" class="btn btn-primary" href="" data-toggle="modal" data-target="#myModal"> configuracion de interno <i class="glyphicon glyphicon-remove" ></i> </a> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Configuraciones</h4>
+          </div>
+          <div class="modal-body">
+
+          <h3>Datos de la conexion</h3>
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Nombre</label>
+                <div class="col-sm-10">
+                  <input type="string" class="form-control" id="name" placeholder="Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="uri" class="col-sm-2 control-label">URI</label>
+                <div class="col-sm-10">
+                  <input type="string" class="form-control" id="uri" placeholder="john@lo.ru">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="authName" class="col-sm-2 control-label">Numero de registro</label>
+                <div class="col-sm-10">
+                  <input type="string" class="form-control" id="authName" placeholder="authName">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">Clave de registro</label>
+                <div class="col-sm-10">
+                  <input type="string" class="form-control" id="password" placeholder="SuperPassword">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="wsServer" class="col-sm-2 control-label">Servidor Websocket</label>
+                <div class="col-sm-10">
+                  <input type="string" class="form-control" id="wsServer" placeholder="wss://sip.lo.ru:8080/ws">
+                </div>
+              </div>
+            </form>
+
+
+
+          </div>
+          <div class="modal-footer">
+            
+            <button type="button" class="btn btn-primary" id="saveSettings">Guardar & Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>

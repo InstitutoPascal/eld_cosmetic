@@ -1,0 +1,50 @@
+{{extend 'layout.html'}}
+<h1>Está es la plantilla webphone/Llamar.html</h1>
+{{=BEAUTIFY(response._vars)}}
+
+<html>
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>        -->
+    <head>
+<script src="{{=URL('static','js/jstorage.js')}}"></script>
+<script src="{{=URL('static','js/sip.js')}}"></script>
+<script src="{{=URL('static','js/phone.js')}}"></script>
+<script src="{{=URL('static','js/project.js')}}"></script>
+    </head>
+  
+  <body>
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-4 ">
+                <audio id="localAudio" style="display:none;"></audio>
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Ingrese el interno a llamar</h3>
+                            <span id="status"></span>
+                            <span id="registered"></span>
+                            <div id="display"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-inline" role="form">
+                                <input id="number" type="text" placeholder="Ingrese el interno a llamar" class="search-query form-control">
+                                <a id="call" class="btn btn-primary">
+                                    <i class="icon-plus-sign"></i>
+                                    llamar
+                                </a>
+                                <a id="end" class="btn btn-danger" style="display:none;">
+                                    <i class="icon-plus-sign"></i>
+                                    finalizar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </body>
