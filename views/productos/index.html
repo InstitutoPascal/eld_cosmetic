@@ -1,4 +1,29 @@
 {{extend 'layout-carrito.html'}}
+
+<nav class="navbar navbar-default" role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{=URL(c="productos",f="index")}}">ELD COSMETICS</a>
+  </div>
+ 
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{{=URL(c="productos",f="contacto")}}">CONTACTÁNOS</a></li>
+    </ul>
+  </div>
+</nav>
+
+
 <link rel="stylesheet" type="text/css" href="css/indexcarrito.css" />
 <link rel="stylesheet" type="text/js" href="js/indexcarrito.js" />
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -11,7 +36,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active" >
-        <img class="img-responsive" src="http://127.0.0.1:8000/eld_cosmetic/static/_2.14.6/images/fraganza2.jpg" alt="...">
+        <img class="img-responsive" src="http://127.0.0.1:8000/eld_cosmetic/static/_2.14.6/images/eld.jpg" alt="...">
     </div>
       <div class="item">
         <img class="img-responsive" src="http://127.0.0.1:8000/eld_cosmetic/static/_2.14.6/images/backgroundcopia.jpg" alt="...">
@@ -27,7 +52,7 @@
     <!--  <a href="mostrar">producto.nombre</a>         -->
         <!--{{=A(productos.nombre, _href=URL(f="ver",args=[productos.id]))}}-->
   <!--<div class="row">-->
-   <div class="col-sm-4 col-md-2 hero-feature">
+   <div class="col-sm-8 col-md-4 hero-feature">
      <div class="thumbnail">
        <div class="product-image">
           {{=IMG(_src=URL(c="productos", f="mostrar", args=[productos.id_producto]))}}
@@ -38,7 +63,7 @@
                 $ {{=productos.precio}}
             </p>
         <p>
-          <a href="{{=URL(c="productos",f="ver", args=[productos.id_producto])}}" class="btn btn-primary" role="button">Ver Descripción</a>
+          <a href="{{=URL(c="productos",f="ver", args=[productos.id_producto])}}" class="btn btn-primary" role="button">Agregar a Carrito <i class="glyphicon glyphicon-shopping-cart" ></i></a>
           <input type="hidden" name="producto" value="{{=productos.id_producto}}" />
           <!--<input type="submit" role="button" class="btn btn-danger" name="comprar" value="Comprar" />-->
           <!--<input type="number" name="cantidad" value="1" />-->
@@ -48,7 +73,8 @@
   </div>
   {{pass}}
  </form>
-    <!-- <div class="col-sm-4 col-md-2 hero-feature">
+
+<!-- <div class="col-sm-4 col-md-2 hero-feature">
     <div class="thumbnail">
        <div class="product-image">
           {{=IMG(_src=URL("static/images","IMG-20170517-WA0074.jpg"), _width="100%", _height="100%")}}

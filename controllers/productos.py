@@ -4,8 +4,11 @@ import time
 def index():
     regs = db(db.productos.id_producto>0).select()
     return dict(productos=regs)
+
 def confirmacioncompra():
     return dict()
+
+@auth.requires_login()
 def ver():
    # obtengo el id de prodcuto desde la URL
     prod_id = request.args[0]
@@ -30,7 +33,7 @@ def mostrar():
     response.headers['Content-Type'] = formato
     # devolver al navegador el contenido de la image
     return stream
-@auth.requires_login()
+
 def carrito():
     if request.vars["producto"]:
         # obtengo los valores del formulario
@@ -69,4 +72,7 @@ def borrar_item():
 
 def cancelar_venta():
     del session["items_venta"]
+    return dict()
+
+def contacto():
     return dict()
