@@ -81,7 +81,7 @@ def VentasLocalCarga():
         #guardo el item en la sesión
         session["items_venta"].append(item)
     return dict( fecha_dia=session["fecha_actual"], items_venta=session["items_venta"], cliente_venta=cliente_venta, vend=session["vendedor_log"],)
-
+        
 def confirmar():
     total = 0
     #Obtengo el los datos del cliente en base al id obtenido de la sesion
