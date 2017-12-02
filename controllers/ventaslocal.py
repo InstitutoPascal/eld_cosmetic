@@ -60,26 +60,29 @@ def VentasLocalCarga():
         session["id_cliente"] = id_cliente
         #Defino en la sesion que inicie una lista (diccionario) en blanco
         session["items_venta"] = []
-    #verifico si presionaron el boton =agregar_item en el formulario web, continuo.
+        #verifico si presionaron el boton =agregar_item en el formulario web, continuo.
     if request.vars["agregar_item"]:
         # obtengo los valores del formulario
         codigo_barras = request.vars["id_producto"]
-        # busco en la base de datos el codigo de barras ingresado, lo comparo y obtengo los campos de la tabla productos
-        reg_producto = db(db.productos.codigo_barras==codigo_barras).select().first()
-        # obtengo el id de la consulta anterior
-        id_producto = reg_producto.id_producto
-        # obtengo la candidad de productos ingresado en el formulario
-        cantidad = request.vars["cantidad"]
-        # creo un diccionario y lo inicializo con el id y la cantidad de producto
-        item = {"id_producto": id_producto, "cantidad": int(cantidad)}
-        # agrego nuevos registros en el diccionario (item["nombredelaclave"] = variablequetraelaconsulta.campodelatablaconsultada)
-        item["nombre"] = reg_producto.nombre
-        item["marca"] = reg_producto.marca
-        item["descripcion"] = reg_producto.descripcion
-        item["precio"] = reg_producto.precio
-        item["alicuota_iva"] = reg_producto.alicuota_iva
-        #guardo el item en la sesión
-        session["items_venta"].append(item)
+        if db(db.productos.codigo_barras==codigo_barras).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
+            response.flash = 'El codigo de barras ingresado no esta en la base de datos'
+        else:
+            # busco en la base de datos el codigo de barras ingresado, lo comparo y obtengo los campos de la tabla productos
+            reg_producto = db(db.productos.codigo_barras==codigo_barras).select().first()
+            # obtengo el id de la consulta anterior
+            id_producto = reg_producto.id_producto
+            # obtengo la candidad de productos ingresado en el formulario
+            cantidad = request.vars["cantidad"]
+            # creo un diccionario y lo inicializo con el id y la cantidad de producto
+            item = {"id_producto": id_producto, "cantidad": int(cantidad)}
+            # agrego nuevos registros en el diccionario (item["nombredelaclave"] = variablequetraelaconsulta.campodelatablaconsultada)
+            item["nombre"] = reg_producto.nombre
+            item["marca"] = reg_producto.marca
+            item["descripcion"] = reg_producto.descripcion
+            item["precio"] = reg_producto.precio
+            item["alicuota_iva"] = reg_producto.alicuota_iva
+            #guardo el item en la sesión
+            session["items_venta"].append(item)
     return dict( fecha_dia=session["fecha_actual"], items_venta=session["items_venta"], cliente_venta=cliente_venta, vend=session["vendedor_log"],)
         
 def confirmar():
