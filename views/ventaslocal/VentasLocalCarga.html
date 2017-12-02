@@ -1,64 +1,64 @@
 {{extend 'layout.html'}}
-<h1>Ventas Local carga</h1>
+<h1>Ventas en local - Carga de productos</h1>
 <form class="form-horizontal" enctype="multipart/form-data" >
 
    <!-- ------MOSTRAR VENDEDOR ACTUAL ------------------ -->
-  <div class="form-group">
-    <label for="userlogeado"  class="col-sm-1 control-label">Vendedor: </label>
-      <div class="col-sm-2">
-       <input type="text" class="form-control" value="{{=vend}}"></input>
-    </div>
- </div>
+<div class="form-group">
+   <label for="userlogeado"  class="col-sm-1 control-label">Vendedor: </label>
+     <div class="col-sm-2">
+      <input type="text" class="form-control" value="{{=vend}}"></input>
+     </div>
+</div>
 
    <!-- ------MOSTRAR CLIENTE ACTUAL ------------------ -->
 
 <div class="form-group">
-    <label for="cliente"  class="col-sm-1 control-label">Cliente Nº: </label>
+    <label for="cliente"  class="col-sm-1 control-label">Cliente: </label>
       <div class="col-sm-2">
     <input type="text" class="form-control" value="{{=cliente_venta}}">
       </div>
-
 </div>
 
-    </form>
+</form>
+
 <tr>
-     <th></th>
+    <th></th>
     <th></th>
 </tr>
+
 <!-- ------Seleccion de los productos------------------ -->
 
-<h4>Seleccion de producto</h4>
+<h2>Seleccion de producto</h2>
 <div class="form-group">
     </div>
 <form class="form-horizontal" enctype="multipart/form-data" >
-    <div class="form-group">
+<div class="form-group">
                     <!-----ingreso del cod de barras--------- -->
-        <label for="campo_tipo" class="col-sm-1 control-label">Codigo barras</label>   
+        <label for="campo_tipo" class="col-sm-1 control-label">Codigo barra</label>
           <div class="col-sm-3">
            <input type= "number" name="id_producto" class="form-control" id="campo_tipo" value ="1234" required>
-           </div>
+          </div>
 
 
                   <!-----ingreso la cantidad de producto------- -->
         <label for="cant" class="col-sm-1 control-label">Cantidad</label>
            <div class="col-sm-2">
-               <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Ingrese cantidad" value ="1" required > 
-            </div>
-    </div>
+             <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Ingrese cantidad" value ="1" required> 
+           </div>
+</div>
 <div class="form-group">
-        <div class="col-md-3">
-
+        <div class="col-md-10">
              <input type="submit" name="agregar_item" class="btn btn-primary" value="AGREGAR ITEM">
         </div>
-
+</div>
 </form>
                                                     <!----- SELECCION Y LISTADO DE PRODUCTOS --------- -->
 <form class="form-horizontal" action="{{=URL(c="ventaslocal", f="confirmar")}}"  enctype="multipart/form-data" method="POST" >
-    <div class="form-group">
-        <div class="col-md-10">
+<div class="form-group">
+    <div class="col-md-10">
           <table class="table table-hover">
-                                          <!-----Creamos la tabla para mostrar los productos cargados-------->
-          <caption>Productos Agregados</caption>
+                        <!-----Creamos la tabla para mostrar los productos cargados-------->
+          <h2>Productos Agregados</h2>
           <thead>
             <tr>
                 <th>#</th>
@@ -77,7 +77,6 @@
           </thead>
               <!-----Obtengo los productos que fueron seleccionados y los guardamos en items_venta, calculo iva y subtotal------- -->
         <tbody>
-           
             {{subtotal = 0}}
             {{for i, item in enumerate(items_venta):}}
               <tr>
@@ -97,10 +96,10 @@
             {{pass}}
         </tbody>
         </table>
-        </div>
-        </div>
+    </div>
+</div>
     <div class="form-group">
-        <div class="col-md-3">
+      <div class="col-md-3">
         <table class="table table-bordered">
         <tbody>
             <tr> <th scope="row">Total $:</th> <td>{{=subtotal}}</td>
@@ -108,13 +107,13 @@
 
         </tbody>
         </table>
-        </div>
+       </div>
     </div>
                                 <!-----Nos lleva a la siguiente vista para confirmar la venta------- -->
     <div class="form-group">
-        <div class="col-md-2">
-          <a type="cargar" class="btn btn-default" href="{{=URL(c="ventaslocal",f="confirmar")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
-        </div>
+       <div class="col-md-2">
+     <a type="cargar" class="btn btn-default" href="{{=URL(c="ventaslocal",f="confirmar")}}">  Continuar <i class="glyphicon glyphicon-send" ></i></a>
+       </div>
                                 <!-----Nos lleva a la vista para cancelar la venta------- -->
     <a type="cargar" class="btn btn-danger" href="{{=URL(c="ventaslocal",f="CancelarVenta")}}">  Cancelar Venta <i class="glyphicon glyphicon-remove" ></i></a>
     </div>
