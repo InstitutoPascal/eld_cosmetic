@@ -3,8 +3,11 @@
 <center>
 <br /><br /><br />
 <h1> <p class="text-center visible-lg bg-success">El Item se ha eliminado correctamente !  Gracias</p></h1>
+<h4> <p class="text-center visible-lg bg-success"></p>Si no presiona volver, esta pagina volvera automaticamente en 1 segundos...</h4>
 <br />
 <a type="cargar" class="btn btn-primary " href="{{=URL(c="ventaslocal",f="VentasLocalCarga")}}"> Volver <i class="glyphicon glyphicon-remove" ></i> </a>
 </center>
-
+<head>
+<meta http-equiv="Refresh" content="1;{{=URL(c="ventaslocal",f="VentasLocalCarga")}}">
+</head>
 </div>
