@@ -1,9 +1,9 @@
 {{extend 'layout.html'}}
-<h1>REGISTRAR VENTA</h1>
+<h1>Generar nueva venta</h1>
 <!------ metodo post para eviar el formulario ingresado a otra vista ------->
 <form class="form-horizontal" action="{{=URL(c="ventaslocal",f="VentasLocalCarga")}}" enctype="multipart/form-data" method="POST">
-    <div class="form-group">
-            <label for="campo_cliente" class="col-sm-1 control-label">CLIENTE</label>
+<div class="form-group">
+            <label for="campo_cliente" class="col-sm-1 control-label">Cliente:</label>
             <div class="col-sm-2">
                <select class="form-control" id="campo_cliente" name="id_cliente">
                    <!------ recorro todos los campos con un for------->
@@ -14,22 +14,22 @@
                    <!------ finalizamos el for------->
                 </select>
             </div>
-        </div>
+</div>
       <!-- ------MOSTRAR VENDEDOR ACTUAL ------------------ -->
-  <div class="form-group">
-    <label for="userlogeado"  class="col-sm-1 control-label">VENDEDOR ACTUAL:</label>
-      <div class="col-sm-2">
+<div class="form-group">
+    <label for="userlogeado"  class="col-sm-1 control-label">Vendedor actual:</label>
+    <div class="col-sm-2">
             <input class="form-control" name="fecha" value="{{=vendedor_log}}">
     </div>
- </div>
+</div>
     <!-- ------FINAL MOSTRAR VENDEDOR ACTUAL ------------------ -->
     <!------ muestra fecha------->
     <div class="form-group">
-            <label class="col-sm-1 control-label">FECHA</label>
+            <label class="col-sm-1 control-label">Fecha:</label>
             <div class="col-sm-2">
                 <input class="form-control" name="fecha" value="{{=fecha_dia}}">
             </div>
-        </div>
+    </div>
     <!------ enviamos los datos------->
     <div class="form-group">
         <div class="col-md-3">
@@ -38,10 +38,10 @@
     </div>
 </form>
     <!------ Boton que envia a alta de cliente ------->
-    <form class="form-horizontal" action="{{=URL(c="altas",f="alta_cliente")}}" enctype="multipart/form-data" method="POST">
+<form class="form-horizontal" action="{{=URL(c="altas",f="alta_cliente")}}" enctype="multipart/form-data" method="POST">
     <div class="form-group">
-        <div class="col-md-3">
-          <button type="submit" class="btn btn-primary" >AGREGAR CLIENTE NUEVO</button>
-        </div>
-        </div>
-    </form>
+       <div class="col-md-3">
+          <button type="submit" class="btn btn-success" >AGREGAR CLIENTE NUEVO</button>
+       </div>
+    </div>
+</form>
