@@ -64,6 +64,7 @@ def VentasLocalCarga():
     if request.vars["agregar_item"]:
         # obtengo los valores del formulario
         codigo_barras = request.vars["id_producto"]
+        #verifico si el codigo de barras ingresado no esta en la base, envia un mensaje de error
         if db(db.productos.codigo_barras==codigo_barras).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
             response.flash = 'El codigo de barras ingresado no esta en la base de datos'
         else:
