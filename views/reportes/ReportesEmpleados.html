@@ -1,15 +1,15 @@
 {{extend 'layout.html'}} <!-- Obtiene la barra superior con los menues  -->
-<h1>LISTADO DE EMPLEADOS</h1> <!-- Titulo  -->
-<input type="button" onclick="history.back()" name="volver atrás" value="volver atrás">  <!-- Boton volver atras  -->
+<h1>Listado completo de empleados</h1> <!-- Titulo  -->
+<input class="btn btn-warning" type="button" onclick="history.back()" name="volver atrás" value="volver atrás">  <!-- Boton volver atras  -->
 <TABLE width="100%" border="2" cellspacing="5" cellpadding="5" bgcolor="cdcdcd" font-size: = 11px margin= 0  >  <!-- Tabla  -->
     <TR BGCOLOR="#99f"><TH>CODIGO</TH><TH>DNI</TH><TH>APELLIDO</TH><TH>NOMBRE</TH><TH>OPCIONES</TH></TR>  <!-- Titulo de los campos -->
     {{for x in dc: }}
     <TR><TD>{{=x.codigo_empleados}}</TD><TD>{{=x.dni}}</TD><TD>{{=x.apellido}}</TD><TD>{{=x.nombre}}</TD><TD> <!-- Campos de la tabla que seran consultados -->
-            <A href="{{=URL(c='bajas', f='borrar_cliente', args=(x.id, ))}}">BORRAR</A> -  <!-- Permite borrar registros -->
-            <A href="{{=URL(c='modificaciones', f='editar_proveedor', args=(x.id, ))}}">EDITAR</A>  <!-- Permite modificar registros -->
+            <A type="button" class="btn btn-danger btn-xs" href="{{=URL(c='bajas', f='borrar_cliente', args=(x.id, ))}}">BORRAR</A> -  <!-- Permite borrar registros -->
+            <A  type="button" class="btn btn-primary btn-xs" href="{{=URL(c='modificaciones', f='editar_proveedor', args=(x.id, ))}}">EDITAR</A>  <!-- Permite modificar registros -->
         </TD></TD></TR>
     {{pass}}
 
-<TH> <center BGCOLOR="#99f"> <input type="button" name="Imprimir Reporte" value="Imprimir Reporte" onclick="window.print();">  </center> </TH> <!-- Boton Imprimir  -->
+<TH> <center BGCOLOR="#99f"> <input type="button" class="btn btn-success btn-xs" name="Imprimir Reporte" value="Imprimir Reporte" onclick="window.print();">  </center> </TH> <!-- Boton Imprimir  -->
 </TABLE>
-<input type="button" onclick="history.back()" name="volver atrás" value="volver atrás">  <!-- Boton volver atras  -->
+<input  type="button" class="btn btn-warning" onclick="history.back()" name="volver atrás" value="volver atrás">  <!-- Boton volver atras  -->
