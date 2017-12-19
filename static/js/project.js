@@ -1,33 +1,36 @@
 var Phone = null;
 
 $(function () {
-//Funcion de llamada
+
+    
     $("#call").on('click', function (e) {
         Phone.call($("#number").val());
     });
-//funcion finalizar llamada
+
     $("#end").on('click', function (e) {
         Phone.end();
     });
-// funcion almacena los datos
-    $("#saveSettings").on('click', function () {
-        console.log('save!');
-        $.jStorage.set('uri', $('sip:1160@pbx.systembyte.com.ar:5160').val());
-        $.jStorage.set('name', $('Enrique').val());
-        $.jStorage.set('password', $('5d6085aa844529fe10a20fc17383b53f').val());
-        $.jStorage.set('authName', $('1160').val());
-        $.jStorage.set('wsServer', $('wss://pbx.systembyte.com.ar:8089/ws').val());
 
+    $("#saveSettings").on('click', function () {
+        
+        console.log('save!');
+        $.jStorage.set('uri', $('#uri').val());
+        $.jStorage.set('name', $('#name').val());
+        $.jStorage.set('password', $('#password').val());
+        $.jStorage.set('authName', $('#authName').val());
+        $.jStorage.set('wsServer', $('#wsServer').val());
+        
+        
         $('#myModal').modal('hide');
         initPhone();      
     });
-// funcion que obtiene los datos para almacenarlos
+    
     function initFromStorage () {
-        $("#uri").val($.jStorage.get('sip:1160@pbx.systembyte.com.ar:5160'));
-        $("#name").val($.jStorage.get('Enrique'));
-        $("#password").val($.jStorage.get('5d6085aa844529fe10a20fc17383b53f'));
-        $("#authName").val($.jStorage.get('1160'));
-        $("#wsServer").val($.jStorage.get('wss://pbx.systembyte.com.ar:8089/wsr'));
+        $("#uri").val($.jStorage.get('uri'));
+        $("#name").val($.jStorage.get('name'));
+        $("#password").val($.jStorage.get('password'));
+        $("#authName").val($.jStorage.get('authName'));
+        $("#wsServer").val($.jStorage.get('wsServer'));
 
         return {
             uri: $.jStorage.get('uri'),
@@ -49,7 +52,7 @@ $(function () {
                checkEmpty(creds.authName) &&
                checkEmpty(creds.wsServer);
     };
-// funcion que inicializa la conexion y verifica s ise configuraron los parametros correctamente
+
     function initPhone () {
         var creds = initFromStorage();
         console.log(creds);
@@ -79,8 +82,8 @@ $(function () {
         } else {
             console.log('not set config params');
         }
-
+        
     };
-
+    
     initPhone();
 });
